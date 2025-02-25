@@ -1,5 +1,3 @@
-=======
-# programming_project_WCh_2025
 
 
 Lista osob
@@ -11,5 +9,6 @@ Lista osob
 5. Karalina
 6. Weronika :)
 7. Natalia
-8.
+8. Maria Kujawska
 </pre>
+>>>>>>> e237952888bb5c7958d607bb98c204c41b9a0df9
