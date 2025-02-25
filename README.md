@@ -1,4 +1,5 @@
-
+Pierwsza aplikacja - polls
+na podstawie tutorialu django
 
 Lista osob
 <pre>
