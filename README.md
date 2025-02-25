@@ -11,4 +11,4 @@ Lista osob
 7. Natalia
 8. Maria Kujawska
 </pre>
->>>>>>> e237952888bb5c7958d607bb98c204c41b9a0df9
+
