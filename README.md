@@ -6,7 +6,7 @@ Lista osob
 <pre>
 1. anastazja
 2. Kuba Kozlowski 292413
-3. Martyna Grzybek
+3. Martyna Grzybek Eloelo 320
 4. Mateusz Gawin
 5. Karalina
 6. Weronika :)
