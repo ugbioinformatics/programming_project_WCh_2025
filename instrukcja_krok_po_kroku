@@ -1,6 +1,6 @@
 Krok1: zrob venv, python3 -m venv env (poza folderem gita)
 Krok2: source env/bin/activate.csh
-Krok3: sklonuj gita
+Krok3: sklonuj gita, git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
 Krok4: zmien brancha na polls, git chackout polls
 Krok5: git pull
 Krok6: zainstaluj django, python -m pip install django
