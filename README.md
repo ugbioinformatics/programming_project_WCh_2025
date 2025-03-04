@@ -1,6 +1,8 @@
-<a href=""> test
+
 Pierwsza aplikacja - polls
 na podstawie tutorialu django
+
+<a href="instrukcja_krok_po_kroku"> instrukcja instalacji</a>
 
 Lista osob
 <pre>
