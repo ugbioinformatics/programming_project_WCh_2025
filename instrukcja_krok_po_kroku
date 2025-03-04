@@ -3,7 +3,7 @@ Krok2: source env/bin/activate.csh
 Krok3: sklonuj gita, git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
 Krok3.5: wejdz do directory programming_project_WCh_2025, cd programming_project_WCh_2025
 Krok4: zmien brancha na polls, git checkout polls
-Krok5: git pull
+
 Krok6: zainstaluj django, python -m pip install django
 Krok7: zresetuj teminal, rehash
 Krok8: przejdz do folderu mysite
