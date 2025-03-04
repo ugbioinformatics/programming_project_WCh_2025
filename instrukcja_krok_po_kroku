@@ -1,13 +1,16 @@
 Krok1: zrob venv, python3 -m venv env (poza folderem gita)
 Krok2: source env/bin/activate.csh
 Krok3: sklonuj gita, git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
-Krok4: zmien brancha na polls, git checkout polls
-Krok5: git pull
+Krok4: wejdz do directory programming_project_WCh_2025, cd programming_project_WCh_2025
+Krok5: zmien brancha na polls, git checkout polls
 Krok6: zainstaluj django, python -m pip install django
-Krok7: zresetuj teminal, rehash
-Krok8: przejdz do folderu mysite
+Krok7: zresetuj terminal - komenda nie fizycznie, rehash
+Krok8: przejdz do folderu mysite, cd mysite
 Krok9: stworz migracje, python manage.py makemigrations polls
 Krok10: zrob migracje, python manage.py migrate
 Krok11: serwer dziala (127.0.0.1:8000/polls) zostala do zrobienia baza, python manage.py runserver
 Krok12a(opcjonalny): wylacz serwer i zrob admina, python manage.py createsuperuser
 Krok12b: odpal serwer i wejdz na 127.0.0.1:8000/admin
+Krok13: placeholder do skryptu bazy (automatyzacja pkt. 12)
+
+
