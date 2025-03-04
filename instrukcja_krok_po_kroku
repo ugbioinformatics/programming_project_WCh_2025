@@ -11,3 +11,6 @@ Krok10: zrob migracje, python manage.py migrate
 Krok11: serwer dziala (127.0.0.1:8000/polls) zostala do zrobienia baza, python manage.py runserver
 Krok12a(opcjonalny): wylacz serwer i zrob admina, python manage.py createsuperuser
 Krok12b: odpal serwer i wejdz na 127.0.0.1:8000/admin
+Krok13: placeholder do skryptu bazy (automatyzacja pkt. 12)
+
+
