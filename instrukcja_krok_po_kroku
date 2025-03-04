@@ -4,7 +4,7 @@ Krok3: sklonuj gita, git clone git@github.com:ugbioinformatics/programming_proje
 Krok4: wejdz do directory programming_project_WCh_2025, cd programming_project_WCh_2025
 Krok5: zmien brancha na polls, git checkout polls
 Krok6: zainstaluj django, python -m pip install django
-Krok7: zresetuj teminal, rehash
+Krok7: zresetuj terminal - komenda nie fizycznie, rehash
 Krok8: przejdz do folderu mysite, cd mysite
 Krok9: stworz migracje, python manage.py makemigrations polls
 Krok10: zrob migracje, python manage.py migrate
