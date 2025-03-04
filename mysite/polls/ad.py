@@ -2,7 +2,7 @@ from polls.models import Choice, Question
 from django.utils import timezone
 
 
-q = Question(question_text="Input ur question: ", pub_date=timezone.now())
+q = Question(question_text="w pliku ad mozna edytowac tresc pytania", pub_date=timezone.now())
 q.save()
 print(q)
 idq = q.id
