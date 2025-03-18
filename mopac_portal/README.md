@@ -25,7 +25,7 @@ tar zxvf Jmol-14.0.13-binary.tar.gz
 unzip jmol-14.0.13/jsmol.zip          
 git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
 cd programming_project_WCh_2025          
-pip install -r requirements.txt
+pip install -r mopac_portal/requirements.txt
 cd mopac_portal/
 mv ../../jsmol media
 python3 manage.py makemigrations blog
