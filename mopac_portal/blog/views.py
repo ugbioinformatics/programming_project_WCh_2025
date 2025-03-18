@@ -159,7 +159,7 @@ def CIRconvert_Views(request):
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
             subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
-            post.cieplo, post.energia = heat_energy(post.id)
+            post.cieplo, post.ionization, post.weight = heat_energy(post.id)
             post.save()
             return redirect('/')
     else:
