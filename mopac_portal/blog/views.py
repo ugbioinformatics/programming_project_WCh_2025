@@ -48,6 +48,7 @@ def heat_energy(id):
     
     GRAD = []
     HEAT = []
+    energy = 0
     for line in nazwa:
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
@@ -148,7 +149,7 @@ def CIRconvert_Views(request):
                 make_png_and_mop(pole_smiles, post.id)
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
-            subprocess.run(['/opt/mopac/MOPAC2016.exe', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+            subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
             post.cieplo, post.energia = heat_energy(post.id)
             post.save()
             return redirect('/')
