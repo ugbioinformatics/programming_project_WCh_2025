@@ -138,9 +138,9 @@ def CIRconvert_Views(request):
                 print('url')
                 pole_smiles = urlopen(url).read().decode('utf8')
                 if request.user.is_authenticated:
-                    post = Post(nazwa=body, smiles=pole_smiles,cieplo=0, energia=0, author = request.user)
+                    post = Post(nazwa=body, smiles=pole_smiles,cieplo=0,ionization=0,weight = 0, author = request.user)
                 else:
-                    post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, energia=0)
+                    post = Post(nazwa=body, smiles=pole_smiles, cieplo=0,ionization=0,weight = 0)
                 post.save()
                 print(post.id)
                 from .Utilities import make_png_and_mop
@@ -149,9 +149,9 @@ def CIRconvert_Views(request):
             else:
                 pole_smiles = form.cleaned_data["pole_smiles"]
                 if request.user.is_authenticated:
-                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, energia=0, author = request.user)
+                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, ionization=0,weight = 0, author = request.user)
                 else:
-                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, energia=0)
+                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, ionization=0,weight = 0)
                 post.save()
                 print(post.id)
                 from .Utilities import make_png_and_mop
@@ -208,9 +208,9 @@ def CIRconvert_Views_Reaction(request):
             pole_smiles1 = form.cleaned_data["pole_smiles1"]
             pole_smiles2 = form.cleaned_data["pole_smiles2"]
             if request.user.is_authenticated:
-                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, energia=0, author = request.user)
+                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, author = request.user)
             else:
-                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, energia=0)
+                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0)
             post.save()
             print(post.id)
             from .Utilities import make_png_and_mop
