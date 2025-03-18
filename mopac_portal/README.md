@@ -18,6 +18,13 @@ source env/bin/activate.csh
 ln -s /usr/lib/python3/dist-packages/openbabel $VIRTUAL_ENV/lib/python*/site-packages
 </pre>
 
+<h3> Mopac </h3>
+pobieramy ze strony http://openmopac.net/Download_MOPAC_Executable_Step2.html
+<pre>
+wget http://openmopac.net/mopac-23.1.2-linux.tar.gz
+tar zxvf mopac-23.1.2-linux.tar.gz 
+</pre>
+
 <h3>Nasza aplikacja django z Jmol</h3>
 <pre>
 wget https://sourceforge.net/projects/jmol/files/Jmol/Version%2014.0/Version%2014.0.13/Jmol-14.0.13-binary.tar.gz
