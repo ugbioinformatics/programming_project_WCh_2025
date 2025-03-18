@@ -202,3 +202,18 @@ footer div{
   font-size: 1em;
   width: 100%;
 }
+
+.added_content p{
+  color: var(--gold)
+}
+.post-entry span{
+  font-weight: 900;
+  color: var(--gold);
+}
+pre a{
+  font-weight: 900;
+}
+pre::content{
+  margin-top: 1em;
+}
+
