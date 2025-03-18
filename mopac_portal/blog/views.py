@@ -149,7 +149,7 @@ def CIRconvert_Views(request):
                 make_png_and_mop(pole_smiles, post.id)
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
-            subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+            subprocess.run(['../c.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
             post.cieplo, post.energia = heat_energy(post.id)
             post.save()
             return redirect('/')
