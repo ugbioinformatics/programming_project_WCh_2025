@@ -223,6 +223,7 @@ pre *{
 }
 
 .post-entry{
+  margin-bottom: 1em;
   border-bottom: 0.5em dotted var(--rose);
 }
 .idk{
