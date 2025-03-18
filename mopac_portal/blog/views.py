@@ -52,7 +52,11 @@ def heat_energy(id):
     for line in nazwa:
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
-        if line.startswith('          TOTAL ENERGY            ='):
+        if line.startswith('          IONIZATION POTENTIAL    ='):
+            energy = float(line.split()[-2])
+        if line.startswith('          MOLECULAR WEIGHT        ='):
+            energy = float(line.split()[-2])
+        if line.startswith('          GRADIENT NORM           ='):
             energy = float(line.split()[-2])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
@@ -92,7 +96,11 @@ def heat_energy2(id):
     for line in nazwa:
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
-        if line.startswith('          TOTAL ENERGY            ='):
+        if line.startswith('          IONIZATION POTENTIAL    ='):
+            energy = float(line.split()[-2])
+        if line.startswith('          MOLECULAR WEIGHT        ='):
+            energy = float(line.split()[-2])
+        if line.startswith('          GRADIENT NORM           ='):
             energy = float(line.split()[-2])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
