@@ -1,6 +1,7 @@
 # Projekt programistyczny 2025
 
 main = kopia projektu z 2024 
+
 polls = app z oficjalnego tutorialu django
 
 Lista osob
