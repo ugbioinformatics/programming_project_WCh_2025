@@ -1,47 +1,204 @@
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 18px;
+:root {
+  --gold: #f6bd60;
+  --white: #f7ede2;
+  --rose: #f5cac3;
+  --moss: #84a59d;
+  --pink: #f28482;
+}
+*{
+  box-sizing: border-box;
 }
 
-header {
-  border-bottom: 1px solid #999;
-  margin-bottom: 2rem;
-  display: flex;
-}
-
-header h1 a {
-  color: red;
-  text-decoration: none;
-}
-
-.nav-left {
-  margin-right: auto;
-}
-
-.nav-right {
-  display: flex;
-  padding-top: 2rem;
-}
-
-.post-entry {
-  margin-bottom: 2rem;
-}
-
-.post-entry h2 {
-  margin: 0.5rem 0;
-}
-
-.post-entry h2 a,
-.post-entry h2 a:visited {
-  color: blue;
-  text-decoration: none;
-}
-
-.post-entry p {
+body, html {
+  height: 100%;
+  width: 100vw;
+  font-family: "Lexend", sans-serif;
+  font-size: 1vw;
   margin: 0;
-  font-weight: 400;
+  padding: 0;
+  background-color: var(--moss);
+  display: grid;
+}
+body::before{
+  position: fixed;
+  z-index: 0;
+  content: '';
+  height: 200%;
+  width: 100%;
+  background: rgb(55,120,82);
+  background: linear-gradient(338deg, rgba(55,120,82,1) 0%, rgba(59,113,5,1) 100%); 
+  mask-image: url(rysunek.svg);
+}
+body{
+  grid-template-rows: .025fr 1fr .025fr;
+  background-size: 20em;
+  background-color: var(--moss);
+}
+body *{
+  z-index: 1;
 }
 
-.post-entry h2 a:hover {
-  color: red;
+a{
+  text-decoration: none;
+}
+
+header{
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}
+
+.nav-left{
+  padding-left: 1em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2vw;
+  justify-items: center;
+}
+
+.main_site_link{
+  border-radius: 0 0 1em 1em;
+  border: .75em solid var(--gold);
+  border-top: 0; 
+  background-color: var(--white);
+  display: grid;
+  text-align: center;
+  align-items: center;
+}
+.main_site_link a{
+  font-size: 2.5em;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.adders{
+  border-radius: 0 0 1em 1em;
+  border: .75em solid var(--rose);
+  border-top: 0; 
+  background-color: var(--white);
+  display: grid;
+  text-align: center;
+  align-items: center;
+}
+.adders a{
+  font-size: 2.5em;
+  font-weight: 900;
+  color: var(--pink);
+}
+
+.nav-right{
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.loged{
+  border-radius: 0 0 1em 1em;
+  border: .75em solid var(--rose);
+  border-top: 0; 
+  background-color: var(--white);
+  padding: 1em 1em 1em 2em;
+  display: grid;
+  text-align: center;
+  align-items: center;
+}
+
+.loged span{
+  color: var(--pink);
+  font-size: 2.5em;
+  font-weight: 900;
+}
+.loged span span{
+  font-size: 1em;
+  color: var(--gold)
+}
+.loged button{
+  margin: 1em 0 0 0;
+}
+.loged form{
+  margin: 0;
+  padding: 0;
+}
+.loging{
+  border-radius: 0 0 1em 1em;
+  border: .75em solid var(--rose);
+  border-top: 0; 
+  background-color: var(--white);
+  padding: 1em 1em 1em 2em;
+  display: grid;
+  text-align: center;
+  align-items: center;
+}
+
+.loging span{
+  color: var(--pink);
+  font-size: 1em;
+  font-weight: 900;
+}
+
+.loging a{
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--pink);
+}
+
+.login_box, .signup_box{
+  margin: 1em;
+  padding: 1em;
+  background-color: var(--white);
+  width: fit-content;
+  height: fit-content;
+  border: .75em solid var(--rose);
+  color: var(--pink);
+  border-radius: 1em;
+}
+.login_box input, .signup_box input{
+  background-color: white;
+  border: 0.01em solid var(--pink);
+  color: var(--pink)
+}
+button{
+  background-color: white;
+  border: 0.01em solid var(--pink);
+  color: var(--pink);
+  font-size: 1em;
+}
+.signup_box input{
+  margin-bottom: 1em;
+}
+.signup_box label{
+  font-weight: 900;
+}
+.signup_box ul{
+  margin-top: 0;
+}
+.added_content{
+  margin: 1em;
+  padding: 1em;
+  background-color: var(--white);
+  width: fit-content;
+  height: fit-content;
+  border: .75em solid var(--rose);
+  color: var(--pink);
+  border-radius: 1em;
+}
+.added_content *{
+  color: var(--pink)
+}
+
+footer{
+  display: grid;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+footer div{
+  border-radius: 1em 1em 0 0;
+  border: .75em solid var(--rose);
+  border-bottom: 0;
+  color: var(--pink); 
+  background-color: var(--white);
+  padding: 1em 1em 1em 2em;
+  font-size: 1em;
+  width: 100%;
 }
