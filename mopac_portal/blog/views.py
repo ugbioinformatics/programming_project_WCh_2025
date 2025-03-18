@@ -81,7 +81,7 @@ def heat_energy(id):
     
     czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True)
     
-    return heat, energy
+    return heat, ionization, weight
 
 def heat_energy2(id):
     from django.conf import settings
