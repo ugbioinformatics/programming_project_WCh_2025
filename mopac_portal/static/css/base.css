@@ -214,10 +214,17 @@ footer div{
 pre a{
   font-weight: 900;
 }
-pre::content{
+pre *{
   margin-top: 1em;
 }
 
 .delete, .calculate{
+  font-weight: 900;
+}
+
+.post-entry{
+  border-bottom: 0.5em dotted var(--rose);
+}
+.idk{
   font-weight: 900;
 }
