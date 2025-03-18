@@ -9,9 +9,17 @@
         function jsmeOnLoad() {
             jsmeApplet = new JSApplet.JSME("jsme_container", "380px", "340px");
         }
+        function getSmiles() {
+            var data = document.JME.smiles();
+            document.getElementById("jme_output").value = 'AA';
+        }
 </script>
 
 <div id="jsme_container"></div>
+<button type="button" onclick='getSmiles();'>Get smiles</button>
+<button TYPE="button" onClick="jsmeApplet.reset()">Clear Editor</button>
+<TEXTAREA id="jme_output" ROWS=20 COLS=80></TEXTAREA>
+
 <form method="POST" enctype="multipart/form-data",style = "color:#FFFFFF;">
     <fieldset class="inlineLabels">
         {% csrf_token %}
@@ -21,6 +29,5 @@
         </table>
         <button type="submit" class="save btn btn-default">Save & submit</button>
 </form>
-
 
 {% endblock content %}
