@@ -56,8 +56,6 @@ def heat_energy(id):
             ionization = float(line.split()[-2])
         if line.startswith('          MOLECULAR WEIGHT        ='):
             weight = float(line.split()[-2])
-        if line.startswith('          GRADIENT NORM           ='):
-            gradient_norm = float(line.split()[-2])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
 #            GRAD.append(float(c.split()[-2]))
@@ -101,8 +99,6 @@ def heat_energy2(id):
         if line.startswith('          IONIZATION POTENTIAL    ='):
             energy = float(line.split()[-2])
         if line.startswith('          MOLECULAR WEIGHT        ='):
-            energy = float(line.split()[-2])
-        if line.startswith('          GRADIENT NORM           ='):
             energy = float(line.split()[-2])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
