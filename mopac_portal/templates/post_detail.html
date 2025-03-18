@@ -28,12 +28,12 @@
 
 
 
-<img src="/media/{{post.id}}/molecule.svg">
+<img src="/media/{{post.id}}/molecule.png">
 <p>
   <script src="https://unpkg.com/ngl@1.0.0-beta.7"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport_start");
+      var stage = new NGL.Stage("viewport_start") ;
       stage.loadFile("/media/{{post.id}}/start.mol2", {defaultRepresentation: true});
     });
   </script> 
@@ -45,11 +45,15 @@
   
   </script>
   <p style="color:#FFFFFF";>Start.mol2</p> 
-  <div id="viewport_start" style="width:400px; height:300px;"></div>
+  <div class="scroll">
+  <div id="viewport_start" style="width:400px; height:300px; background-color: transparent;"></div>
+  </div>
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
   <p style="color:#FFFFFF";>Molecule.mol2</p>
+  <div class="scroll2">
   <div id="viewport" style="width:400px; height:300px;"></div>
+  </div>
 
 
 {% if not post.calculated %}

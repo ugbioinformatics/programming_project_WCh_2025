@@ -33,6 +33,7 @@ body{
   grid-template-rows: .025fr 1fr .025fr;
   background-size: 20em;
   background-color: var(--moss);
+  overflow-y: auto;
 }
 body *{
   z-index: 1;
@@ -201,4 +202,31 @@ footer div{
   padding: 1em 1em 1em 2em;
   font-size: 1em;
   width: 100%;
+}
+.scroll{
+  overflow-y: auto;
+  height: 16em;
+  width: 22em;
+  /* background-color:red; */
+  overscroll-behavior: auto none;
+  scrollbar-width: none;
+}
+
+.scroll2{
+  overflow-y: auto;
+  height: 16em;
+  width: 22em;
+  /* background-color:red; */
+  overscroll-behavior: auto none;
+  scrollbar-width: none;
+}
+
+canvas{
+  width: 400px;
+  height: 16em;
+  background-color: transparent !important;
+  touch-action: none;
+  outline: none;
+  scrollbar-width: none;
+
 }
