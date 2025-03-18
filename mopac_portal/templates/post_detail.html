@@ -53,7 +53,7 @@
 
 
 {% if not post.calculated %}
-<p><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
+<p class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
 {% endif %}
-<p><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
+<p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
 {% endblock content %}
