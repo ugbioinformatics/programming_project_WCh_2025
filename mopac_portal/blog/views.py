@@ -48,16 +48,18 @@ def heat_energy(id):
     
     GRAD = []
     HEAT = []
-    energy = 0
+    ionization = 0
+    weight = 0
+    gradient_norm = 0
     for line in nazwa:
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
         if line.startswith('          IONIZATION POTENTIAL    ='):
-            energy = float(line.split()[-2])
+            ionization = float(line.split()[-2])
         if line.startswith('          MOLECULAR WEIGHT        ='):
-            energy = float(line.split()[-2])
+            weight = float(line.split()[-2])
         if line.startswith('          GRADIENT NORM           ='):
-            energy = float(line.split()[-2])
+            gradient_norm = float(line.split()[-2])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
 #            GRAD.append(float(c.split()[-2]))
