@@ -1,16 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% load static %}
+<script type="text/javascript" language="javascript" src="{% static 'jsme/jsme.nocache.js' %}"></script>
+
+<script>
+        //this function will be called after the JavaScriptApplet code has been loaded.
+        function jsmeOnLoad() {
+            jsmeApplet = new JSApplet.JSME("jsme_container", "380px", "340px");
+            document.JME = jsmeApplet;
+        }
+        function getSmiles() {
+            var data = document.JME.smiles();
+            document.getElementById("id_pole_smiles").value = data;
+        }
+</script>
+
+<div id="jsme_container"></div>
+<button type="button" onclick='getSmiles();'>Get smiles</button>
+<button TYPE="button" onClick="jsmeApplet.reset()">Clear Editor</button>
 
 <form method="POST" enctype="multipart/form-data",style = "color:#FFFFFF;">
     <fieldset class="inlineLabels">
         {% csrf_token %}
-        <b style = "color:#FFFFFF;">New Molecule</b> 
-        <table style="color:#FFFFFF;">
+        <b">New Molecule</b> 
+        <table>
             {{ form.as_table }}
         </table>
         <button type="submit" class="save btn btn-default">Save & submit</button>
 </form>
-
 
 {% endblock content %}
