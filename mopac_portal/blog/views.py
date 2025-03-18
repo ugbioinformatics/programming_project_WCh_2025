@@ -56,7 +56,7 @@ def heat_energy(id):
         if line.startswith('          IONIZATION POTENTIAL    ='):
             ionization = float(line.split()[-2])
         if line.startswith('          MOLECULAR WEIGHT        ='):
-            weight = float(line.split()[-2])
+            weight = float(line.split()[-4])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
 #            GRAD.append(float(c.split()[-2]))
