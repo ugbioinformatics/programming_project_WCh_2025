@@ -98,9 +98,9 @@ def heat_energy2(id):
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
         if line.startswith('          IONIZATION POTENTIAL    ='):
-            energy = float(line.split()[-2])
+            ionization = float(line.split()[-2])
         if line.startswith('          MOLECULAR WEIGHT        ='):
-            energy = float(line.split()[-2])
+            weight = float(line.split()[-2])
         if line.startswith(' CYCLE:'):
             a = line.split(":")
 #            GRAD.append(float(c.split()[-2]))
@@ -121,7 +121,7 @@ def heat_energy2(id):
     
     czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule2.mol2",overwrite=True)
     
-    return heat, energy
+    return heat, ionization, weight
 
 def CIRconvert_Views(request):
     from django.conf import settings
