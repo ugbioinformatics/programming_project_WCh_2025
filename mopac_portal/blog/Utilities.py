@@ -58,7 +58,7 @@ def calculate(post, id):
     with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+"/force.mop", inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace('PUT KEYWORDS HERE',f"{metoda} force"), end='')
-    subprocess.run(['/opt/mopac/MOPAC2016.exe', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+    subprocess.run(['../mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
     
 
 
@@ -113,7 +113,7 @@ def calculate(post, id):
             for line in file:
                 print(line.replace('PUT KEYWORDS HERE',f"{metoda} irc={i}* DRC BIGCYCLES=1 html t-priority=0.5"), end='')
 
-        subprocess.run(['/opt/mopac/MOPAC2016.exe', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+        subprocess.run(['../mopac.sh', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
     post.calculated = True
     post.save()
     
