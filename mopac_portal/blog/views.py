@@ -48,7 +48,8 @@ def heat_energy(id):
     
     GRAD = []
     HEAT = []
-
+    ionization = 0
+    weight = 0
     for line in nazwa:
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
