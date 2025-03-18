@@ -3,53 +3,56 @@
   <head>
     <title>Molecule Calculator</title>
     <link href="https://fonts.googleapis.com/css?family=\
-    Source+Sans+Pro:400" rel="stylesheet">
+ource+Sans+Pro:400" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
   </head>
   <body>
-  <style>
-body {
-  background-image:url('https://static.vecteezy.com/system/resources/thumbnails/001/987/697/small_2x/abstract-hexagon-pattern-dark-blue-background-medical-and-science-concept-molecular-structures-free-vector.jpg');
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-}
-</style> 
-    <div>
       <header> 
-      <style>
-      header { 
-  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQiHY2pW_9PQkNC8C4b-wHw9N1bypaNIwzUV9SfMVklidPLODwLujRXsJZF734NToBVbM&usqp=CAU');
-  background-attachment: fixed;
-  background-size: cover ;
-  background-repeat: no-repeat;
-  background-position: center;
-
-}
-      
-      }
-      </style>
         <div class="nav-left">
-          <h1 ><a href="{% url 'home' %}">Molecule Calculator</a></h1>
-          <h1><a href="{% url 'post_suma' %}">Add New Molecule</a></h1>
-          <h1><a href="{% url 'post_suma2' %}">Add New Reaction</a></h1>
+          <div class = "main_site_link"><a href="{% url 'home' %}">Molecule Calculator</a></div>
+          <div class = "adders"><a href="{% url 'post_suma' %}">Add New Molecule</a></div>
+          <div class = "adders"><a href="{% url 'post_suma2' %}">Add New Reaction</a></div>
         </div>
         <div class="nav-right" >
           {% if user.is_authenticated %}
-           Hi {{ user.username }}! &nbsp <form action="{% url 'logout' %}" method="post">
+          <div class="loged">
+            <span>Hi <span>{{ user.username }}</span>!</span>
+            <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
           <button type="submit">Log Out</button>
+        </div>
           </form>
           {% else %}
-          <p  align = "right">You are not logged in.<a href="{% url 'login' %}">Log In </a> &nbsp &nbsp <br> If you don't have an account.<a href="{% url 'signup' %}">Sign up</a> &nbsp &nbsp </p> 
+          <div class="loging">
+            <span>
+              You are not logged in.</br>
+            </span>
+            <a href="{% url 'login' %}">
+              Log In
+            </a>
+            <span>
+              If you don't have an account.</br>
+            </span>
+            <a href="{% url 'signup' %}">
+              Sign up
+            </a>
+          </div> 
           {% endif %}  
                  
         </div>
       </header>
-      {% block content %}
-      {% endblock content %}
-    </div> 
+      <div class="added_content">
+        {% block content %}
+        {% endblock content %}
+      </div>
+
+      <footer>
+        <div>
+          Projekt UG Bioinfomatyka 2025 (Ulepszony tych sabych z 2024)
+        </div>
+      </footer>
   </body>
 </html>
