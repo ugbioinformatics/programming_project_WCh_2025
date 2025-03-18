@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="post-entry">
+  <h2 style="color:#FFFFFF";>{{ post.nazwa }}</h2>
+  <p style="color:#FFFFFF";>{{ post.smiles }}</p>
+  {% if not post.smiles1 != "" %}
+  <p style="color:#FFFFFF";>Heat of Formation: {{ post.cieplo }} KJ/MOL </p>  
+  <p style="color:#FFFFFF";>Total Energy: {{ post.energia }} EV </p>  
+  <p style="color:#FFFFFF";>Method Used: {{ post.metoda }} </p>  
+  {% else %}
+  <p style="color:#FFFFFF";>Heat of Formation1: {{ post.cieplo1 }} KJ/MOL </p>  
+  <p style="color:#FFFFFF";>Total Energy1: {{ post.energia1 }} EV </p>  
+  <p style="color:#FFFFFF";>Heat of Formation2: {{ post.cieplo2 }} KJ/MOL </p>  
+  <p style="color:#FFFFFF";>Total Energy2: {{ post.energia2 }} EV </p>  
+  <p style="color:#FFFFFF";>Method Used: {{ post.metoda }} </p>  
+  <p style="color:#FFFFFF";><a href="/media/{{post.id}}/ts.html"> REACTION </a></p>
+  {% endif %}
+</div>
+
+
+{% if post.calculated %}
+<pre style="color:#FFFFFF";>{{ post.calculations |safe }}</pre>       
+{% endif %}
+
+
+
+
+
+<img src="/media/{{post.id}}/molecule.png">
+<p>
+  <script src="https://unpkg.com/ngl@1.0.0-beta.7"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var stage = new NGL.Stage("viewport_start");
+      stage.loadFile("/media/{{post.id}}/start.mol2", {defaultRepresentation: true});
+    });
+  </script> 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var stage = new NGL.Stage("viewport");
+      stage.loadFile("/media/{{post.id}}/molecule.mol2", {defaultRepresentation: true});
+    });
+  
+  </script>
+  <p style="color:#FFFFFF";>Start.mol2</p> 
+  <div id="viewport_start" style="width:400px; height:300px;"></div>
+<img src="/media/{{post.id}}/nalesnik.png">
+<img src="/media/{{post.id}}/placek.png">
+  <p style="color:#FFFFFF";>Molecule.mol2</p>
+  <div id="viewport" style="width:400px; height:300px;"></div>
+
+
+{% if not post.calculated %}
+<p><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
+{% endif %}
+<p><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
+{% endblock content %}

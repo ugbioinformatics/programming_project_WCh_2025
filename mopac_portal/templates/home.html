@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in post_list %}
+  <div class="post-entry">
+    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.nazwa }}</a></h2>
+    <p style="color:#FFFFFF";>{{ post.smiles }}</p>
+  </div>
+  {% endfor %}
+
+{% if user.is_authenticated %}
+<p>Hi {{ user.username }}!</p>
+<!--<p><a href="{% url 'password_change' %}">Password Change</a></p>-->
+{% else %}
+  <p style="color:#FFFFFF";>You are not logged in</p>
+<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
+{% endif %}
+{% endblock content %}
