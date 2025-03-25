@@ -25,7 +25,7 @@ class Post(models.Model):
     calculated = models.BooleanField(default = False)
     calculations = models.TextField()
     vibration_count = models.IntegerField(default = 0)
-    
+    grad = models.FloatField(default = 0)
 
     def __str__(self):
         return self.title
