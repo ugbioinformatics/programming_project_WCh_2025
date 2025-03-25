@@ -1,3 +1,6 @@
+#funkcje obliczeniowe
+
+# tworzenie wzoru i struktury 3D
 def make_png_and_mop(smiles, id):
     import openbabel.pybel
     import os
@@ -8,7 +11,8 @@ def make_png_and_mop(smiles, id):
     czasteczka.make3D()
     czasteczka.write(format="mop",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mop",overwrite=True)
     czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/start.mol2",overwrite=True)
-
+    
+# tworzenie wzoru i struktury 3D
 def make_png_and_mop2(smiles, id):
     import openbabel.pybel
     import os
@@ -22,6 +26,7 @@ def make_png_and_mop2(smiles, id):
 
 
 
+#sprawdza poprawnosc smilesa
 
 def smile_check(smiles):
     import openbabel.pybel
@@ -31,6 +36,8 @@ def smile_check(smiles):
         return 'it work'
     except:
         return 'it dont work'
+
+#zamienia nazwe na smilesa
 
 def CIRconvert(ids):
     from urllib.request import urlopen
@@ -42,6 +49,7 @@ def CIRconvert(ids):
     except:
         return 'Did not work'
 
+#oblicza ta duza tablice wartosci
 
 def calculate(post, id):
     import openbabel.pybel
