@@ -54,7 +54,7 @@ def heat_energy(id):
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
         if line.startswith('          IONIZATION POTENTIAL    ='):
-            ionization = float(line.split()[-3])
+            ionization = float(line.split()[-4])
         if line.startswith('          MOLECULAR WEIGHT        ='):
             weight = float(line.split()[-4])
         if line.startswith(' CYCLE:'):
