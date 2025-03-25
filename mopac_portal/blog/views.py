@@ -221,7 +221,7 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
             pole_smiles1 = form.cleaned_data["pole_smiles1"]
             pole_smiles2 = form.cleaned_data["pole_smiles2"]
             if request.user.is_authenticated:
-                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, grad =0 author = request.user)
+                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, grad =0, author = request.user)
             else:
                 post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, grad = 0)
             post.save()
