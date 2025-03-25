@@ -227,8 +227,8 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
             post.save()
             print(post.id)
             from .Utilities import make_png_and_mop
-            make_png_and_mop(pole_smiles1, post.id)
-            make_png_and_mop2(pole_smiles2, post.id)
+            make_png_and_mop(pole_smiles1, post.id)	#utilities.py 4
+            make_png_and_mop2(pole_smiles2, post.id) 	#utilities.py 16
 
 
 
@@ -314,8 +314,7 @@ def suma(request):
 """
 
 def Calculate(request,pk):    		#wyswietla obliczenia
-					#szukac w Utilities.py
-    from .Utilities import calculate
+    from .Utilities import calculate  	# utilities.py 54
     post = get_object_or_404(Post, pk=pk)
     calculate(post, pk)
     post.calculated = True
@@ -350,7 +349,7 @@ class BlogUpdateView(UpdateView):
     fields = ["title", "body", "liczby"]
 
 
-class BlogDeleteView(DeleteView):  # new
+class BlogDeleteView(DeleteView):  
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("home")
