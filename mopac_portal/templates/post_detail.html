@@ -7,13 +7,13 @@
   <p>{{ post.smiles }}</p>
   {% if not post.smiles1 != "" %}
   <p><span>Heat of Formation:</span> {{ post.cieplo }} KJ/MOL </p>  
-  <p><span>Total Energy:</span> {{ post.energia }} EV </p>  
+  <p><span>Ionization:</span> {{ post.ionization }} EV </p>  
   <p><span>Method Used:</span> {{ post.metoda }} </p>  
   {% else %}
   <p><span>Heat of Formation1:</span> {{ post.cieplo1 }} KJ/MOL </p>  
-  <p><span>Total Energy1:</span> {{ post.energia1 }} EV </p>  
+  <p><span>Ionization1:</span> {{ post.ionization1 }} EV </p>  
   <p><span>Heat of Formation2:</span> {{ post.cieplo2 }} KJ/MOL </p>  
-  <p><span>Total Energy2:</span> {{ post.energia2 }} EV </p>  
+  <p><span>Ionization2:</span> {{ post.ionization2 }} EV </p>  
   <p><span>Method Used:</span> {{ post.metoda }} </p>  
   <p><a href="/media/{{post.id}}/ts.html"> REACTION </a></p>
   {% endif %}
