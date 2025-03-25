@@ -1,5 +1,7 @@
 # Projekt programistyczny 2025
 
+<a href="mopac_portal/README.md"> instrukcja instalacji</a>
+
 main = kopia projektu z 2024 
 
 polls = app z oficjalnego tutorialu django
