@@ -3,6 +3,7 @@ from .models import Post
 import datetime
 from .Utilities import CIRconvert, smile_check
 
+#formularz do wypełnienia, aby szukac molekul (nazwa i SMILEs)
 
 class Suma(forms.Form):
     pole_nazwa = forms.CharField(label='Name', required = False,widget=forms.TextInput(attrs={'size':40, 'maxlength':400}))
