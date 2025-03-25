@@ -151,7 +151,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
                 print('url')
                 pole_smiles = urlopen(url).read().decode('utf8')
                 if request.user.is_authenticated:
-                    post = Post(nazwa=body, smiles=pole_smiles,cieplo=0,ionization=0,weight = 0, grad = 0 author = request.user)
+                    post = Post(nazwa=body, smiles=pole_smiles,cieplo=0,ionization=0,weight = 0, grad = 0, author = request.user)
                 else:
                     post = Post(nazwa=body, smiles=pole_smiles, cieplo=0,ionization=0,weight = 0, grad = 0)
                 post.save()
