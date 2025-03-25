@@ -60,7 +60,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
         if line.startswith('          IONIZATION POTENTIAL    ='):
-            ionization = float(line.split()[-1])
+            ionization = float(line.split()[-2])
         if line.startswith('          MOLECULAR WEIGHT        ='):
             weight = float(line.split()[-4])
         if line.startswith(' CYCLE:'):
