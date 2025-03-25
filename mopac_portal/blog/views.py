@@ -56,6 +56,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
     HEAT = []
     ionization = 0
     weight = 0
+    grad = 0
     for line in nazwa: 		#tu wyświetla wartości liczbowe wybranych właściwości						
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
@@ -89,7 +90,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
     
     czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True) #pewnie cos do wizualizacji
     
-    return heat, ionization, weight
+    return heat, ionization, weight, grad
 '''
 def heat_energy2(id):		#funckja wyświetlania wartości
 				#z pliku molecule.out
