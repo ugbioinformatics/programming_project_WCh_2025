@@ -125,12 +125,12 @@ def heat_energy2(id):		#funckja wyświetlania wartości
     plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/placek2.png")
     plt.close()
     czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule2.out"))
- '''   
+   
     
     czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule2.mol2",overwrite=True)
     
     return heat, ionization, weight
-
+'''
 def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 				 #tworzy wzor molekuly (png)
     from django.conf import settings
