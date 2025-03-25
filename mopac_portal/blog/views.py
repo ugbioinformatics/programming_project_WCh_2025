@@ -7,6 +7,9 @@ from .forms import Suma2
 import subprocess
 from .models import Post
 import mmap
+
+#funkcje są podwojone, ponieważ są potrzebne dla osobnych molekuł
+#zeby potem zaimplementowac do reakcji
 """
 def suma_old(request,pk):
     post = get_object_or_404(Post, pk=pk)
@@ -17,7 +20,8 @@ def suma_old(request,pk):
     post.save()
     return render(request, 'post_detail.html', {'post': post})
 """
-def metoda(id,metoda):
+def metoda(id,metoda):          #wyrzuca angstromy dla at. w zwiazku
+				#z pliku molecule.mop
     import fileinput
     from django.conf import settings
     
@@ -27,7 +31,8 @@ def metoda(id,metoda):
     return
     
 
-def metoda2(id,metoda):
+def metoda2(id,metoda):		#to samo co metoda, tylko dla drugiej 
+				#molekuły
     import fileinput
     from django.conf import settings
     
@@ -37,7 +42,8 @@ def metoda2(id,metoda):
     return
 
 
-def heat_energy(id):
+def heat_energy(id):		#funckja wyświetlania wartości
+				#z pliku molecule.out
     from django.conf import settings
     import openbabel.pybel
     import os
@@ -50,7 +56,7 @@ def heat_energy(id):
     HEAT = []
     ionization = 0
     weight = 0
-    for line in nazwa:
+    for line in nazwa: 		#tu wyświetla wartości liczbowe wybranych właściwości						
         if line.startswith('          FINAL HEAT OF FORMATION ='):
             heat = float(line.split()[-2])
         if line.startswith('          IONIZATION POTENTIAL    ='):
@@ -66,7 +72,7 @@ def heat_energy(id):
             GRAD.append(float(c.split()[-2]))
 #    print(GRAD)
 #    print(HEAT)
-    plt.plot(GRAD)
+    plt.plot(GRAD)			#tworzy grafy dla gradie
     plt.xlabel('Cycle')
     plt.ylabel('Gradient')
     plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/nalesnik.png")
@@ -79,11 +85,13 @@ def heat_energy(id):
     czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule.out"))
     
     
-    czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True)
+    czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True) #pewnie cos do wizualizacji
     
     return heat, ionization, weight
 
-def heat_energy2(id):
+def heat_energy2(id):		#funckja wyświetlania wartości
+				#z pliku molecule.out
+				#jest niekompletna - wrocic
     from django.conf import settings
     import openbabel.pybel
     import os
@@ -123,7 +131,8 @@ def heat_energy2(id):
     
     return heat, ionization, weight
 
-def CIRconvert_Views(request):
+def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
+				 #tworzy wzor molekuly (png)
     from django.conf import settings
     print('views')
     if request.method == 'POST':
@@ -171,7 +180,7 @@ def CIRconvert_Views(request):
 
 
 
-def CIRconvert_Views_Reaction(request):
+def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do reakcji
     from django.conf import settings
     print('views')
     if request.method == 'POST':
@@ -300,7 +309,8 @@ def suma(request):
       return render(request, 'suma.html', {'form': form })
 """
 
-def Calculate(request,pk):
+def Calculate(request,pk):    		#wyswietla obliczenia
+					#szukac w Utilities.py
     from .Utilities import calculate
     post = get_object_or_404(Post, pk=pk)
     calculate(post, pk)
@@ -308,7 +318,7 @@ def Calculate(request,pk):
     post.save()
     return render(request, 'post_detail.html', {'post': post})
 
-class BlogListView(ListView):
+class BlogListView(ListView):		#szuka ktora funckja powinna byc wyswietlana ktorym html'em w naszym folderze
     model = Post
     template_name = "home.html"
     def get_queryset(self, **kwargs):
@@ -318,12 +328,13 @@ class BlogListView(ListView):
         else:
             return qs.filter(author=None)
         
-class BlogDetailView(DetailView):
-    model = Post
+#odpowiada za wrzucanie wartosci do strony (nie odpowiadamy za to)
+class BlogDetailView(DetailView):  
+    model = Post 
     template_name = "post_detail.html"
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(CreateView):     
     model = Post
     template_name = "post_new.html"
     fields = ["title", "author", "body", "liczby","suma"]
