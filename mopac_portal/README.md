@@ -48,7 +48,7 @@ unzip JSME_2024-04-29.zip
 mv JSME_2024-04-29/jsme programming_project_WCh_2025/mopac_portal/static
 </pre>
 
-startujemy aplikację
+<h3>startujemy aplikację</h3>
 <pre>
 cd programming_project_WCh_2025/mopac_portal
 python3 manage.py makemigrations blog
