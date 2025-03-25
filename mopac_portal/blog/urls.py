@@ -9,6 +9,7 @@ from .views import (
     CIRconvert_Views_Reaction,
     Calculate,
 )
+#umozliwia polaczenie pomiedzy funkcjami na stronie a funkcjami serwera, aby mozna je bylo wyswietlic
 
 urlpatterns = [
     path("post/new/", BlogCreateView.as_view(), name="post_new"),
