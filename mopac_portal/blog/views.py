@@ -70,6 +70,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
 #            c.split()[-2]
             HEAT.append(float(a[-1]))
             GRAD.append(float(c.split()[-2]))
+            print(line)
 #    print(GRAD)
 #    print(HEAT)
     plt.plot(GRAD)			#tworzy grafy dla gradie
@@ -79,7 +80,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
     plt.close()
     plt.plot(HEAT)
     plt.xlabel('Cycle')
-    plt.ylabel('Heat')
+    plt.ylabel('Heat [Kcal/mol]')
     plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/placek.png")
     plt.close()
     czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule.out"))
