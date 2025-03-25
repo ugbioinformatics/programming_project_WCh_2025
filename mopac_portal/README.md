@@ -36,18 +36,23 @@ cd programming_project_WCh_2025
 pip install -r mopac_portal/requirements.txt
 cd mopac_portal/
 mv ../../jsmol media          
-python3 manage.py makemigrations blog
-python3 manage.py migrate
-python3 manage.py runserver
 </pre>
 
 <h3> JSME Molecule Editor </h3>
 JSME pozwala na narysowanie czasteczki i wygenerowanie na tej podstawie
 SMILES, pobieramy aplikacje JSME i przenosimy do static
 <pre>
-cd ~
+cd ../..
 wget https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip
 unzip JSME_2024-04-29.zip
 mv JSME_2024-04-29/jsme programming_project_WCh_2025/mopac_portal/static
+</pre>
+
+startujemy aplikację
+<pre>
+cd programming_project_WCh_2025/mopac_portal
+python3 manage.py makemigrations blog
+python3 manage.py migrate
+python3 manage.py runserver
 </pre>
 
