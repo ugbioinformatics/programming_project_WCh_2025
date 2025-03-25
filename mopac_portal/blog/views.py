@@ -133,7 +133,7 @@ def heat_energy2(id):		#funckja wyświetlania wartości
     
     czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule2.mol2",overwrite=True)
     
-    return heat, ionization, weight
+    return heat, ionization, weight, grad
 '''
 def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 				 #tworzy wzor molekuly (png)
@@ -151,9 +151,9 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
                 print('url')
                 pole_smiles = urlopen(url).read().decode('utf8')
                 if request.user.is_authenticated:
-                    post = Post(nazwa=body, smiles=pole_smiles,cieplo=0,ionization=0,weight = 0, author = request.user)
+                    post = Post(nazwa=body, smiles=pole_smiles,cieplo=0,ionization=0,weight = 0, grad = 0 author = request.user)
                 else:
-                    post = Post(nazwa=body, smiles=pole_smiles, cieplo=0,ionization=0,weight = 0)
+                    post = Post(nazwa=body, smiles=pole_smiles, cieplo=0,ionization=0,weight = 0, grad = 0)
                 post.save()
                 print(post.id)
                 from .Utilities import make_png_and_mop
@@ -162,9 +162,9 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
             else:
                 pole_smiles = form.cleaned_data["pole_smiles"]
                 if request.user.is_authenticated:
-                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, ionization=0,weight = 0, author = request.user)
+                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, ionization=0,weight = 0, grad = 0, author = request.user)
                 else:
-                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, ionization=0,weight = 0)
+                    post = Post(nazwa=pole_smiles, smiles = pole_smiles,cieplo=0, ionization=0,weight = 0, grad = 0)
                 post.save()
                 print(post.id)
                 from .Utilities import make_png_and_mop
@@ -172,7 +172,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
             subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
-            post.cieplo, post.ionization, post.weight = heat_energy(post.id)
+            post.cieplo, post.ionization, post.weight, post.grad = heat_energy(post.id)
             post.save()
             return redirect('/')
     else:
@@ -221,9 +221,9 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
             pole_smiles1 = form.cleaned_data["pole_smiles1"]
             pole_smiles2 = form.cleaned_data["pole_smiles2"]
             if request.user.is_authenticated:
-                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, author = request.user)
+                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, grad =0 author = request.user)
             else:
-                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0)
+                post = Post(nazwa=pole_smiles1 + pole_smiles2, smiles1 = pole_smiles1,smiles2 = pole_smiles2, cieplo=0, ionization=0,weight = 0, grad = 0)
             post.save()
             print(post.id)
             from .Utilities import make_png_and_mop
