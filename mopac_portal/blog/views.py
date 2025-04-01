@@ -7,6 +7,7 @@ from .forms import Suma2
 import subprocess
 from .models import Post
 import mmap
+import pubchempy as pcp  #dodany modul pubchempy dla zastapenia cactus
 
 #funkcje są podwojone, ponieważ są potrzebne dla osobnych molekuł
 #zeby potem zaimplementowac do reakcji
@@ -142,8 +143,14 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
     if request.method == 'POST':
         form = Suma(request.POST)
         if form.is_valid():
-            from urllib.request import urlopen
-            from urllib.parse import quote
+            
+            compound = pcp.get_compounds(body, "name")
+            
+		if compound:
+    	   	 	pole_smiles = compound[0].isomeric_smiles
+		else:
+    	 		pole_smiles = ""
+
             print('if is valid')
             body = form.cleaned_data["pole_nazwa"]
             if body != "":        
