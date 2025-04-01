@@ -296,9 +296,8 @@ pre *{
 }
 
 .viewport{
-  height: 100.1%;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
 }
 .scroll{
   height: 32em;
@@ -312,21 +311,3 @@ canvas{
   touch-action: none;
   outline: none;
 }
-/* .scroll, .scroll2{
-  overflow-y: auto;
-  height: 32em;
-  width: 44em;
-  background-color:red;
-  overscroll-behavior: auto none;
-  scrollbar-width: none;
-  border: .1em solid var(--pink)
-} */
-
-/* .scroll2{
-  overflow-y: auto;
-  height: 16em;
-  width: 22em;
-  background-color:red;
-  overscroll-behavior: auto none;
-  scrollbar-width: none;
-} */
