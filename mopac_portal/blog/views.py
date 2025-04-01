@@ -330,3 +330,7 @@ class BlogDeleteView(DeleteView):  # new
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("home")
+
+class BlogCalculateView(DetailView): #dodano przez grz13
+    model = Post
+    template_name = "post_calculation.html"
