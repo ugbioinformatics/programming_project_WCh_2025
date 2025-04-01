@@ -30,24 +30,26 @@ def make_png_and_mop2(smiles, id):
 
 def smile_check(smiles):
     import openbabel.pybel
-    import os
     try:
         czasteczka = openbabel.pybel.readstring("smi", smiles)
         return 'it work'
-    except:
+    except Exception as e:
         return 'it dont work'
 
-#zamienia nazwe na smilesa
 
-def CIRconvert(ids):
-    from urllib.request import urlopen
-    from urllib.parse import quote
+def CIRconvert(name):
+    """
+    Konwertuje nazwę związku chemicznego na ciąg SMILES, używając PubChem.
+    """
     try:
-        url = 'http://cactus.nci.nih.gov/chemical/structure/' + quote(ids) + '/smiles' 
-        print(url)
-        return urlopen(url).read().decode('utf8')
-    except:
-        return 'Did not work'
+        compounds = pcp.get_compounds(name, 'name')
+        if compounds:
+            return compounds[0].isomeric_smiles
+        else:
+            return 'No compound found'
+    except Exception as e:
+        return f'Error: {e}'
+
 
 #oblicza ta duza tablice wartosci
 
