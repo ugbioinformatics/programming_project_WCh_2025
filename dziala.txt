@@ -49,3 +49,6 @@ python manage.py migrate
 python manage.py runserver
 
 !!!!!!subprocess.run(["..\mopac.bat", "molecule.mop"], cwd=str(post.id), capture_output=True, shell = True)!!!!!!!
+subprocess.run([r"..\mopac.bat", "molecule.mop"], cwd=settings.MEDIA_ROOT + '\\' + str(post.id), capture_output=True, shell = True)
+                ^^^ lub "..\\mopac.bat"              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       
+                 albo po prostu "..\mopac.bat" (nie sprawdziałam)
