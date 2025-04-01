@@ -47,3 +47,5 @@ mv ../../jmol-14.0.13 media (przenosimy katalog jmol-14.0.13 do folderu media)
 python manage.py makemigrations blog
 python manage.py migrate
 python manage.py runserver
+
+!!!!!!subprocess.run(["..\mopac.bat", "molecule.mop"], cwd=str(post.id), capture_output=True, shell = True)!!!!!!!
