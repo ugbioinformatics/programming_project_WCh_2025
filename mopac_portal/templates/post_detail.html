@@ -3,25 +3,25 @@
 {% block content %}
 
 <div class="post-entry">
-  <h2 style="color:#FFFFFF";>{{ post.nazwa }}</h2>
-  <p style="color:#FFFFFF";>{{ post.smiles }}</p>
+  <h2>{{ post.nazwa }}</h2>
+  <p>{{ post.smiles }}</p>
   {% if not post.smiles1 != "" %}
-  <p style="color:#FFFFFF";>Heat of Formation: {{ post.cieplo }} KJ/MOL </p>  
-  <p style="color:#FFFFFF";>Total Energy: {{ post.energia }} EV </p>  
-  <p style="color:#FFFFFF";>Method Used: {{ post.metoda }} </p>  
+  <p><span>Heat of Formation:</span> {{ post.cieplo }} KJ/MOL </p>  
+  <p><span>Total Energy:</span> {{ post.energia }} EV </p>  
+  <p><span>Method Used:</span> {{ post.metoda }} </p>  
   {% else %}
-  <p style="color:#FFFFFF";>Heat of Formation1: {{ post.cieplo1 }} KJ/MOL </p>  
-  <p style="color:#FFFFFF";>Total Energy1: {{ post.energia1 }} EV </p>  
-  <p style="color:#FFFFFF";>Heat of Formation2: {{ post.cieplo2 }} KJ/MOL </p>  
-  <p style="color:#FFFFFF";>Total Energy2: {{ post.energia2 }} EV </p>  
-  <p style="color:#FFFFFF";>Method Used: {{ post.metoda }} </p>  
-  <p style="color:#FFFFFF";><a href="/media/{{post.id}}/ts.html"> REACTION </a></p>
+  <p><span>Heat of Formation1:</span> {{ post.cieplo1 }} KJ/MOL </p>  
+  <p><span>Total Energy1:</span> {{ post.energia1 }} EV </p>  
+  <p><span>Heat of Formation2:</span> {{ post.cieplo2 }} KJ/MOL </p>  
+  <p><span>Total Energy2:</span> {{ post.energia2 }} EV </p>  
+  <p><span>Method Used:</span> {{ post.metoda }} </p>  
+  <p><a href="/media/{{post.id}}/ts.html"> REACTION </a></p>
   {% endif %}
 </div>
 
 
 {% if post.calculated %}
-<pre style="color:#FFFFFF";>{{ post.calculations |safe }}</pre>       
+<pre>{{ post.calculations |safe }}</pre>       
 {% endif %}
 
 
@@ -40,15 +40,19 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var stage = new NGL.Stage("viewport");
-      stage.loadFile("/media/{{post.id}}/molecule.mol2", {defaultRepresentation: true});
+      stage.loadFile("/media/{{post.id}}/molecule.mol2").then(function (o) {
+      o.addRepresentation("ball+stick");
+      o.addRepresentation("label",{labelType:'atomindex'})
+      stage.autoView();
+      });
     });
   
   </script>
-  <p style="color:#FFFFFF";>Start.mol2</p> 
+  <p  >Start.mol2</p> 
   <div id="viewport_start" style="width:400px; height:300px;"></div>
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
-  <p style="color:#FFFFFF";>Molecule.mol2</p>
+  <p  >Molecule.mol2</p>
   <div id="viewport" style="width:400px; height:300px;"></div>
 
 
