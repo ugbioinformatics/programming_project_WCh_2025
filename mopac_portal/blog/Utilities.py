@@ -192,7 +192,11 @@ def heat_energy(id):		#funckja wyświetlania wartości
 	plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/placek.png")
 	plt.close()
 	czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule.out"))
-
+	
+	czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True) #pewnie cos do wizualizacji
+	
+	return heat, ionization, weight, grad
+	
 #funkcje są podwojone, ponieważ są potrzebne dla osobnych molekuł
 #zeby potem zaimplementowac do reakcji
 """
@@ -250,7 +254,4 @@ def heat_energy2(id):		#funckja wyświetlania wartości
 	return heat, ionization, weight, grad
 '''
 	
-	
-	czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True) #pewnie cos do wizualizacji
-	
-	return heat, ionization, weight, grad
+
