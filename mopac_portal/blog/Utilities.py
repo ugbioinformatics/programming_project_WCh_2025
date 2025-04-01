@@ -192,6 +192,63 @@ def heat_energy(id):		#funckja wyświetlania wartości
 	plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/placek.png")
 	plt.close()
 	czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule.out"))
+
+#funkcje są podwojone, ponieważ są potrzebne dla osobnych molekuł
+#zeby potem zaimplementowac do reakcji
+"""
+def suma_old(request,pk):
+	post = get_object_or_404(Post, pk=pk)
+	tmp=post.liczby.split()
+	for i in range(0, len(tmp)):
+		tmp[i]=int(tmp[i])  
+	post.suma=sum(tmp)
+	post.save()
+	return render(request, 'post_detail.html', {'post': post})
+"""
+
+'''
+def heat_energy2(id):		#funckja wyświetlania wartości
+				#z pliku molecule.out
+				#jest niekompletna - wrocic
+	from django.conf import settings
+	import openbabel.pybel
+	import os
+	import matplotlib.pyplot as plt
+	
+	with open(settings.MEDIA_ROOT+'/'+str(id)+"/molecule.out", 'r') as file:
+		nazwa = file.readlines()
+	
+	GRAD = []
+	HEAT = []
+	for line in nazwa:
+		if line.startswith('          FINAL HEAT OF FORMATION ='):
+			heat = float(line.split()[-2])
+		if line.startswith('          IONIZATION POTENTIAL    ='):
+			ionization = float(line.split()[-2])
+		if line.startswith('          MOLECULAR WEIGHT        ='):
+			weight = float(line.split()[-2])
+		if line.startswith(' CYCLE:'):
+			a = line.split(":")
+#            GRAD.append(float(c.split()[-2]))
+			c = a[-2]
+#            c.split()[-2]
+			HEAT.append(float(a[-1]))
+			GRAD.append(float(c.split()[-2]))
+#    print(GRAD)
+#    print(HEAT)
+	plt.plot(GRAD)
+	plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/nalesnik2.png")
+	plt.close()
+	plt.plot(HEAT)
+	plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/placek2.png")
+	plt.close()
+	czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule2.out"))
+   
+	
+	czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule2.mol2",overwrite=True)
+	
+	return heat, ionization, weight, grad
+'''
 	
 	
 	czasteczka.write(format="mol2",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mol2",overwrite=True) #pewnie cos do wizualizacji
