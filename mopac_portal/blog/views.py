@@ -9,6 +9,8 @@ from .models import Post
 import mmap
 import pubchempy as pcp  #dodany modul pubchempy dla zastapenia cactus
 from .Utilities import make_png_and_mop, heat_energy, metoda
+from django.conf import settings
+
 
 
 
