@@ -1,0 +1,60 @@
+*plik mopac.bat
+@echo
+..\..\..\..\mopac\mopac-23.1.2-win\bin\mopac.exe %*
+
+*plik systemcheck.py
+import os
+#systemcheck otwiera plik system.txt i tworzy zmienne, które są odpowiedznie dla danego systemu
+#Windows - mopac.bat i \\
+#Linux - mopac.sh i /
+#rozszrzenie .bat jest tylko dla windowsa, a .sh dla Linuxa 
+
+def systemcheck():
+    folder_nadrzedny = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sciezka_do_pliku = os.path.join(folder_nadrzedny, "system.txt")
+    with open(sciezka_do_pliku, 'r') as file:
+        system = file.readline().strip()
+        if system == 'Windows':
+            plik = 'bat'
+            splash = '\\'
+        else:
+            plik = 'sh'
+            splash = '/'
+    return plik, splash
+
+*zmiany w pliku manage.py 
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+import os
+import sys
+import platform
+
+
+def main():
+    """Run administrative tasks."""
+    # sprawdza na jakim systemie odpalany jest program i tworzy plik system.txt w którym zapisany jest system użytkownika
+    system = platform.system()
+    with open('system.txt', 'w') as file:
+        file.write(system) 
+    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == '__main__':
+    main()
+*import systemcheck.py do plików views.py i utilities.py
+from .systemcheck import systemcheck 
+
+*schemat wyglądu subprocess
+    #dla Winows wygląda subprocess.run([rf'..\mopac.bat', 'force.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+    #dla Linuxa subprocess.run([rf'..\mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id), shell=True)
+===>subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
