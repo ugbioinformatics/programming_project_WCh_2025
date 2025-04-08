@@ -1,8 +1,0 @@
-AM1 irc=4* DRC BIGCYCLES=1 html t-priority=0.5
-C:\Users\48796\PycharmProjects\pythonProject\sem4\Cezary\projekt\programming_project_WCh_2025\mopac_portal\media//3/molecule.out
-
-C   1.08260 1 -0.04967 1 -0.02437 1
-H   2.19428 1 -0.04975 1 -0.02443 1
-H   0.71347 1 -0.45640 1 -0.99070 1
-H   0.71361 1  0.99052 1  0.10672 1
-H   0.71351 1 -0.68402 1  0.81043 1
