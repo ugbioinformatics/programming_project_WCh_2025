@@ -54,6 +54,7 @@ header{
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 2vw;
   justify-items: center;
+  align-items: top;
 }
 
 .main_site_link{
@@ -89,8 +90,8 @@ header{
 .nav-right{
   width: 100%;
   display: grid;
-  align-items: center;
   justify-items: center;
+  align-items: top;
 }
 .loged{
   border-radius: 0 0 1em 1em;
@@ -189,7 +190,7 @@ button{
 footer{
   display: grid;
   text-align: center;
-  align-items: center;
+  align-items: end;
   justify-content: center;
 }
 footer div{
@@ -217,3 +218,6 @@ pre::content{
   margin-top: 1em;
 }
 
+.delete, .calculate{
+  font-weight: 900;
+}

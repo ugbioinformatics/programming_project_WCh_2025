@@ -3,6 +3,7 @@ from .models import Post
 import datetime
 from .Utilities import CIRconvert, smile_check
 
+#formularz do wypełnienia, aby szukac molekul (nazwa i SMILEs)
 
 class Suma(forms.Form):
     pole_nazwa = forms.CharField(label='Name', required = False,widget=forms.TextInput(attrs={'size':40, 'maxlength':400}))
@@ -32,8 +33,14 @@ class Suma(forms.Form):
             else:
                 print('Przeszlo')
                 pass
-        if pole_nazwa != "" and pole_smiles != "":  #podana nazwa i smiles
-            self.add_error('pole_nazwa','wszystkie pola wypełnione')
+        if pole_nazwa != "" and pole_smiles != "":
+            converted_smiles = CIRconvert(pole_nazwa)  
+            if not converted_smiles or converted_smiles == 'Did not work':
+                self.add_error('pole_nazwa', 'Nie udało się znaleźć odpowiadającego SMILES.')
+            elif converted_smiles != pole_smiles:
+                self.add_error('pole_smiles', 'SMILES nie zgadza się z nazwą.')
+            else:
+                print("Molekuła poprawnie dopasowana!")
 
 class Suma2(forms.Form):
 #    pole_nazwa = forms.CharField(label='Name', required = False,widget=forms.TextInput(attrs={'size':40, 'maxlength':400}))

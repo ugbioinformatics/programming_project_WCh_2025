@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from .models import Post
 
+#tester stworzony przez django - NIE DOTYKAMY
 
 class BlogTests(TestCase):
     @classmethod
