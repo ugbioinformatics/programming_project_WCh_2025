@@ -1,0 +1,15 @@
+HEADER  data-set: molecule
+REMARK  MOPAC, Version: 23.1.2               Date: Apr  8 2025 13:48
+REMARK   3 HET = Not identified; C 3 H 8            =    11 atoms res:    1
+HETATM    1  C1  HET A   1       0.958  -0.051  -0.089  1.0  -2.10      PROT C 
+HETATM    2  C2  HET A   1       2.465  -0.035  -0.063  1.0  -1.60      PROT C 
+HETATM    3  C3  HET A   1       2.996   0.733   1.120  1.0  -2.11      PROT C 
+HETATM    4 1H1  HET A   1       0.588  -0.625  -0.973  1.0   0.71      PROT H 
+HETATM    5 2H1  HET A   1       0.556   0.989  -0.149  1.0   0.72      PROT H 
+HETATM    6 3H1  HET A   1       0.555  -0.530   0.836  1.0   0.72      PROT H 
+HETATM    7 1H2  HET A   1       2.853   0.423  -1.011  1.0   0.76      PROT H 
+HETATM    8 2H2  HET A   1       2.852  -1.089  -0.027  1.0   0.76      PROT H 
+HETATM    9 1H3  HET A   1       2.644   1.793   1.093  1.0   0.72      PROT H 
+HETATM   10 2H3  HET A   1       4.112   0.733   1.114  1.0   0.71      PROT H 
+HETATM   11 3H3  HET A   1       2.649   0.274   2.077  1.0   0.72      PROT H 
+END

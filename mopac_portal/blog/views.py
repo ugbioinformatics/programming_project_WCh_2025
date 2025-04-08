@@ -149,7 +149,7 @@ def CIRconvert_Views(request):
                 make_png_and_mop(pole_smiles, post.id)
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
-            subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+            subprocess.run([r'..\mopac.bat', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
             post.cieplo, post.energia = heat_energy(post.id)
             post.save()
             return redirect('/')
@@ -213,8 +213,8 @@ def CIRconvert_Views_Reaction(request):
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
             metoda2(post.id,post.metoda)
-            subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
-            subprocess.run(['../mopac.sh', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+            subprocess.run([r'..\mopac.bat', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+            subprocess.run([r'..\mopac.bat', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
             post.cieplo1, post.energia1 = heat_energy(post.id)
             post.cieplo2, post.energia2 = heat_energy(post.id)
             post.save()
@@ -225,7 +225,7 @@ def CIRconvert_Views_Reaction(request):
                 file.write("geo_ref='molecule2.arc' +" + "\n")
                 file.write("saddle html xyz  bar=0.005" + "\n")
                 file.write("Locating transition state using SADDLE" + "\n")
-            subprocess.run(['../mopac.sh', 'saddle.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+            subprocess.run([r'..\mopac.bat', 'saddle.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
 
 
 
@@ -265,7 +265,7 @@ def CIRconvert_Views_Reaction(request):
                  file.write("oldgeo html irc=1*")
 
 
-            subprocess.run(['../mopac.sh', 'ts.mop'], cwd=settings.MEDIA_ROOT+'/'+str(post.id))
+            subprocess.run([r'..\mopac.bat', 'ts.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
             return redirect('/')
     else:
         form = Suma2()
