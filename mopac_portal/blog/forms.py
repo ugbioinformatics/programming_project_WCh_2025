@@ -1,7 +1,7 @@
 from django import forms
 from .models import Post
 import datetime
-from .Utilities import CIRconvert, smile_check
+from .Utilities import CIRconvert, smile_check, CIRconvertName
 
 #formularz do wypełnienia, aby szukac molekul (nazwa i SMILEs)
 
@@ -28,7 +28,7 @@ class Suma(forms.Form):
                 print('Przeszlo')
                 pass
         if pole_nazwa == "" and pole_smiles != "":  #brak nazwy
-            if smile_check(pole_smiles)=='it dont work':
+            if CIRconvertName(pole_smiles)=='it dont work':
                 self.add_error('pole_smiles','smiles nie istnieje')
             else:
                 print('Przeszlo')
