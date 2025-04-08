@@ -8,16 +8,55 @@
 *{
   box-sizing: border-box;
 }
+@media only screen and (300px > width){
+  body, html {
+    height: 100%;
+    width: 100vw;
+    font-family: "Lexend", sans-serif;
+    font-size: 4vw;
+    margin: 0;
+    padding: 0;
+    background-color: var(--moss);
+    display: grid;
+  }
 
-body, html {
-  height: 100%;
-  width: 100vw;
-  font-family: "Lexend", sans-serif;
-  font-size: 1vw;
-  margin: 0;
-  padding: 0;
-  background-color: var(--moss);
-  display: grid;
+}
+@media only screen and (600px > width > 301px){
+  body, html {
+    height: 100%;
+    width: 100vw;
+    font-family: "Lexend", sans-serif;
+    font-size: 3vw;
+    margin: 0;
+    padding: 0;
+    background-color: var(--moss);
+    display: grid;
+  }
+}
+
+@media only screen and (1100px> width > 601px){
+  body, html {
+    height: 100%;
+    width: 100vw;
+    font-family: "Lexend", sans-serif;
+    font-size: 1.2vw;
+    margin: 0;
+    padding: 0;
+    background-color: var(--moss);
+    display: grid;
+  }
+}
+@media only screen and (width >= 1101px){
+  body, html {
+    height: 100%;
+    width: 100vw;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.8vw;
+    margin: 0;
+    padding: 0;
+    background-color: var(--moss);
+    display: grid;
+  }
 }
 body::before{
   position: fixed;
