@@ -25,20 +25,36 @@ wget http://openmopac.net/mopac-23.1.2-linux.tar.gz
 tar zxvf mopac-23.1.2-linux.tar.gz 
 </pre>
 
-<h3>Nasza aplikacja django z Jmol</h3>
+<h3>Nasza aplikacja django pobierana z github</h3>
+<pre>
+git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
+pip install -r programming_project_WCh_2025/mopac_portal/requirements.txt
+</pre>
+
+<h3> Jmol </h3>
+używany przez strony html generowane przez mopac
 <pre>
 wget https://sourceforge.net/projects/jmol/files/Jmol/Version%2014.0/Version%2014.0.13/Jmol-14.0.13-binary.tar.gz
 tar zxvf Jmol-14.0.13-binary.tar.gz jmol-14.0.13/jsmol.zip
 unzip jmol-14.0.13/jsmol.zip    
 rm Jmol-14.0.13-binary.tar.gz
-git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
-cd programming_project_WCh_2025          
-pip install -r mopac_portal/requirements.txt
-cd mopac_portal/
-mv ../../jsmol media          
+mv jsmol programming_project_WCh_2025/mopac_portal/media                    
+</pre>
+
+<h3> JSME Molecule Editor </h3>
+JSME pozwala na narysowanie czasteczki i wygenerowanie na tej podstawie
+SMILES, pobieramy aplikacje JSME i przenosimy do static
+<pre>
+wget https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip
+unzip JSME_2024-04-29.zip
+mv JSME_2024-04-29/jsme programming_project_WCh_2025/mopac_portal/static
+</pre>
+
+<h3>startujemy aplikację</h3>
+<pre>
+cd programming_project_WCh_2025/mopac_portal
 python3 manage.py makemigrations blog
 python3 manage.py migrate
 python3 manage.py runserver
 </pre>
-
 
