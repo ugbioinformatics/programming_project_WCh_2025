@@ -13,7 +13,7 @@ body, html {
   height: 100%;
   width: 100vw;
   font-family: "Lexend", sans-serif;
-  font-size: 0.6vw;
+  font-size: 1vw;
   margin: 0;
   padding: 0;
   background-color: var(--moss);
