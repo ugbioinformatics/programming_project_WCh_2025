@@ -336,6 +336,7 @@ canvas{
   background-color: transparent !important;
   touch-action: none;
   outline: none;
+  border: 1px solid var(--pink);
 }
 /* .scroll, .scroll2{
   overflow-y: auto;
