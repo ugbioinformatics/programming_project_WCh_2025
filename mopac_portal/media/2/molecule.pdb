@@ -1,0 +1,18 @@
+HEADER  data-set: molecule
+REMARK  MOPAC, Version: 23.1.2               Date: Apr  8 2025 13:55
+REMARK   3 HET = Not identified; C 4 H 10           =    14 atoms res:    1
+HETATM    1  C1  HET A   1       1.046   0.060  -0.055  1.0  -2.11      PROT C 
+HETATM    2  C2  HET A   1       2.553   0.076  -0.054  1.0  -1.59      PROT C 
+HETATM    3  C3  HET A   1       3.095   1.481   0.103  1.0  -1.59      PROT C 
+HETATM    4  C4  HET A   1       4.602   1.497   0.105  1.0  -2.10      PROT C 
+HETATM    5 1H1  HET A   1       0.667  -0.984  -0.171  1.0   0.71      PROT H 
+HETATM    6 2H1  HET A   1       0.646   0.675  -0.898  1.0   0.72      PROT H 
+HETATM    7 3H1  HET A   1       0.647   0.476   0.901  1.0   0.72      PROT H 
+HETATM    8 1H2  HET A   1       2.935  -0.365  -1.012  1.0   0.78      PROT H 
+HETATM    9 2H2  HET A   1       2.936  -0.566   0.782  1.0   0.78      PROT H 
+HETATM   10 1H3  HET A   1       2.713   1.922   1.061  1.0   0.78      PROT H 
+HETATM   11 2H3  HET A   1       2.712   2.123  -0.733  1.0   0.78      PROT H 
+HETATM   12 1H4  HET A   1       5.002   0.882   0.947  1.0   0.71      PROT H 
+HETATM   13 2H4  HET A   1       4.981   2.541   0.221  1.0   0.72      PROT H 
+HETATM   14 3H4  HET A   1       5.001   1.082  -0.852  1.0   0.71      PROT H 
+END
