@@ -1,3 +1,4 @@
+from .systemcheck import systemcheck
 def make_png_and_mop(smiles, id):
     import openbabel.pybel
     import os
@@ -58,7 +59,7 @@ def calculate(post, id):
     with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+"/force.mop", inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace('PUT KEYWORDS HERE',f"{metoda} force"), end='')
-    subprocess.run([r'..\mopac.bat', 'force.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+    subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
     
 
 
@@ -113,7 +114,7 @@ def calculate(post, id):
             for line in file:
                 print(line.replace('PUT KEYWORDS HERE',f"{metoda} irc={i}* DRC BIGCYCLES=1 html t-priority=0.5"), end='')
 
-        subprocess.run([r'..\mopac.bat', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+        subprocess.run([rf'..\mopac.{systemcheck()[0]}', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
     post.calculated = True
     post.save()
     

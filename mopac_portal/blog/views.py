@@ -7,6 +7,7 @@ from .forms import Suma2
 import subprocess
 from .models import Post
 import mmap
+from .systemcheck import systemcheck
 """
 def suma_old(request,pk):
     post = get_object_or_404(Post, pk=pk)
@@ -149,7 +150,7 @@ def CIRconvert_Views(request):
                 make_png_and_mop(pole_smiles, post.id)
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
-            subprocess.run([r'..\mopac.bat', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+            subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'molecule.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
             post.cieplo, post.energia = heat_energy(post.id)
             post.save()
             return redirect('/')
@@ -213,8 +214,8 @@ def CIRconvert_Views_Reaction(request):
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
             metoda2(post.id,post.metoda)
-            subprocess.run([r'..\mopac.bat', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
-            subprocess.run([r'..\mopac.bat', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+            subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'molecule.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
+            subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
             post.cieplo1, post.energia1 = heat_energy(post.id)
             post.cieplo2, post.energia2 = heat_energy(post.id)
             post.save()
@@ -265,7 +266,7 @@ def CIRconvert_Views_Reaction(request):
                  file.write("oldgeo html irc=1*")
 
 
-            subprocess.run([r'..\mopac.bat', 'ts.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+            subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'ts.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
             return redirect('/')
     else:
         form = Suma2()
