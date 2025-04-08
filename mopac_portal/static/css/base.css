@@ -72,7 +72,8 @@ header{
   align-items: center;
 }
 .main_site_link a{
-  font-size: 2.5em;
+  padding-top: .15em;
+  font-size: 3em;
   font-weight: 900;
   color: var(--gold);
 }
@@ -89,7 +90,8 @@ header{
   align-items: center;
 }
 .adders a{
-  font-size: 2.5em;
+  padding-top: .15em;
+  font-size: 3em;
   font-weight: 900;
   color: var(--pink);
 }
