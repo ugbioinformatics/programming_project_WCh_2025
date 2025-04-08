@@ -7,7 +7,7 @@ from .forms import Suma2
 import subprocess
 from .models import Post
 import mmap
-from .systemcheck import systemcheck
+from .systemcheck import systemcheck #importowanie funkcji do sprawdzania systemu, sytemcheck = plik, splash (np. 'bat', '\\')
 """
 def suma_old(request,pk):
     post = get_object_or_404(Post, pk=pk)
@@ -150,6 +150,8 @@ def CIRconvert_Views(request):
                 make_png_and_mop(pole_smiles, post.id)
             post.metoda = form.cleaned_data["pole_metoda"]
             metoda(post.id,post.metoda)
+            #dla Winows wygląda subprocess.run([rf'..\mopac.bat', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+            #dla Linuxa subprocess.run([rf'..\mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id), shell=True)
             subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'molecule.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
             post.cieplo, post.energia = heat_energy(post.id)
             post.save()

@@ -1,4 +1,5 @@
-from .systemcheck import systemcheck
+from .systemcheck import systemcheck #importowanie funkcji do sprawdzania systemu, sytemcheck = plik, splash (np. 'bat', '\\')
+
 def make_png_and_mop(smiles, id):
     import openbabel.pybel
     import os
@@ -59,6 +60,8 @@ def calculate(post, id):
     with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+"/force.mop", inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace('PUT KEYWORDS HERE',f"{metoda} force"), end='')
+    #dla Winows wygląda subprocess.run([rf'..\mopac.bat', 'force.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+    #dla Linuxa subprocess.run([rf'..\mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id), shell=True)
     subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
     
 

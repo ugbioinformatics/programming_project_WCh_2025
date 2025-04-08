@@ -7,9 +7,11 @@ import platform
 
 def main():
     """Run administrative tasks."""
+    # sprawdza na jakim systemie odpalany jest program i tworzy plik system.txt w którym zapisany jest system użytkownika
     system = platform.system()
     with open('system.txt', 'w') as file:
         file.write(system) 
+    
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_project.settings')
     try:
         from django.core.management import execute_from_command_line

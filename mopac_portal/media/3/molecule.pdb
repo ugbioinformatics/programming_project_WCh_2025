@@ -1,0 +1,9 @@
+HEADER  data-set: molecule
+REMARK  MOPAC, Version: 23.1.2               Date: Apr  8 2025 14:50
+REMARK   3 HET = Not identified; C H 4              =     5 atoms res:    1
+HETATM    1  C   HET A   1       1.083  -0.050  -0.024  1.0  -2.66      PROT C 
+HETATM    2 1H   HET A   1       2.194  -0.050  -0.024  1.0   0.66      PROT H 
+HETATM    3 2H   HET A   1       0.713  -0.456  -0.991  1.0   0.67      PROT H 
+HETATM    4 3H   HET A   1       0.714   0.991   0.107  1.0   0.67      PROT H 
+HETATM    5 4H   HET A   1       0.714  -0.684   0.810  1.0   0.67      PROT H 
+END
