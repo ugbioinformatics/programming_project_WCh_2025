@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="post-entry">
-  <p id="Name"><span>Name: </span>{{ post.nazwa }}</p>
-  <p><span>Smiles: </span>{{ post.smiles }}</p>
+  <h2>{{ post.nazwa }}</h2>
+  <p>{{ post.smiles }}</p>
   {% if not post.smiles1 != "" %}
   <p><span>Heat of Formation:</span> {{ post.cieplo }} KJ/MOL </p>  
   <p><span>Total Energy:</span> {{ post.energia }} EV </p>  
@@ -20,72 +20,98 @@
 </div>
 
 
-
-
-
-
 {% if post.calculated %}
-<!-- <pre>{{ post.calculations |safe }}</pre>        -->
- 
-  <p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
-
+<pre>{{ post.calculations |safe }}</pre>       
 {% endif %}
 
-<img src="/media/{{post.id}}/molecule.svg">
+<img src="/media/{{post.id}}/molecule.png">
 <p>
-  <script src="https://unpkg.com/ngl@2.0.0-dev.32"></script>
+  <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
   <script>
-    
-    document.addEventListener("DOMContentLoaded", function () {
-      
-      var stage = new NGL.Stage("viewport1");
-
-      window.addEventListener( "resize", function( event ){
-        stage.handleResize();
-      },
-      false);
-
-      stage.loadFile("/media/{{post.id}}/start.mol2", {
-        defaultRepresentation: true
+    document.addEventListener("DOMContentLoaded", function (o) {
+      var stage = new NGL.Stage("viewport_start") ;
+      stage.loadFile("/media/{{post.id}}/start.mol2").then(function (o) {
+        o.addRepresentation("ball+stick");
+        // o.addRepresentation("label", {labelType: "atomname"});
+        o.autoView();
       });
+      stage.setSpin(true);
     });
-   
+    
+    
   </script> 
 
   <script>
-
     document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport2");
-
-      stage.loadFile("/media/{{post.id}}/molecule.mol2", {
-        defaultRepresentation: true
-      });
+      var stage = new NGL.Stage("viewport");
+      stage.loadFile("/media/{{post.id}}/molecule.mol2", {defaultRepresentation: true});
     });
   
   </script>
+
+<!-- <script>
+  var status;
+function readTextFile1(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+               status = rawFile.responseText;
+               
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
+readTextFile1("/media/{{post.id}}/start.mol2"); //calling the function
+console.log(status);
+
+//time for looping >:D
+let splitStatus=status.split('\n')
+for(let i=0;i<splitStatus.length;i++){
+  let line=splitStatus[i];
+  if(line == @<TRIPOS>BOND 
+  console.log(line);
+  //whateverYouWannaDoNext
+}
+</script> -->
+
+
   <p class="idk">Start.mol2</p> 
   <div class="scroll">
-    <div id="viewport1" class="viewport">
-    </div>
+  <div id="viewport_start" style="width:400px; height:300px;"></div>
   </div>
+  <div  id="buttons" style="width:500px;">
+    <p>Turn:</p>
+    <button id="toggleSpin" onclick="toggleSpin">Spin on</button>
+    <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
+    <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
+    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>
+  </div>
+
 <img src="/media/{{post.id}}/nalesnik.png">
-</br>
 <img src="/media/{{post.id}}/placek.png">
   <p class="idk">Molecule.mol2</p>
-  <div class="scroll">
-    <div id="viewport2" class="viewport">
-    </div>
+  <div class="scroll2">
+  <div id="viewport" style="width:400px; height:300px;"></div>
+  </div>
+  <div  id="buttons" style="width:500px;">
+    <p>Turn:</p>
+    <button id="toggleSpin" onclick="toggleSpin">Spin on</button>
+    <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
+    <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
+    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>
   </div>
 
 
 {% if not post.calculated %}
 <p class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
-{% endif %}
-{% if post.calculated %}
-<!-- <pre>{{ post.calculations |safe }}</pre>        -->
- 
-  <p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
-
 {% endif %}
 <p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
 {% endblock content %}

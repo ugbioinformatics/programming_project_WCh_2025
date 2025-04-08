@@ -180,6 +180,30 @@ button{
   font-size: 1em;
   cursor: pointer;
 }
+#toggleSpin, #toggleBackground, #toggleSideChains, #toggleLabels{
+  width: 9em;
+  height: 3em;
+} 
+input#delete{
+  width: 9em;
+  height: 3em;
+  background-color: white;
+  border: 0.01em solid var(--pink);
+  color: var(--pink);
+  font-size: 1em;
+  cursor: pointer;
+}
+p#delete{
+  font-size: 3em;
+}
+
+#buttons{
+  margin-bottom: 2em;
+}
+#buttons p{
+  text-align: center;
+  width: 37em;
+}
 .signup_box input{
   margin-bottom: 1em;
 }
