@@ -33,14 +33,14 @@ class Suma(forms.Form):
             else:
                 print('Przeszlo')
                 pass
-        if pole_nazwa and pole_smiles:
-    		converted_smiles = CIRconvert(pole_nazwa)  
-    		if not converted_smiles or converted_smiles == 'Did not work':
-        		self.add_error('pole_nazwa', 'Nie udało się znaleźć odpowiadającego SMILES.')
-    		elif converted_smiles != pole_smiles:
-        		self.add_error('pole_smiles', 'SMILES nie zgadza się z nazwą.')
-    		else:
-        		print("Molekuła poprawnie dopasowana!")
+        if pole_nazwa != "" and pole_smiles != "":
+            converted_smiles = CIRconvert(pole_nazwa)  
+            if not converted_smiles or converted_smiles == 'Did not work':
+                self.add_error('pole_nazwa', 'Nie udało się znaleźć odpowiadającego SMILES.')
+            elif converted_smiles != pole_smiles:
+                self.add_error('pole_smiles', 'SMILES nie zgadza się z nazwą.')
+            else:
+                print("Molekuła poprawnie dopasowana!")
 
 class Suma2(forms.Form):
 #    pole_nazwa = forms.CharField(label='Name', required = False,widget=forms.TextInput(attrs={'size':40, 'maxlength':400}))
