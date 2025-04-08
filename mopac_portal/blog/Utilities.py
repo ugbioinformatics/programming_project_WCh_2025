@@ -41,6 +41,7 @@ def CIRconvert(name):
     """
     Konwertuje nazwę związku chemicznego na ciąg SMILES, używając PubChem.
     """
+    import pubchempy as pcp
     try:
         compounds = pcp.get_compounds(name, 'name')
         if compounds:
