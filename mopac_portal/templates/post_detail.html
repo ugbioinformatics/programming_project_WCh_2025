@@ -27,65 +27,62 @@
 <img src="/media/{{post.id}}/molecule.png">
 <p>
   <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function (o) {
-      var stage = new NGL.Stage("viewport_start") ;
-      stage.loadFile("/media/{{post.id}}/start.mol2").then(function (o) {
-        o.addRepresentation("ball+stick");
-        // o.addRepresentation("label", {labelType: "atomname"});
-        o.autoView();
+    function defaultStructureRepresentation( component ){
+      // bail out if the component does not contain a structure
+      if( component.type !== "structure" ) return;
+      // add three representations
+      console.log(component)
+      component.addRepresentation( "ball+stick", {
+        aspectRatio: 2.0,
+        radiusSegments: 3,
+        multipleBond: true,
+        sphereDetail: 2,
+      });
+      component.autoView();
+      const atomnumber = component.structure.atomCount
+    };
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var stage = new NGL.Stage("viewport1");
+      var x = 0
+      
+      stage.loadFile("/media/{{post.id}}/start.mol2").then(defaultStructureRepresentation);
+  
+      stage.signals.clicked.add(function (pickingProxy) {
+        console.log(pickingProxy)
+        if (pickingProxy !== undefined){
+          const para = document.createElement("p");
+          para.innerHTML = String(pickingProxy.pid);
+          document.getElementById("clickedId").appendChild(para);
+  
+        }
+        if (x == 0 && pickingProxy == undefined){
+          stage.setSpin(true)
+          x = 1
+        } else if(x == 1 && pickingProxy == undefined){
+          stage.setSpin(false)
+          x = 0
+        };
       });
       stage.setSpin(true);
     });
-    
-    
   </script> 
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport");
-      stage.loadFile("/media/{{post.id}}/molecule.mol2", {defaultRepresentation: true});
+      // create a `stage` object
+      var stage = new NGL.Stage("viewport2");
+      stage.loadFile("/media/{{post.id}}/molecule.mol2").then(defaultStructureRepresentation);
     });
-  
   </script>
-
-<!-- <script>
-  var status;
-function readTextFile1(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-               status = rawFile.responseText;
-               
-            }
-        }
-    }
-    rawFile.send(null);
-}
-
-readTextFile1("/media/{{post.id}}/start.mol2"); //calling the function
-console.log(status);
-
-//time for looping >:D
-let splitStatus=status.split('\n')
-for(let i=0;i<splitStatus.length;i++){
-  let line=splitStatus[i];
-  if(line == @<TRIPOS>BOND 
-  console.log(line);
-  //whateverYouWannaDoNext
-}
-</script> -->
-
 
   <p class="idk">Start.mol2</p> 
   <div class="scroll">
-  <div id="viewport_start" style="width:400px; height:300px;"></div>
+    <div id="clickedId"></div>
+    <div id="viewport1" class="viewport">
+    </div>
   </div>
   <div  id="buttons" style="width:500px;">
     <p>Turn:</p>
