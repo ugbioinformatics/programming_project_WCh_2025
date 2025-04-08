@@ -321,7 +321,7 @@ pre *{
   padding: 0 0 .5em 0;
 }
 
-.viewport{
+#viewport, #viewport1{
   width: 100%;
   height: 100%;
 }
@@ -337,7 +337,6 @@ canvas{
   touch-action: none;
   outline: none;
 }
-<<<<<<< HEAD
 /* .scroll, .scroll2{
   overflow-y: auto;
   height: 32em;
@@ -356,5 +355,3 @@ canvas{
   overscroll-behavior: auto none;
   scrollbar-width: none;
 } */
-=======
->>>>>>> d95f13a848911fd4c8d1471181815d37be4f1b65

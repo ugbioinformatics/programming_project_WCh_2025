@@ -50,31 +50,47 @@
       
       stage.loadFile("/media/{{post.id}}/start.mol2").then(defaultStructureRepresentation);
   
-      stage.signals.clicked.add(function (pickingProxy) {
-        console.log(pickingProxy)
-        if (pickingProxy !== undefined){
-          const para = document.createElement("p");
-          para.innerHTML = String(pickingProxy.pid);
-          document.getElementById("clickedId").appendChild(para);
+    //   stage.signals.clicked.add(function (pickingProxy) {
+    //     console.log(pickingProxy)
+    //     if (pickingProxy !== undefined){
+    //       const para = document.createElement("p");
+    //       para.innerHTML = String(pickingProxy.pid);
+    //       document.getElementById("clickedId").appendChild(para);
   
-        }
-        if (x == 0 && pickingProxy == undefined){
-          stage.setSpin(true)
-          x = 1
-        } else if(x == 1 && pickingProxy == undefined){
-          stage.setSpin(false)
-          x = 0
-        };
-      });
-      stage.setSpin(true);
+    //     }
+    //     if (x == 0 && pickingProxy == undefined){
+    //       stage.setSpin(true)
+    //       x = 1
+    //     } else if(x == 1 && pickingProxy == undefined){
+    //       stage.setSpin(false)
+    //       x = 0
+    //     };
+    //   });
+    //   stage.setSpin(true);
     });
-  </script> 
-
-  <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // create a `stage` object
-      var stage = new NGL.Stage("viewport2");
+      var stage = new NGL.Stage("viewport");
+      var y = 0
+      
       stage.loadFile("/media/{{post.id}}/molecule.mol2").then(defaultStructureRepresentation);
+  
+    //   stage.signals.clicked.add(function (pickingProxy) {
+    //     console.log(pickingProxy)
+    //     if (pickingProxy !== undefined){
+    //       const para = document.createElement("p");
+    //       para.innerHTML = String(pickingProxy.pid);
+    //       document.getElementById("clickedId").appendChild(para);
+  
+    //     }
+    //     if (y == 0 && pickingProxy == undefined){
+    //       stage.setSpin(true)
+    //       y = 1
+    //     } else if(y == 1 && pickingProxy == undefined){
+    //       stage.setSpin(false)
+    //       y = 0
+    //     };
+    //   });
+    //   stage.setSpin(true);
     });
   </script>
 
@@ -95,7 +111,7 @@
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
   <p class="idk">Molecule.mol2</p>
-  <div class="scroll2">
+  <div class="scroll">
   <div id="viewport" style="width:400px; height:300px;"></div>
   </div>
   <div  id="buttons" style="width:500px;">
