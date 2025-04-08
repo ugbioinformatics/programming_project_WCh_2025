@@ -80,7 +80,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 								weight=0, grad=0, author=request.user)
 				else:
 					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
-								weight=0, grad=0, author=request.user)
+								weight=0, grad=0)
 				post.iupac_name = iupac_name_output
 				post.save()
 				make_png_and_mop(pole_smiles,post.id)
