@@ -228,7 +228,7 @@ def CIRconvert_Views_Reaction(request):
                 file.write("geo_ref='molecule2.arc' +" + "\n")
                 file.write("saddle html xyz  bar=0.005" + "\n")
                 file.write("Locating transition state using SADDLE" + "\n")
-            subprocess.run([r'..\mopac.bat', 'saddle.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
+            subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'saddle.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
 
 
 
