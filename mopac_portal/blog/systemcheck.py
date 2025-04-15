@@ -9,12 +9,12 @@ def systemcheck():
     with open(sciezka_do_pliku, 'r') as file:
         system = file.readline().strip()
         if system == 'Windows':
-            plik = 'bat'
+            plik = '\mopac.bat'
             splash = '\\'
             shell = True
             python = 'python'
         else:
-            plik = 'sh'
+            plik = '/mopac.sh'
             splash = '/'
             shell = False
             python = 'python3'
