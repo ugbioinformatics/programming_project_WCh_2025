@@ -24,14 +24,16 @@
 {% if post.calculated %}
 <p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
 {% endif %}
-
+<script src="/static/js/main.js">
+  let id = JSON.parse('{{post.id}}')
+</script>
 <img src="/media/{{post.id}}/molecule.svg">
 <p>
+
   <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
   <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
 
   <script src="/static/js/main.js"></script>
-
   <p class="idk">Start.mol2</p> 
   <div class="scroll">
     <div id="clickedId"></div>
