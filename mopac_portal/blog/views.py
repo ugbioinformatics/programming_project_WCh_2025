@@ -10,7 +10,7 @@ import mmap
 import pubchempy as pcp  #dodany modul pubchempy dla zastapenia cactus
 from .Utilities import make_png_and_mop, heat_energy, metoda
 from django.conf import settings
-
+from .systemcheck import systemcheck
 
 
 
@@ -41,9 +41,10 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 				# Uzyskiwanie IUPAC name przez skrypt
 				try:
 					result = subprocess.run(
-						['python3', 'pubchem_convert_SMILES_to_IUPAC.py', pole_smiles],
+						[systemcheck()[3], 'pubchem_convert_SMILES_to_IUPAC.py', pole_smiles],
 						capture_output=True,
-						text=True
+						text=True,
+						shell = systemcheck()[2]
 					)
 					iupac_name_output = result.stdout.strip()
 					print("Wynik skryptu:", iupac_name_output)
@@ -75,7 +76,8 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 
 			post.metoda = form.cleaned_data["pole_metoda"]
 			metoda(post.id, post.metoda)
-			subprocess.run(['../mopac.sh', 'molecule.mop'], cwd=settings.MEDIA_ROOT + '/' + str(post.id))
+			system = systemcheck()
+			subprocess.run([rf'..\mopac.{system[0]}', 'molecule.mop'], cwd=settings.MEDIA_ROOT + system[1] + str(post.id), shell =system[2])
 			post.cieplo, post.ionization, post.weight, post.grad = heat_energy(post.id)
 			post.save()
 			return redirect('/')
@@ -140,8 +142,9 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
 			post.metoda = form.cleaned_data["pole_metoda"]
 			metoda(post.id,post.metoda)
 			metoda2(post.id,post.metoda)
-			subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
-			subprocess.run(['../mopac.sh', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+			system = systemcheck
+			subprocess.run([rf'..\mopac.{system[0]}', 'molecule.mop'], cwd = settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
+			subprocess.run([rf'..\mopac.{system[0]}', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
 			post.cieplo1, post.energia1 = heat_energy(post.id)
 			post.cieplo2, post.energia2 = heat_energy(post.id)
 			post.save()
@@ -152,7 +155,7 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
 				file.write("geo_ref='molecule2.arc' +" + "\n")
 				file.write("saddle html xyz  bar=0.005" + "\n")
 				file.write("Locating transition state using SADDLE" + "\n")
-			subprocess.run(['../mopac.sh', 'saddle.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+			subprocess.run([rf'..\mopac.{system[0]}', 'saddle.mop'], cwd = settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
 
 
 
@@ -192,7 +195,7 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
 				file.write("oldgeo html irc=1*")
 
 
-			subprocess.run(['../mopac.sh', 'ts.mop'], cwd=settings.MEDIA_ROOT+'/'+str(post.id))
+			subprocess.run([rf'..\mopac.{system[0]}', 'ts.mop'], cwd=settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
 			return redirect('/')
 	else:
 		form = Suma2()
