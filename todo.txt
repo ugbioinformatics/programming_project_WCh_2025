@@ -1,0 +1,7 @@
+Do zrobienia:
+
+ 1. uporządkowanie nazw funkcji i klas - tak aby były związane z ich działaniem
+ 2. usuniecie nieużywanych funkcji z kodu
+ 3. pobieranie i wyświetalnie infomacji z wykorzystaniem nistchempy (np. eksperymentalnej wartości ciepła tworzenia - heat of formation)
+ 4. wizualizacja wyników analizy modów normalnych jako widma IR, porównanie z widmem eksperymentalnym z nistchempy
+ 
