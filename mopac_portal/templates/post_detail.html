@@ -3,8 +3,9 @@
 {% block content %}
 
 <div class="post-entry">
-  <h2>{{ post.nazwa }}</h2>
-  <p>{{ post.smiles }}</p>
+  <p id="Name"><span>Name: </span>{{ post.nazwa }}</p>
+  <p><span>Smiles: </span>{{ post.smiles }}</p>
+
   {% if not post.smiles1 != "" %}
   <p><span>Heat of Formation:</span> {{ post.cieplo }} KJ/MOL </p>  
   <p><span>Total Energy:</span> {{ post.energia }} EV </p>  
@@ -21,14 +22,15 @@
 
 
 {% if post.calculated %}
-<pre>{{ post.calculations |safe }}</pre>       
+<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
 {% endif %}
 
 <img src="/media/{{post.id}}/molecule.svg">
 <p>
-  <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
   <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
-  <script src="/static/js/main.js" defer></script>
+  <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
+
+  <script src="/static/js/main.js"></script>
 
   <p class="idk">Start.mol2</p> 
   <div class="scroll">
@@ -36,11 +38,11 @@
     <div id="viewport1" class="viewport">
     </div>
   </div>
-  <div  id="buttons">
+  <div  id="buttons1">
     <p>Turn:</p>
-    <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
+    <!-- <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
     <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
-    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>
+    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button> -->
   </div>
 
 <img src="/media/{{post.id}}/nalesnik.png">
@@ -49,17 +51,19 @@
   <div class="scroll">
   <div id="viewport"></div>
   </div>
-  <div  id="buttons">
+  <div  id="buttons2">
     <p>Turn:</p>
-    <button id="toggleSpin" onclick="toggleSpin">Spin on</button>
+    <!-- <button id="toggleSpin" onclick="toggleSpin">Spin on</button>
     <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
     <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
-    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>
+    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button> -->
   </div>
-
 
 {% if not post.calculated %}
 <p class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
+{% endif %}
+{% if post.calculated %}
+<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
 {% endif %}
 <p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
 {% endblock content %}
