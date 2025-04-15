@@ -23,18 +23,12 @@
 {% if post.calculated %}
 <pre>{{ post.calculations |safe }}</pre>       
 {% endif %}
-<script src="/static/js/main.js">
-  let id = JSON.parse('{{post.id}}')
-</script>
 <img src="/media/{{post.id}}/molecule.svg">
 <p>
   <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
-<<<<<<< HEAD
-=======
   <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
   <script src="/static/js/main.js" defer></script>
 
->>>>>>> 166485195810cecc18661c14eb08b3aa6966729f
   <p class="idk">Start.mol2</p> 
   <div class="scroll">
     <div id="clickedId"></div>
@@ -43,23 +37,16 @@
   </div>
   <div  id="buttons">
     <p>Turn:</p>
-    <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
-    <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
-    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>
   </div>
 
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
   <p class="idk">Molecule.mol2</p>
   <div class="scroll">
-  <div id="viewport"></div>
+  <div id="viewport2"></div>
   </div>
-  <div  id="buttons">
+  <div  id="buttons2">
     <p>Turn:</p>
-    <button id="toggleSpin" onclick="toggleSpin">Spin on</button>
-    <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
-    <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
-    <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>
   </div>
 
 

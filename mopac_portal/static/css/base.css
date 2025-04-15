@@ -372,7 +372,7 @@ pre *{
   scrollbar-width: none;
 }
 canvas{
-  background-color: transparent !important;
+  /* background-color: transparent !important; */
   touch-action: none;
   outline: none;
   border: 1px solid var(--pink);
