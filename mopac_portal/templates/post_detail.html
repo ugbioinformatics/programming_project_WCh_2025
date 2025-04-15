@@ -107,14 +107,14 @@ function loadStructure (input) {
 }
 
 var loadStructureButton = createFileButton("load structure", {
-  accept: ".pdb,.cif,.ent,.gz",
+  accept: ".pdb,.cif,.ent,.gz,.mol2",
   onchange: function (e) {
     if (e.target.files[ 0 ]) {
       loadStructure(e.target.files[ 0 ])
     }
   }
-}, { top: "12px", left: "12px" })
-addElement(loadStructureButton)
+})
+document.getElementById('buttons').appendChild(loadStructureButton)
 
 var polymerSelect = createSelect([
   [ "cartoon", "cartoon" ],
@@ -131,8 +131,8 @@ var polymerSelect = createSelect([
       })
     })
   }
-}, { top: "36px", left: "12px" })
-addElement(polymerSelect)
+})
+document.getElementById('buttons').appendChild(polymerSelect)
 
 var ligandCheckbox = createElement("input", {
   type: "checkbox",
@@ -141,11 +141,11 @@ var ligandCheckbox = createElement("input", {
     stage.getRepresentationsByName("ligand")
       .setVisibility(e.target.checked)
   }
-}, { top: "60px", left: "12px" })
+})
 addElement(ligandCheckbox)
 addElement(createElement("span", {
   innerText: "ligand"
-}, { top: "60px", left: "32px" }))
+}))
 
 var waterIonCheckbox = createElement("input", {
   type: "checkbox",
@@ -160,16 +160,26 @@ addElement(createElement("span", {
   innerText: "water+ion"
 }, { top: "84px", left: "32px" }))
 
-var centerButton = createElement("input", {
+x = false
+
+var spinButton = createElement("input", {
   type: "button",
-  value: "center",
+  id: "toggleSpin",
+  value: "Spin",
   onclick: function () {
+    if (x){
+    stage.setSpin(false)
+    x=false
+    }
+    else{
     stage.setSpin(true)
+    x=true
+    }
   }
 }, { top: "108px", left: "12px" })
-addElement(centerButton)
+document.getElementById('buttons').appendChild(spinButton)
 
-loadStructure("data://3SN6.cif")
+loadStructure("/media/{{post.id}}/start.mol2")
 
     });
 
@@ -183,7 +193,6 @@ loadStructure("data://3SN6.cif")
   </div>
   <div  id="buttons">
     <p>Turn:</p>
-    <button id="toggleSpin" onclick="toggleSpin">Spin on</button>
     <button id="toggleBackground"  onclick="toggleBackground">Background on</button>
     <button id="toggleSideChains"  onclick="toggleSideChains">Side chains on</button>
     <button id="toggleLabels"  onclick="toggleLabels">Labels on</button>

@@ -397,3 +397,13 @@ canvas{
   overscroll-behavior: auto none;
   scrollbar-width: none;
 } */
+
+#buttons input{
+  background-color: white;
+  border: 0.01em solid var(--pink);
+  color: var(--pink);
+  font-size: 1em;
+  cursor: pointer;
+  width: 9em;
+  height: 3em;
+}
