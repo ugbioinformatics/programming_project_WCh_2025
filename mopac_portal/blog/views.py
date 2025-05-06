@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView # type: ignore
-from django.views.generic.edit import CreateView, UpdateView, DeleteView  # type: ignore # new
+from django.views.generic.edit import CreateView, UpdateView, DeleteView  # type: ignore # new 
+from django.views import View  #potrzebne do utworzenia klasy opartą o View "DeleteAllView"	
 from django.urls import reverse_lazy  # type: ignore # new
 from django.shortcuts import get_object_or_404, render, redirect # type: ignore
 from .forms import Suma
@@ -286,3 +287,17 @@ class BlogDeleteView(DeleteView):
 	model = Post
 	template_name = "post_delete.html"
 	success_url = reverse_lazy("home")
+
+class BlogDeleteAllView(DeleteView):
+    model = Post
+    template_name = 'post_delete_all.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        """Zwraca wszystkie posty do usunięcia"""
+        return self.model.objects.all()
+
+    def post(self, request, *args, **kwargs):
+        """Usuń wszystkie posty przy POST"""
+        self.model.objects.all().delete()
+        return super().form_valid(form=None)
