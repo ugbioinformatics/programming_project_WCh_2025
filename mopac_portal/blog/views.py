@@ -70,6 +70,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 					if compound and compound[0].iupac_name:
 						iupac_name_output = compound[0].iupac_name
 						print("IUPAC name:", iupac_name_output)
+						body=iupac_name_output
 					else:
 						iupac_name_output = "No IUPAC ame found"
 				except Exception as e:
