@@ -5,8 +5,7 @@
 {% if user.is_authenticated %}
 <p class="delete Hi">Hi {{ user.username }}!</p>
 {% else %}
-  <p class="pink_text Hi">You are not logged in</p>
-<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
+  <p class="delete pink_text Hi">You are not logged in</p>
 {% endif %}
 
 {% for post in post_list %}
