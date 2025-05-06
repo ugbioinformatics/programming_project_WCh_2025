@@ -41,6 +41,7 @@ def CIRconvert(name):
     """
     Konwertuje nazwę związku chemicznego na ciąg SMILES, używając PubChem.
     """
+    import pubchempy as pcp
     try:
         compounds = pcp.get_compounds(name, 'name')
         if compounds:
@@ -50,7 +51,16 @@ def CIRconvert(name):
     except Exception as e:
         return f'Error: {e}'
 
-
+def CIRconvertName(smiles): #zamiana smiles na nazwe
+    import pubchempy as pcp
+    try:
+        compounds = pcp.get_compounds(smiles, 'smiles')
+        if compounds:
+              return compounds[0].iupac_name
+        else:
+            return 'No compound found'
+    except Exception as e:
+          return f'Error: {e}'
 #oblicza ta duza tablice wartosci
 
 def calculate(post, id):

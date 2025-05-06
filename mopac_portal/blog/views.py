@@ -22,6 +22,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 		form = Suma(request.POST)
 		if form.is_valid():
 			body = form.cleaned_data["pole_nazwa"]
+
 			if body != "":
 				# Zamiana nazwy związku na SMILES przez PubChem
 				try:
@@ -58,21 +59,31 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0)
 
-				post.iupac_name = iupac_name_output  # jeśli masz takie pole w modelu
+				post.iupac_name = iupac_name_output  
 				post.save()
 				make_png_and_mop(pole_smiles, post.id)
 
-			else:
+			else: #zamiana smiles na nazwe - dziala ale nie robi update do apliakcji
 				pole_smiles = form.cleaned_data["pole_smiles"]
+				try:
+					compound = pcp.get_compounds(pole_smiles,"smiles")
+					if compound and compound[0].iupac_name:
+						iupac_name_output = compound[0].iupac_name
+						print("IUPAC name:", iupac_name_output)
+					else:
+						iupac_name_output = "No IUPAC ame found"
+				except Exception as e:
+					print("Błąd przy pobiernaiu: ",e)
+					iupac_name_output = "Error retrieving name"
 				if request.user.is_authenticated:
-					post = Post(nazwa=pole_smiles, smiles=pole_smiles, cieplo=0, ionization=0,
+					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0, author=request.user)
 				else:
-					post = Post(nazwa=pole_smiles, smiles=pole_smiles, cieplo=0, ionization=0,
+					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0)
+				post.iupac_name = iupac_name_output
 				post.save()
-				make_png_and_mop(pole_smiles, post.id)
-
+				make_png_and_mop(pole_smiles,post.id)
 			post.metoda = form.cleaned_data["pole_metoda"]
 			metoda(post.id, post.metoda)
 			subprocess.run(['../mopac.sh', 'molecule.mop'], cwd=settings.MEDIA_ROOT + '/' + str(post.id))
