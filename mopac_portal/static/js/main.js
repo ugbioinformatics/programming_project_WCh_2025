@@ -54,24 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return button
     }
     
+    
     function loadStructure (input) {
       stage.removeAllComponents()
       return stage.loadFile(input).then(function (o) {
         o.autoView()
-        o.addRepresentation('surface', {
-          sele: "polymer",
-          name: "polymer"
-        })
         o.addRepresentation("ball+stick", {
           name: "ligand",
           visible: true,
           sele: "not ( polymer or water or ion )"
         })
-        o.addRepresentation("spacefill", {
-          name: "waterIon",
-          visible: waterIonCheckbox.checked,
-          sele: "water or ion",
-          scale: 0.25
+        Labrador1 = o.addRepresentation("label", {
+          labelType: "atomname",
+          visible: false
         })
       })
     }
@@ -106,38 +101,29 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('buttons1').appendChild(polymerSelect)
   
     
-    var waterIonCheckbox = createElement("input", {
-      type: "checkbox",
-      checked: false,
-      onchange: function (e) {
-        stage.getRepresentationsByName("waterIon")
-          .setVisibility(e.target.checked)
-      }
-    }, { top: "84px", left: "12px" })
-    addElement(waterIonCheckbox)
-    addElement(createElement("span", {
-      innerText: "water+ion"
-    }, { top: "84px", left: "32px" }))
-    
+  
     x = false
-    
+ 
     var spinButton = createElement("input", {
       type: "button",
       id: "toggleSpin",
-      value: "Spin",
+      value: "Spin Off",
       onclick: function () {
         if (x){
         stage.setSpin(false)
         x=false
+        spinButton.value = "Spin Off"
         }
         else{
         stage.spinAnimation = stage.animationControls.spin([ 0, 1, 0 ], 0.05)
         stage.setSpin(true)
         x=true
+        spinButton.value = "Dream On"
         }
       }
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(spinButton)
+    
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -153,15 +139,25 @@ document.addEventListener("DOMContentLoaded", function () {
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
+    labradrzwi1 = false
     var Labels = createElement("input", {
       type: "button",
       id: "label",
-      value: "Label",
+      value: "Label Off",
       onclick: function () {
-        stage.addRepresentation("angle")
-      }
+        if (labradrzwi1){
+          Labrador1.setVisibility(false)
+          Labels.value = "Lable Off"
+          labradrzwi1 = false
+        }else {
+          Labrador1.setVisibility(true)
+          Labels.value = "Lable On"
+          labradrzwi1 = true
+        }
+      },
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(Labels)
+    
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -229,20 +225,14 @@ document.addEventListener("DOMContentLoaded", function () {
         stage.removeAllComponents()
         return stage.loadFile(input).then(function (o) {
           o.autoView()
-          o.addRepresentation('surface', {
-            sele: "polymer",
-            name: "polymer"
-          })
           o.addRepresentation("ball+stick", {
             name: "ligand",
             visible: true,
             sele: "not ( polymer or water or ion )"
           })
-          o.addRepresentation("spacefill", {
-            name: "waterIon",
-            visible: waterIonCheckbox.checked,
-            sele: "water or ion",
-            scale: 0.25
+          Labrador = o.addRepresentation("label", {
+            labelType: "atomname",
+            visible: false
           })
         })
       }
@@ -277,34 +267,25 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('buttons2').appendChild(polymerSelect)
 
       
-      var waterIonCheckbox = createElement("input", {
-        type: "checkbox",
-        checked: false,
-        onchange: function (e) {
-          stage.getRepresentationsByName("waterIon")
-            .setVisibility(e.target.checked)
-        }
-      }, { top: "84px", left: "12px" })
-      addElement(waterIonCheckbox)
-      addElement(createElement("span", {
-        innerText: "water+ion"
-      }, { top: "84px", left: "32px" }))
+      
       
       x = false
       
       var spinButton = createElement("input", {
         type: "button",
         id: "toggleSpin",
-        value: "Spin",
+        value: "Spin Off",
         onclick: function () {
           if (x){
           stage.setSpin(false)
           x=false
+          spinButton.value = "Spin Off"
           }
           else{
           stage.spinAnimation = stage.animationControls.spin([ 0, 1, 0 ], 0.05)
           stage.setSpin(true)
           x=true
+          spinButton.value = "Dream On"
           }
         }
       }, { top: "108px", left: "12px" })
@@ -324,15 +305,25 @@ document.addEventListener("DOMContentLoaded", function () {
       postid = document.getElementById("postid").textContent
       loadStructure("/media/"+postid+"/molecule.mol2")
       
+      labradrzwi = false
       var Labels = createElement("input", {
         type: "button",
         id: "label",
-        value: "Label",
+        value: "Label Off",
         onclick: function () {
-          stage.addRepresentation("angle")
-        }
+          if (labradrzwi){
+            Labrador.setVisibility(false)
+            Labels.value = "Lable Off"
+            labradrzwi = false
+          }else {
+            Labrador.setVisibility(true)
+            Labels.value = "Lable On"
+            labradrzwi = true
+          }
+        },
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(Labels)
+      
       postid = document.getElementById("postid").textContent
       loadStructure("/media/"+postid+"/molecule.mol2")
       
