@@ -6,3 +6,4 @@ Do zrobienia:
  4. wizualizacja wyników analizy modów normalnych jako widma IR, porównanie z widmem eksperymentalnym z nistchempy
  5. rezygnujemy z modelowania reakcji chemicznych ? 
  6. uporządkowaniestrony głównej - password reset razem z log in i sign up
+ 7. Dodać funkcję usuwania wszystkich molekuł naraz
