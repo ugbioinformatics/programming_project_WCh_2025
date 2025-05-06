@@ -298,8 +298,11 @@
     width: 100%;
   }
   
-  .pink_text{
+  .pink_text, .pink_text_small{
     color: var(--pink)
+  }
+  .pink_text_small{
+    font-size: 1em
   }
   .post-entry span{
     font-weight: 900;
