@@ -1,0 +1,68 @@
+1) python
+1.1) zainstaluj python ze strony "https://www.python.org/"
+1.2) dodaj ścieżkę do zmiennych środowiskowych 
+1.2.1) *inaczej* -> ustawienia zaawansowane -> zmienne środowiskowe -> PATH -> edytuj -> dodaj ścieżkę do katalogu, w którym znajduje się python
+
+
+2) powershell
+2.1) otwórz konsolę windows (cmd)
+2.2) wpisz:
+python --version (aby upewnić się, czy python jest posiadany)
+python -m venv env (tworzymy środowisko)
+env\Scripts\Activate (aktywujemy środowiska)
+
+
+3) openbabel
+3.1) instalujemy bibliotekę "openbabel-wheel"
+pip install openbabel-wheel
+
+
+4) mopac
+4.1) lub korzystając z powershell:
+Invoke-WebRequest -Uri "http://openmopac.net/mopac-23.1.2-win.zip" -OutFile "mopac-23.1.2-win.zip" (pobranie mopac.zip)
+Expand-Archive -Path "mopac-23.1.2-win.zip" -DestinationPath "mopac" (rozpakowanie mopac.zip)
+& "ścieżka absolutna"(sprawdzenie, czy zainstalowano)
+
+4.1.1) jeśli występuje error (mopac nie jest rozpoznany), prawdopodobnie musimy dodać ścieżkę do zmiennych środowiskowych:
+-> ustawienia zaawansowane -> zmienne środowiskowe -> zmienne systemowe -> Path -> edytuj -> dodaje ścieżkę do katalogu, w którym znajduje się mopac.exe
+ponownie w powershell wpisujemy:
+Expand-Archive -Path "mopac-23.1.2-win.zip" -DestinationPath "mopac" (rozpakowanie mopac.zip) -Force (wymusi nadpisanie istniejących plików)
+mopac
+
+
+5) jmol
+5.1) pobranie jmol do odpowiedniego katalogu:
+cmd /c curl -L "https://downloads.sourceforge.net/project/jmol/Jmol/Version%2014.0/Version%2014.0.13/Jmol-14.0.13-binary.tar.gz" -o ".\Jmol-14.0.13-binary.tar.gz" (pobieramy)
+tar -xf Jmol-14.0.13-binary.tar.gz (rozpakowujemy tar)
+Expand-Archive -Path Jmol-14.0.13/jsmol.zip -DestinationPath Jmol-14.0.13/jsmol (rozpakowujemy zip)
+rm Jmol-14.0.13-binary.tar.gz (usuwamy archiwum)
+
+
+6) repozytorium
+git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git 
+cd programming_project_WCh_2025
+pip install -r mopac_portal/requirements.txt (instalujemy wszystkie wymagane zależności dla projektu)
+cd mopac_portal/
+mv ../../jmol-14.0.13 media (przenosimy katalog jmol-14.0.13 do folderu media)
+python manage.py makemigrations blog
+python manage.py migrate
+python manage.py runserver
+
+7) plik mopac.bat
+@echo off
+cd ..\mopac\mopac-23.1.2-win\bin 
+mopac.exe %*
+
+
+working_dir = os.path.join(settings.MEDIA_ROOT, str(post.id)) (plik mopac bat)
+ 
+!!!!!!subprocess.run(["..\mopac.bat", "molecule.mop"], cwd=str(post.id), capture_output=True, shell = True)!!!!!!!
+subprocess.run([r"..\mopac.bat", "molecule.mop"], cwd=settings.MEDIA_ROOT + '\\' + str(post.id), capture_output=True, shell = True)
+                ^^^ lub "..\\mopac.bat"              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       
+                 albo po prostu "..\mopac.bat" (nie sprawdziałam)
+
+8) 
+
+
+
+
