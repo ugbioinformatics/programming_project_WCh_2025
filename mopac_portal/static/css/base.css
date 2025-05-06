@@ -58,6 +58,7 @@
       display: grid;
     }
   }
+  
   body::before{
     position: fixed;
     z-index: 0;
@@ -79,10 +80,8 @@
   }
   a{
     text-decoration: none;
-    display: block;
     width: 100%;
     height: 100%;
-    padding-top: .5em;
   }
   
   header{
@@ -190,7 +189,7 @@
     font-size: 1em;
     font-weight: 900;
   }
-  
+
   .loging a{
     font-size: 1.5em;
     font-weight: 900;
@@ -389,3 +388,13 @@
     width: 9em;
     height: 3em;
   }
+  .forgot a{
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--gold);
+    padding-left: 2em;
+  }
+  .forgot{
+    display: inline-block;
+    width: fit-content;
+}

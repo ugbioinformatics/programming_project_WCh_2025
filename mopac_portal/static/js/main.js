@@ -208,5 +208,5 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById('buttons2').appendChild(centerButton)
       
       postid = document.getElementById("postid").textContent
-      loadStructure("/media/"+postid+"/start.mol2")
+      loadStructure("/media/"+postid+"/molecule.mol2")
       });
