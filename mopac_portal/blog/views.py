@@ -10,7 +10,7 @@ import mmap
 import pubchempy as pcp  #dodany modul pubchempy dla zastapenia cactus
 from .Utilities import make_png_and_mop, heat_energy, metoda
 from django.conf import settings
-
+from lxml import etree
 
 
 
@@ -83,6 +83,22 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 		form = Suma()
 	return render(request, 'suma.html', {'form': form})
 
+if __name__=="__main__":
+    smiles = sys.argv[1]
+
+    html_doc = requests.get("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/" + smiles + "/record/XML")
+    root = etree.XML(html_doc.text)
+
+    iupac_elements = root.findall(".//{*}PC-Urn_label")
+    for e in iupac_elements:
+        if "IUPAC Name" == e.text:
+            urn = e.getparent()
+            iupac_name_type = urn.find(".//{*}PC-Urn_name").text
+
+            info_data = urn.getparent().getparent()
+            iupac_name = info_data.find(".//{*}PC-InfoData_value_sval").text
+
+            print("IUPAC name ({}): {}".format(iupac_name_type, iupac_name)) 
 
 
 

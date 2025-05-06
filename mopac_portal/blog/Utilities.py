@@ -6,7 +6,7 @@ def make_png_and_mop(smiles, id):
     import os
     from django.conf import settings
     czasteczka = openbabel.pybel.readstring("smi", smiles)
-    os.mkdir(settings.MEDIA_ROOT+'/'+str(id))
+    os.makedirs(settings.MEDIA_ROOT + '/' + str(id), exist_ok=True)
     czasteczka.write(format="svg",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.svg", overwrite=True)
     czasteczka.make3D()
     czasteczka.write(format="mop",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mop",overwrite=True)
