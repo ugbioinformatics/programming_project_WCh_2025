@@ -382,7 +382,16 @@
     height: 100%;
   }
   
-  #buttons1 input, #buttons2 input, #buttons1 select, #buttons2 select{
+  #buttons1, #buttons2{
+    display: flex;
+    width: 44em;
+    column-gap: 10%;
+    /* align-items: center;
+    align-content: center */
+    padding: .5em 0 2em 0
+  }
+
+  #buttons1 input, #buttons2 input, #buttons1 select, #buttons2 select, #buttons2 select option{
     background-color: white;
     border: 0.01em solid var(--pink);
     color: var(--pink);
@@ -390,6 +399,7 @@
     cursor: pointer;
     width: 9em;
     height: 3em;
+    text-align: center
   }
   .forgot a{
     font-size: 1em;
