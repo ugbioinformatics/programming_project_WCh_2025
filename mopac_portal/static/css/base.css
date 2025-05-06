@@ -150,7 +150,7 @@
     text-align: center;
     align-items: center;
   }
-  .loged:hover, .adders:hover, .main_site_link:hover{
+  .loging:hover, .loged:hover, .adders:hover, .main_site_link:hover{
     scale: 1.1;
     transition: all .25s;
     box-shadow: 0em 1em 2em -1em rgba(10, 68, 10, 1);

@@ -337,4 +337,4 @@ document.addEventListener("DOMContentLoaded", function () {
       loadStructure("/media/"+postid+"/molecule.mol2")
       
       });
-      
+
