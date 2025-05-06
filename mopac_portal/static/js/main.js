@@ -84,13 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     })
-    document.getElementById('buttons').appendChild(loadStructureButton)
+    document.getElementById('buttons1').appendChild(loadStructureButton)
     
     var polymerSelect = createSelect([
-      [ "white", "white" ],
       [ "black", "black" ],
-      [ "transparent", "transparent" ],
-      [ "surface", "surface" ]
+      [ "white", "white" ],
+      [ "transparent", "transparent" ]
     ], {
       onchange: function (e) {
         stage.getRepresentationsByName("bg").dispose()
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
       }
     })
-    document.getElementById('buttons').appendChild(polymerSelect)
+    document.getElementById('buttons1').appendChild(polymerSelect)
     
     var ligandCheckbox = createElement("input", {
       type: "checkbox",
@@ -150,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     }, { top: "108px", left: "12px" })
-    document.getElementById('buttons').appendChild(spinButton)
+    document.getElementById('buttons1').appendChild(spinButton)
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -162,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
         stage.autoView(1000)
       }
     }, { top: "108px", left: "12px" })
-    document.getElementById('buttons').appendChild(centerButton)
+    document.getElementById('buttons1').appendChild(centerButton)
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -171,10 +170,10 @@ document.addEventListener("DOMContentLoaded", function () {
       id: "label",
       value: "Label",
       onclick: function () {
-        stage.La
+        stage.addRepresentation("angle")
       }
     }, { top: "108px", left: "12px" })
-    document.getElementById('buttons').appendChild(Labels)
+    document.getElementById('buttons1').appendChild(Labels)
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
