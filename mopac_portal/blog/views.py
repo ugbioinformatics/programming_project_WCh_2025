@@ -64,7 +64,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 				post.save()
 				make_png_and_mop(pole_smiles, post.id)
 
-			else: #zamiana smiles na nazwe - dziala ale nie robi update do apliakcji
+			else: #zamiana smiles na nazwe 
 				pole_smiles = form.cleaned_data["pole_smiles"]
 				try:
 					compound = pcp.get_compounds(pole_smiles,"smiles")
