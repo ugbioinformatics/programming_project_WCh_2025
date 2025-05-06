@@ -288,16 +288,16 @@ class BlogDeleteView(DeleteView):
 	template_name = "post_delete.html"
 	success_url = reverse_lazy("home")
 
-class BlogDeleteAllView(DeleteView):
-    model = Post
+
+class BlogDeleteAllView(View):
     template_name = 'post_delete_all.html'
     success_url = reverse_lazy('home')
 
-    def get_object(self, queryset=None):
-        """Zwraca wszystkie posty do usunięcia"""
-        return self.model.objects.all()
-
     def post(self, request, *args, **kwargs):
         """Usuń wszystkie posty przy POST"""
-        self.model.objects.all().delete()
-        return super().form_valid(form=None)
+        Post.objects.all().delete()
+        return redirect(self.success_url)
+
+    def get(self, request, *args, **kwargs):
+        """Pokaż stronę potwierdzenia usunięcia"""
+        return render(request, self.template_name)
