@@ -62,4 +62,6 @@ from .systemcheck import systemcheck
 *schemat wyglądu subprocess
     #dla Winows wygląda subprocess.run([rf'..\mopac.bat', 'force.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
     #dla Linuxa subprocess.run([rf'..\mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id), shell=True)
-===>subprocess.run([rf'..{system[0]}', 'molecule.mop'], cwd=settings.MEDIA_ROOT + system[1] + str(post.id), shell =system[2])
+
+system = systemcheck()
+subprocess.run([rf'..{system[0]}', 'molecule.mop'], cwd=settings.MEDIA_ROOT + system[1] + str(post.id), shell =system[2])
