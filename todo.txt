@@ -10,6 +10,7 @@ Do zrobienia:
  9. C Naprawienie delete all przy molekułach
  10. C/F Poprawa opisów dodawania molekuł/funkcjonalność aplikacji
  11. C/F Dopisać uwagę o czasie generowania i o tym ze jak jest pusta nazwa to czasteczka nie istnieje
+ 12. C/F Dodać usuwanie przez selekcje (usuwanie wybranych molekuł)
 
 
 C - cleanig_site
