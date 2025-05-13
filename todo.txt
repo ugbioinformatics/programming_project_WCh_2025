@@ -7,3 +7,4 @@ Do zrobienia:
  5. rezygnujemy z modelowania reakcji chemicznych ? 
  6. uporządkowaniestrony głównej - password reset razem z log in i sign up - done
  7. Dodać funkcję usuwania wszystkich molekuł naraz - done
+ 8. Naprawienie go back przy calculations, zeby nie liczyło od nowa
