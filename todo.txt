@@ -8,3 +8,4 @@ Do zrobienia:
  6. uporządkowaniestrony głównej - password reset razem z log in i sign up - done
  7. Dodać funkcję usuwania wszystkich molekuł naraz - done
  8. Naprawienie go back przy calculations, zeby nie liczyło od nowa
+ 9. Naprawienie delete all przy molekułach
