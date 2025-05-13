@@ -55,10 +55,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+********************************************************************************
 *import systemcheck.py do plików views.py i utilities.py
 from .systemcheck import systemcheck 
-
+********************************************************************************
 *schemat wyglądu subprocess
     #dla Winows wygląda subprocess.run([rf'..\mopac.bat', 'force.mop'], cwd = settings.MEDIA_ROOT+'\\'+str(post.id), shell=True)
     #dla Linuxa subprocess.run([rf'..\mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id), shell=True)
-===>subprocess.run([rf'..\mopac.{systemcheck()[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+systemcheck()[1]+str(post.id), shell=True)
+===>subprocess.run([rf'..{system[0]}', 'molecule.mop'], cwd=settings.MEDIA_ROOT + system[1] + str(post.id), shell =system[2])
