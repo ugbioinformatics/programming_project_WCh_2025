@@ -300,3 +300,6 @@ class BlogDeleteAllView(View):
     def get(self, request, *args, **kwargs):
         """Pokaż stronę potwierdzenia usunięcia"""
         return render(request, self.template_name)
+class BlogCalculateView(DetailView):
+    model = Post
+    template_name = "post_calculation.html"
