@@ -5,6 +5,7 @@ from django.conf import settings
 import shutil
 import os
 
+#usuwa wszystko (w bazie) co jest zwiazane z dodana molekula 
 
 @receiver(post_delete, sender=Post)
 def delete_on_post_del(sender, instance, **kwargs):
