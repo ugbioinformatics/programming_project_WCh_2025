@@ -297,7 +297,6 @@ class BlogDeleteAllView(View):
         """Usuń wszystkie posty przy POST"""
         Post.objects.all().delete()
         return redirect(self.success_url)
-
     def get(self, request, *args, **kwargs):
         """Pokaż stronę potwierdzenia usunięcia"""
         return render(request, self.template_name)
