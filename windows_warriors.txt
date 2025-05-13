@@ -62,6 +62,16 @@ subprocess.run([r"..\mopac.bat", "molecule.mop"], cwd=settings.MEDIA_ROOT + '\\'
                  albo po prostu "..\mopac.bat" (nie sprawdziałam)
 
 8) 
+JSME
+# 1. Pobranie pliku ZIP
+Invoke-WebRequest -Uri "https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip" -OutFile "JSME_2024-04-29.zip"
+
+# 2. Rozpakowanie ZIP-a
+Expand-Archive -Path "JSME_2024-04-29.zip" -DestinationPath "JSME_2024-04-29"
+
+# 3. Przeniesienie folderu "jsme" do static
+Move-Item -Path "JSME_2024-04-29\jsme" -Destination "programming_project_WCh_2025\mopac_portal\static"
+
 
 
 
