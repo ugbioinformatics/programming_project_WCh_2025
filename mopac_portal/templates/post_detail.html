@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="post-entry">
-  <h2>{{ post.nazwa }}</h2>
-  <p>{{ post.smiles }}</p>
+  <p id="Name"><span>Name: </span>{{ post.nazwa }}</p>
+  <p><span>Smiles: </span>{{ post.smiles }}</p>
   {% if not post.smiles1 != "" %}
   <p><span>Heat of Formation:</span> {{ post.cieplo }} KJ/MOL </p>  
   <p><span>Ionization:</span> {{ post.ionization }} EV </p>  
@@ -24,39 +24,39 @@
 
 
 {% if post.calculated %}
-<pre>{{ post.calculations |safe }}</pre>       
+<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
 {% endif %}
-
-
-
-
 
 <img src="/media/{{post.id}}/molecule.svg">
 <p>
-  <script src="https://unpkg.com/ngl@1.0.0-beta.7"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport_start");
-      stage.loadFile("/media/{{post.id}}/start.mol2", {defaultRepresentation: true});
-    });
-  </script> 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport");
-      stage.loadFile("/media/{{post.id}}/molecule.mol2", {defaultRepresentation: true});
-    });
-  
-  </script>
-  <p  >Start.mol2</p> 
-  <div id="viewport_start" style="width:400px; height:300px;"></div>
+  <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
+  <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
+  <script src="/static/js/main.js" defer></script>
+
+  <p class="idk">Start.mol2</p> 
+  <div class="scroll">
+    <div id="clickedId"></div>
+    <div id="viewport1" class="viewport">
+    </div>
+  </div>
+  <div  id="buttons1">
+  </div>
+
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
-  <p  >Molecule.mol2</p>
-  <div id="viewport" style="width:400px; height:300px;"></div>
+  <p class="idk">Molecule.mol2</p>
+  <div class="scroll">
+  <div id="viewport2"></div>
+  </div>
+  <div  id="buttons2">
+  </div>
 
 
 {% if not post.calculated %}
 <p class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
+{% endif %}
+{% if post.calculated %}
+<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
 {% endif %}
 <p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
 {% endblock content %}
