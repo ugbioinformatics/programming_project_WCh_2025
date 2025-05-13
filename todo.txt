@@ -1,10 +1,11 @@
 Do zrobienia:
 
- 1. uporządkowanie nazw funkcji i klas - tak aby były związane z ich działaniem
+ 1. uporządkowanie nazw funkcji i klas - tak aby były związane z ich działaniem - DONE
  2. usuniecie nieużywanych funkcji z kodu
  3. pobieranie i wyświetalnie infomacji z wykorzystaniem nistchempy (np. eksperymentalnej wartości ciepła tworzenia - heat of formation)
  4. wizualizacja wyników analizy modów normalnych jako widma IR, porównanie z widmem eksperymentalnym z nistchempy
  5. rezygnujemy z modelowania reakcji chemicznych ? 
- 6. uporządkowaniestrony głównej - password reset razem z log in i sign up - done
+ 6. uporządkowaniestrony głównej - password reset razem z log in i sign up - DONE
  8. Naprawienie go back przy calculations, zeby nie liczyło od nowa
  9. Naprawienie delete all przy molekułach
+ 10. Poprawa opisów dodawania molekuł/funkcjonalność aplikacji
