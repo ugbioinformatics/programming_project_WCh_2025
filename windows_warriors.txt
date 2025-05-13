@@ -69,7 +69,7 @@ Invoke-WebRequest -Uri "https://jsme-editor.github.io/downloads/JSME_2024-04-29.
 # 2. Rozpakowanie ZIP-a
 Expand-Archive -Path "JSME_2024-04-29.zip" -DestinationPath "JSME_2024-04-29"
 
-# 3. Przeniesienie folderu "jsme" do static
+# 3. Przeniesienie folderu "jsme" do static - wyskoczył błąd, ale działa
 Move-Item -Path "JSME_2024-04-29\jsme" -Destination "programming_project_WCh_2025\mopac_portal\static"
 
 
