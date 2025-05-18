@@ -1,4 +1,6 @@
 #funkcje obliczeniowe
+from .systemcheck import systemcheck
+system = systemcheck()
 
 # tworzenie wzoru i struktury 3D
 def make_png_and_mop(smiles, id):
@@ -78,7 +80,8 @@ def calculate(post, id):
     with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+"/force.mop", inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace('PUT KEYWORDS HERE',f"{metoda} force"), end='')
-    subprocess.run(['../mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+    system = systemcheck()
+    subprocess.run([rf'..{system[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     
 
 
@@ -132,8 +135,8 @@ def calculate(post, id):
         with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+f"/drc{i}.mop", inplace=True, backup='.bak') as file:
             for line in file:
                 print(line.replace('PUT KEYWORDS HERE',f"{metoda} irc={i}* DRC BIGCYCLES=1 html t-priority=0.5"), end='')
-
-        subprocess.run(['../mopac.sh', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+        system = systemcheck()
+        subprocess.run([rf'..{system[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     post.calculated = True
     post.save()
     

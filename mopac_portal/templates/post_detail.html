@@ -59,6 +59,9 @@
 {% if post.calculated %}
 <p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
 {% endif %}
+{% if post.calculated %}
+<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
+{% endif %}
 <p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
 {% endblock content %}
 

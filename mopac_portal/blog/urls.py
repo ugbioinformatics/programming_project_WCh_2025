@@ -15,6 +15,7 @@ from .views import (
 
 urlpatterns = [
 
+
     path("post/new/", BlogCreateView.as_view(), name="post_new"),  		#views.py 337
     path("post/<int:pk>/", BlogDetailView.as_view(), name="post_detail"),  	#views.py 332
     path("post/suma/", CIRconvert_Views, name="post_suma"),  			#views.py 134  
@@ -25,6 +26,7 @@ urlpatterns = [
     path("post/<int:pk>/show/", BlogDeleteView.as_view(), name="post_show"),  	#views.py 349  #zmenic nazwe "post_show"? na "post_delete_mol"
     path("post/delete-all/", BlogDeleteAllView.as_view(), name="delete_all_posts"),
     path("post/suma2/", CIRconvert_Views_Reaction, name="post_suma2"),     	#views.py 183
+
 
     
 
