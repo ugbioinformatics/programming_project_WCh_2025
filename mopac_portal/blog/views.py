@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView # type: ignore
-from django.views.generic.edit import CreateView, UpdateView, DeleteView  # type: ignore # new
+from django.views.generic.edit import CreateView, UpdateView, DeleteView  # type: ignore # new 
+from django.views import View  #potrzebne do utworzenia klasy opartą o View "DeleteAllView"	
 from django.urls import reverse_lazy  # type: ignore # new
 from django.shortcuts import get_object_or_404, render, redirect # type: ignore
 from .forms import Suma
@@ -10,7 +11,11 @@ import mmap
 import pubchempy as pcp  #dodany modul pubchempy dla zastapenia cactus
 from .Utilities import make_png_and_mop, heat_energy, metoda
 from django.conf import settings
+
 from .systemcheck import systemcheck
+
+from lxml import etree
+
 
 
 
@@ -22,6 +27,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 		form = Suma(request.POST)
 		if form.is_valid():
 			body = form.cleaned_data["pole_nazwa"]
+
 			if body != "":
 				# Zamiana nazwy związku na SMILES przez PubChem
 				try:
@@ -59,21 +65,32 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0)
 
-				post.iupac_name = iupac_name_output  # jeśli masz takie pole w modelu
+				post.iupac_name = iupac_name_output  
 				post.save()
 				make_png_and_mop(pole_smiles, post.id)
 
-			else:
+			else: #zamiana smiles na nazwe 
 				pole_smiles = form.cleaned_data["pole_smiles"]
+				try:
+					compound = pcp.get_compounds(pole_smiles,"smiles")
+					if compound and compound[0].iupac_name:
+						iupac_name_output = compound[0].iupac_name
+						print("IUPAC name:", iupac_name_output)
+						body=iupac_name_output
+					else:
+						iupac_name_output = "No IUPAC ame found"
+				except Exception as e:
+					print("Błąd przy pobiernaiu: ",e)
+					iupac_name_output = "Error retrieving name"
 				if request.user.is_authenticated:
-					post = Post(nazwa=pole_smiles, smiles=pole_smiles, cieplo=0, ionization=0,
+					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0, author=request.user)
 				else:
-					post = Post(nazwa=pole_smiles, smiles=pole_smiles, cieplo=0, ionization=0,
+					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0)
+				post.iupac_name = iupac_name_output
 				post.save()
-				make_png_and_mop(pole_smiles, post.id)
-
+				make_png_and_mop(pole_smiles,post.id)
 			post.metoda = form.cleaned_data["pole_metoda"]
 			metoda(post.id, post.metoda)
 			system = systemcheck()
@@ -85,6 +102,22 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 		form = Suma()
 	return render(request, 'suma.html', {'form': form})
 
+if __name__=="__main__":
+    smiles = sys.argv[1]
+
+    html_doc = requests.get("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/" + smiles + "/record/XML")
+    root = etree.XML(html_doc.text)
+
+    iupac_elements = root.findall(".//{*}PC-Urn_label")
+    for e in iupac_elements:
+        if "IUPAC Name" == e.text:
+            urn = e.getparent()
+            iupac_name_type = urn.find(".//{*}PC-Urn_name").text
+
+            info_data = urn.getparent().getparent()
+            iupac_name = info_data.find(".//{*}PC-InfoData_value_sval").text
+
+            print("IUPAC name ({}): {}".format(iupac_name_type, iupac_name)) 
 
 
 
@@ -258,11 +291,23 @@ class BlogUpdateView(UpdateView):
 
 
 
-class BlogDeleteView(DeleteView):  # new
-    model = Post
-    template_name = "post_delete.html"
-    success_url = reverse_lazy("home")
+class BlogDeleteView(DeleteView):  
+	model = Post
+	template_name = "post_delete.html"
+	success_url = reverse_lazy("home")
 
-class BlogCalculateView(DetailView): #dodano przez grz13
+
+class BlogDeleteAllView(View):
+    template_name = 'post_delete_all.html'
+    success_url = reverse_lazy('home')
+
+    def post(self, request, *args, **kwargs):
+        """Usuń wszystkie posty przy POST"""
+        Post.objects.all().delete()
+        return redirect(self.success_url)
+    def get(self, request, *args, **kwargs):
+        """Pokaż stronę potwierdzenia usunięcia"""
+        return render(request, self.template_name)
+class BlogCalculateView(DetailView):
     model = Post
     template_name = "post_calculation.html"
