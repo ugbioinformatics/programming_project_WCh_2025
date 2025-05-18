@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView # type: ignore
-from django.views.generic.edit import CreateView, UpdateView, DeleteView  # type: ignore # new
+from django.views.generic.edit import CreateView, UpdateView, DeleteView  # type: ignore # new 
+from django.views import View  #potrzebne do utworzenia klasy opartą o View "DeleteAllView"	
 from django.urls import reverse_lazy  # type: ignore # new
 from django.shortcuts import get_object_or_404, render, redirect # type: ignore
 from .forms import Suma
@@ -10,6 +11,10 @@ import mmap
 import pubchempy as pcp  #dodany modul pubchempy dla zastapenia cactus
 from .Utilities import make_png_and_mop, heat_energy, metoda
 from django.conf import settings
+
+from .systemcheck import systemcheck
+
+from lxml import etree
 
 
 
@@ -22,6 +27,7 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 		form = Suma(request.POST)
 		if form.is_valid():
 			body = form.cleaned_data["pole_nazwa"]
+
 			if body != "":
 				# Zamiana nazwy związku na SMILES przez PubChem
 				try:
@@ -41,9 +47,10 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 				# Uzyskiwanie IUPAC name przez skrypt
 				try:
 					result = subprocess.run(
-						['python3', 'pubchem_convert_SMILES_to_IUPAC.py', pole_smiles],
+						[systemcheck()[3], 'pubchem_convert_SMILES_to_IUPAC.py', pole_smiles],
 						capture_output=True,
-						text=True
+						text=True,
+						shell = systemcheck()[2]
 					)
 					iupac_name_output = result.stdout.strip()
 					print("Wynik skryptu:", iupac_name_output)
@@ -58,24 +65,36 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0)
 
-				post.iupac_name = iupac_name_output  # jeśli masz takie pole w modelu
+				post.iupac_name = iupac_name_output  
 				post.save()
 				make_png_and_mop(pole_smiles, post.id)
 
-			else:
+			else: #zamiana smiles na nazwe 
 				pole_smiles = form.cleaned_data["pole_smiles"]
+				try:
+					compound = pcp.get_compounds(pole_smiles,"smiles")
+					if compound and compound[0].iupac_name:
+						iupac_name_output = compound[0].iupac_name
+						print("IUPAC name:", iupac_name_output)
+						body=iupac_name_output
+					else:
+						iupac_name_output = "No IUPAC ame found"
+				except Exception as e:
+					print("Błąd przy pobiernaiu: ",e)
+					iupac_name_output = "Error retrieving name"
 				if request.user.is_authenticated:
-					post = Post(nazwa=pole_smiles, smiles=pole_smiles, cieplo=0, ionization=0,
+					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0, author=request.user)
 				else:
-					post = Post(nazwa=pole_smiles, smiles=pole_smiles, cieplo=0, ionization=0,
+					post = Post(nazwa=body, smiles=pole_smiles, cieplo=0, ionization=0,
 								weight=0, grad=0)
+				post.iupac_name = iupac_name_output
 				post.save()
-				make_png_and_mop(pole_smiles, post.id)
-
+				make_png_and_mop(pole_smiles,post.id)
 			post.metoda = form.cleaned_data["pole_metoda"]
 			metoda(post.id, post.metoda)
-			subprocess.run(['../mopac.sh', 'molecule.mop'], cwd=settings.MEDIA_ROOT + '/' + str(post.id))
+			system = systemcheck()
+			subprocess.run([rf'..{system[0]}', 'molecule.mop'], cwd=settings.MEDIA_ROOT + system[1] + str(post.id), shell =system[2])
 			post.cieplo, post.ionization, post.weight, post.grad = heat_energy(post.id)
 			post.save()
 			return redirect('/')
@@ -83,6 +102,22 @@ def CIRconvert_Views(request):   #zamienia nam nazwe na smilesa
 		form = Suma()
 	return render(request, 'suma.html', {'form': form})
 
+if __name__=="__main__":
+    smiles = sys.argv[1]
+
+    html_doc = requests.get("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/" + smiles + "/record/XML")
+    root = etree.XML(html_doc.text)
+
+    iupac_elements = root.findall(".//{*}PC-Urn_label")
+    for e in iupac_elements:
+        if "IUPAC Name" == e.text:
+            urn = e.getparent()
+            iupac_name_type = urn.find(".//{*}PC-Urn_name").text
+
+            info_data = urn.getparent().getparent()
+            iupac_name = info_data.find(".//{*}PC-InfoData_value_sval").text
+
+            print("IUPAC name ({}): {}".format(iupac_name_type, iupac_name)) 
 
 
 
@@ -140,8 +175,9 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
 			post.metoda = form.cleaned_data["pole_metoda"]
 			metoda(post.id,post.metoda)
 			metoda2(post.id,post.metoda)
-			subprocess.run(['../mopac.sh', 'molecule.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
-			subprocess.run(['../mopac.sh', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+			system = systemcheck
+			subprocess.run([rf'..{system[0]}', 'molecule.mop'], cwd = settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
+			subprocess.run([rf'..{system[0]}', 'molecule2.mop'], cwd = settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
 			post.cieplo1, post.energia1 = heat_energy(post.id)
 			post.cieplo2, post.energia2 = heat_energy(post.id)
 			post.save()
@@ -152,7 +188,7 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
 				file.write("geo_ref='molecule2.arc' +" + "\n")
 				file.write("saddle html xyz  bar=0.005" + "\n")
 				file.write("Locating transition state using SADDLE" + "\n")
-			subprocess.run(['../mopac.sh', 'saddle.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+			subprocess.run([rf'..{system[0]}', 'saddle.mop'], cwd = settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
 
 
 
@@ -192,7 +228,7 @@ def CIRconvert_Views_Reaction(request):    #prawd to samo co wyzej tylko, ze do 
 				file.write("oldgeo html irc=1*")
 
 
-			subprocess.run(['../mopac.sh', 'ts.mop'], cwd=settings.MEDIA_ROOT+'/'+str(post.id))
+			subprocess.run([rf'..{system[0]}', 'ts.mop'], cwd=settings.MEDIA_ROOT+ system[1] +str(post.id), shell =system[2])
 			return redirect('/')
 	else:
 		form = Suma2()
@@ -254,7 +290,24 @@ class BlogUpdateView(UpdateView):
 	fields = ["title", "body", "liczby"]
 
 
+
 class BlogDeleteView(DeleteView):  
 	model = Post
 	template_name = "post_delete.html"
 	success_url = reverse_lazy("home")
+
+
+class BlogDeleteAllView(View):
+    template_name = 'post_delete_all.html'
+    success_url = reverse_lazy('home')
+
+    def post(self, request, *args, **kwargs):
+        """Usuń wszystkie posty przy POST"""
+        Post.objects.all().delete()
+        return redirect(self.success_url)
+    def get(self, request, *args, **kwargs):
+        """Pokaż stronę potwierdzenia usunięcia"""
+        return render(request, self.template_name)
+class BlogCalculateView(DetailView):
+    model = Post
+    template_name = "post_calculation.html"

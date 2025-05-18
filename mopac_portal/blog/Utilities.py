@@ -1,4 +1,6 @@
 #funkcje obliczeniowe
+from .systemcheck import systemcheck
+system = systemcheck()
 
 # tworzenie wzoru i struktury 3D
 def make_png_and_mop(smiles, id):
@@ -6,7 +8,7 @@ def make_png_and_mop(smiles, id):
     import os
     from django.conf import settings
     czasteczka = openbabel.pybel.readstring("smi", smiles)
-    os.mkdir(settings.MEDIA_ROOT+'/'+str(id))
+    os.makedirs(settings.MEDIA_ROOT + '/' + str(id), exist_ok=True)
     czasteczka.write(format="svg",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.svg", overwrite=True)
     czasteczka.make3D()
     czasteczka.write(format="mop",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mop",overwrite=True)
@@ -51,7 +53,16 @@ def CIRconvert(name):
     except Exception as e:
         return f'Error: {e}'
 
-
+def CIRconvertName(smiles): #zamiana smiles na nazwe
+    import pubchempy as pcp
+    try:
+        compounds = pcp.get_compounds(smiles, 'smiles')
+        if compounds:
+              return compounds[0].iupac_name
+        else:
+            return 'No compound found'
+    except Exception as e:
+          return f'Error: {e}'
 #oblicza ta duza tablice wartosci
 
 def calculate(post, id):
@@ -69,7 +80,8 @@ def calculate(post, id):
     with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+"/force.mop", inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace('PUT KEYWORDS HERE',f"{metoda} force"), end='')
-    subprocess.run(['../mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+    system = systemcheck()
+    subprocess.run([rf'..{system[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     
 
 
@@ -123,8 +135,8 @@ def calculate(post, id):
         with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+f"/drc{i}.mop", inplace=True, backup='.bak') as file:
             for line in file:
                 print(line.replace('PUT KEYWORDS HERE',f"{metoda} irc={i}* DRC BIGCYCLES=1 html t-priority=0.5"), end='')
-
-        subprocess.run(['../mopac.sh', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+        system = systemcheck()
+        subprocess.run([rf'..{system[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     post.calculated = True
     post.save()
     
