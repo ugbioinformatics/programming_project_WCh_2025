@@ -9,6 +9,7 @@ pip install openbabel-wheel
 echo Pobieranie MOPAC...
 powershell -Command "Invoke-WebRequest -Uri 'http://openmopac.net/mopac-23.1.2-win.zip' -OutFile '..\mopac-23.1.2-win.zip'"
 powershell -Command "Expand-Archive -Path '..\mopac-23.1.2-win.zip' -DestinationPath '..\mopac'"
+del "..\mopac-23.1.2-win.zip"
 
 :: 3. Pobranie i rozpakowanie JSME
 echo Pobieranie JSME...
