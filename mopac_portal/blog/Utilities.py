@@ -136,7 +136,7 @@ def calculate(post, id):
             for line in file:
                 print(line.replace('PUT KEYWORDS HERE',f"{metoda} irc={i}* DRC BIGCYCLES=1 html t-priority=0.5"), end='')
         system = systemcheck()
-        subprocess.run([rf'..{system[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
+        subprocess.run([rf'..{system[0]}', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     post.calculated = True
     post.save()
     
