@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p class="delete"><a href="{% url 'post_calculate' post.pk %}">Go Back</a></p>
+<p class="delete"><a href="javascript:history.back()">Go Back</a></p>
 <pre>{{ post.calculations |safe }}</pre>   
 </br>
-<p class="delete"><a href="{% url 'post_calculate' post.pk %}">Go Back</a></p>
+<p class="delete"><a href="javascript:history.back()">Go Back</a></p>
 {% endblock content %}
