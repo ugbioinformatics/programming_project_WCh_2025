@@ -17,6 +17,21 @@ powershell -Command "Invoke-WebRequest -Uri 'https://jsme-editor.github.io/downl
 powershell -Command "Expand-Archive -Path '..\JSME_2024-04-29.zip' -DestinationPath '..\JSME_2024-04-29'"
 del "..\JSME_2024-04-29.zip"
 
+:: 4 JMOL
+echo Rozpakowywanie gzip do tar w katalogu nadrzednym...
+powershell -Command "Add-Type -AssemblyName System.IO.Compression.FileSystem; [IO.Compression.GzipStream]::new([IO.File]::OpenRead('..\\Jmol-14.0.13-binary.tar.gz'), [IO.Compression.CompressionMode]::Decompress).CopyTo([IO.File]::Create('..\\Jmol-14.0.13-binary.tar'))"
+
+echo Rozpakowywanie tar w katalogu nadrzednym...
+tar -xf ..\Jmol-14.0.13-binary.tar -C ..
+
+echo Rozpakowywanie jsmol.zip w katalogu nadrzednym...
+powershell -Command "Expand-Archive -Path '..\\jmol-14.0.13/jsmol.zip' -DestinationPath '..\\jmol-14.0.13/jsmol'"
+
+echo Usuwanie archiwów w katalogu nadrzędnym...
+del ..\Jmol-14.0.13-binary.tar.gz
+del ..\Jmol-14.0.13-binary.tar
+
+
 echo.
 echo =============================
 echo Wszystko gotowe!
