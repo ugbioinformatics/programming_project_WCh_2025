@@ -72,7 +72,8 @@ Expand-Archive -Path "JSME_2024-04-29.zip" -DestinationPath "JSME_2024-04-29"
 # 3. Przeniesienie folderu "jsme" do static - wyskoczył błąd, ale działa
 Move-Item -Path "JSME_2024-04-29\jsme" -Destination "programming_project_WCh_2025\mopac_portal\static"
 
-
+JEST UPDATE do instalacji openbabel, mopac i JSME- plik setup.bat
+.\setup.bat
 
 
 
