@@ -1,4 +1,4 @@
-1) otwórz terminal - tworzymy i aktywujemy środowiska
+1) otwórz terminal - tworzymy i aktywujemy środowiska - dodane do setup.bat
 python -m venv env 
 env\Scripts\Activate 
 
