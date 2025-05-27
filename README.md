@@ -1,5 +1,8 @@
 # Projekt programistyczny 2025
 
+wykorzystanie https://github.com/jensengroup/take_elementary_step
+do generowania możliwych reakcji rozpadu danej cząsteczki
+
 <a href="mopac_portal/README.md"> instrukcja instalacji</a>
 
 main = kopia projektu z 2024 
