@@ -6,12 +6,14 @@ Do zrobienia:
  4. C wizualizacja wyników analizy modów normalnych jako widma IR, porównanie z widmem eksperymentalnym z nistchempy
  5. C rezygnujemy z modelowania reakcji chemicznych ? 
  6. F uporządkowaniestrony głównej - password reset razem z log in i sign up - DONE
- 8. F Naprawienie go back przy calculations, zeby nie liczyło od nowa
+ 8. F Naprawienie go back przy calculations, zeby nie liczyło od nowa - DONE
  9. C Naprawienie delete all przy molekułach
  10. C/F Poprawa opisów dodawania molekuł/funkcjonalność aplikacji
  11. C/F Dopisać uwagę o czasie generowania i o tym ze jak jest pusta nazwa to czasteczka nie istnieje
  12. C/F Dodać usuwanie przez selekcje (usuwanie wybranych molekuł)
  13. zastosowanie https://github.com/jensengroup/take_elementary_step zamiast modelowania dowolnej reakcji ?
+ 14. C dodac do instrukcji odnosnie openbabela
+
 
 C - cleanig_site
 F - frontend
