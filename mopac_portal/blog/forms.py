@@ -21,7 +21,7 @@ class Suma(forms.Form):
 
         
         if pole_nazwa == "" and pole_smiles == "":  #brak nazwy i smiles
-            self.add_error('pole_nazwa','podaj dane')
+            self.add_error('pole_nazwa','Provide data ')
         
         if pole_nazwa == "" and pole_smiles != "":  #brak nazwy
             if smile_check(pole_smiles) == 'it dont work':
