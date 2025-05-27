@@ -18,30 +18,31 @@ class Suma(forms.Form):
         pole_nazwa = cleaned_data.get("pole_nazwa")
         pole_smiles = cleaned_data.get("pole_smiles")
         
+
+        
         if pole_nazwa == "" and pole_smiles == "":  #brak nazwy i smiles
             self.add_error('pole_nazwa','podaj dane')
         
-        if pole_nazwa != "" and pole_smiles == "":  #brak smiles
-            if CIRconvert(pole_nazwa)=='Did not work':
-                self.add_error('pole_nazwa','smiles nie istnieje')
-            else:
-                print('Przeszlo')
-                pass
         if pole_nazwa == "" and pole_smiles != "":  #brak nazwy
             if smile_check(pole_smiles) == 'it dont work':
-                if CIRconvertName(pole_smiles)=='it dont work':
-                    self.add_error('pole_smiles','smiles nie istnieje')
-                else:
-                    print('Przeszlo')
-                    pass
+                self.add_error('pole_nazwa','SMILES does not exist')
+            else:
+                pass
+        if pole_nazwa != "" and pole_smiles == "":  #brak smiles
+        
+            if CIRconvert(pole_nazwa) == 'it dont work':
+                self.add_error('pole_smiles','The name does not exist')
+            else:
+                pass
         if pole_nazwa != "" and pole_smiles != "":
             converted_smiles = CIRconvert(pole_nazwa)  
-            if not converted_smiles or converted_smiles == 'Did not work':
-                self.add_error('pole_nazwa', 'Nie udało się znaleźć odpowiadającego SMILES.')
+            if not converted_smiles or converted_smiles in ['it dont work', 'Error']:
+                self.add_error('pole_nazwa', 'SMILES does not agree with the name')
             elif converted_smiles != pole_smiles:
-                self.add_error('pole_smiles', 'SMILES nie zgadza się z nazwą.')
+                self.add_error('pole_smiles', 'SMILES does not agree with the name')
             else:
-                print("Molekuła poprawnie dopasowana!")
+                print("Molecule fitted correctly!")
+        
 
 class Suma2(forms.Form):
 #    pole_nazwa = forms.CharField(label='Name', required = False,widget=forms.TextInput(attrs={'size':40, 'maxlength':400}))
