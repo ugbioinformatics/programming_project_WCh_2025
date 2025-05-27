@@ -1,5 +1,3 @@
-DO MARTYNA ZMIEŃ PLIK setup.bat - przeniesienie JMOL i JSME do opowiedzinch katalogów i sprawdź czy działa :*
-
 1) otwórz terminal - tworzymy i aktywujemy środowiska
 python -m venv env 
 env\Scripts\Activate 
@@ -13,12 +11,7 @@ cd programming_project_WCh_2025
 
 .\setup.bat
 
-pip install -r mopac_portal/requirements.txt 
-cd mopac_portal/
-mv ../../jmol-14.0.13 media
-
-# 3. przeniesienie folderu "jsme" do static - wyskoczył błąd, ale działa
-Move-Item -Path "JSME_2024-04-29\jsme" -Destination "programming_project_WCh_2025\mopac_portal\static"
+cd mopac_portal
 
 7) runserver
 python manage.py makemigrations blog
