@@ -5,6 +5,14 @@ REM Skrypt do automatycznej instalacji i pobrania narzędzi chemicznych
 ::curl -L -o mopac.bat https://raw.githubusercontent.com/użytkownik/repozytorium/gałąź/ścieżka/plik.bat
 :: cd../..
 
+REM Tworzenie wirtualnego środowiska (jeśli jeszcze nie istnieje)
+if not exist env (
+    python -m venv env
+)
+
+REM Aktywacja środowiska
+call env\Scripts\activate.bat
+
 :: 1. Instalacja biblioteki openbabel-wheel
 echo Instalowanie openbabel-wheel...
 pip install openbabel-wheel
