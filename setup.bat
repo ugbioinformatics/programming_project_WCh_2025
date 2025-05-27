@@ -27,9 +27,18 @@ tar -xf ..\Jmol-14.0.13-binary.tar -C ..
 echo Rozpakowywanie jsmol.zip w katalogu nadrzednym...
 powershell -Command "Expand-Archive -Path '..\\jmol-14.0.13/jsmol.zip' -DestinationPath '..\\jmol-14.0.13/jsmol'"
 
-echo Usuwanie archiwów w katalogu nadrzędnym...
+echo Usuwanie archiwów w katalogu nadrzednym...
 del ..\Jmol-14.0.13-binary.tar.gz
 del ..\Jmol-14.0.13-binary.tar
+
+echo Instalacja requirements...
+pip install -r mopac_portal/requirements.txt 
+cd mopac_portal/
+echo Przenoszenie jmol...
+move ../../jmol-14.0.13 media
+
+echo Przenoszenie jsme...
+move "..\..\JSME_2024-04-29\jsme" "..\programming_project_WCh_2025\mopac_portal\static"
 
 
 echo.
