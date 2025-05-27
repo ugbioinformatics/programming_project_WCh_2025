@@ -1,6 +1,14 @@
 @echo off
 REM Skrypt do automatycznej instalacji i pobrania narzędzi chemicznych
 
+REM Tworzenie wirtualnego środowiska (jeśli jeszcze nie istnieje)
+if not exist env (
+    python -m venv env
+)
+
+REM Aktywacja środowiska
+call env\Scripts\activate.bat
+
 :: 1. Instalacja biblioteki openbabel-wheel
 echo Instalowanie openbabel-wheel...
 pip install openbabel-wheel
@@ -33,6 +41,8 @@ del ..\Jmol-14.0.13-binary.tar
 
 echo Instalacja requirements...
 pip install -r mopac_portal/requirements.txt 
+
+echo Przenoszenie jmol
 cd mopac_portal/
 move ../../jmol-14.0.13 media
 
