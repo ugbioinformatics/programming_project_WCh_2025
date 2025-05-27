@@ -1,7 +1,9 @@
 @echo off
 REM Skrypt do automatycznej instalacji i pobrania narzędzi chemicznych
 
-curl -L -o plik.bat https://raw.githubusercontent.com/użytkownik/repozytorium/gałąź/ścieżka/plik.bat
+::cd mopac_portal/media
+::curl -L -o mopac.bat https://raw.githubusercontent.com/użytkownik/repozytorium/gałąź/ścieżka/plik.bat
+:: cd../..
 
 :: 1. Instalacja biblioteki openbabel-wheel
 echo Instalowanie openbabel-wheel...
