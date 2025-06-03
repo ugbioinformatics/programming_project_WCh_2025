@@ -31,7 +31,6 @@
 <p>
   <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
   <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
-  <script src="/static/js/main.js" defer></script>
 
   <p class="idk">Start.mol2</p> 
   <div class="scroll">
@@ -53,11 +52,11 @@
 
 
 {% if not post.calculated %}
-<p class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
+<p class="calculate"><a href="{% url 'post_calculate' post.pk %}" id="loading-button">+ Calculate Molecule</a></p>  
 
 {% endif %}
 {% if post.calculated %}
-<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></p>
+<p class ="calculate"><a href="{% url 'post_calculations' post.pk %}" onclick="loadingScreen()"># See Calculations </a></p>
 {% endif %}
 <p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
 {% endblock content %}

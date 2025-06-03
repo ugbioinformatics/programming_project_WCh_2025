@@ -13,6 +13,7 @@
   <div class="post-entry">
     <p><a href="{% url 'post_detail' post.pk %}">Name: {{ post.nazwa }}</a></p>
     <p class="smiles">Smiles: {{ post.smiles }}</p>
+    <input type="checkbox">
   </div>
   {% endfor %}
 
@@ -23,6 +24,7 @@
 {% else %}
   <p>You are not logged in</p>
 <p><a href="{% url 'delete_all_posts' %}">Delete All</a></p>
+<p><a href="">Delete Selected</a></p>
 {% endif %}
 
 

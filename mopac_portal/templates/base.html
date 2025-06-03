@@ -8,9 +8,26 @@ ource+Sans+Pro:400" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tetris.css' %}" rel="stylesheet">
     <script src="jquery-3.7.1.min.js"></script>
+    <script src="/static/js/main.js" defer></script>
   </head>
   <body>
+    <div id="loading">
+      <div class="pop-up">
+          <span>CALCULATING...</span>
+          <div class ="box">
+              <div class="tetromino-t1"></div>
+              <div class="tetromino-s"></div>
+              <div class="tetromino-t2"></div>
+              <div class="tetromino-z"></div>
+              <div class="tetromino-l"></div>
+              <div class="tetromino-i"></div>
+              <div class="tetromino-fill"></div>
+          </div>
+  
+      </div>
+  </div>
       <header> 
         <div class="nav-left">
           <div class = "main_site_link"><a href="{% url 'home' %}">Molecule Calculator</a></div>
