@@ -229,6 +229,15 @@ li {
   border-radius: 0.5em;
   border: 0.01rem solid var(--pink);
 }
+
+.button-big{
+  cursor: pointer;
+  width: 21rem;
+  height: 4.5rem;
+  text-align: center;
+  border-radius: 0.5em;
+  border: 0.01rem solid var(--pink);
+}
 /* Buttons */
 
 /* Backgrounds */
