@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
           value: d[ 0 ], text: d[ 1 ]
         }))
       })
+      select.classList.add("white-button")
+      select.classList.add("rose-small-font")
       return select
     }
     
@@ -107,12 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var spinButton = createElement("input", {
       type: "button",
       id: "toggleSpin",
-      value: "Spin Off",
+      value: "Spin: Off",
       onclick: function () {
         if (x){
         stage.setSpin(false)
         x=false
-        spinButton.value = "Spin Off"
+        spinButton.value = "Spin: Off"
         }
         else{
         stage.spinAnimation = stage.animationControls.spin([ 0, 1, 0 ], 0.05)
@@ -123,7 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(spinButton)
-    
+    spinButton.classList.add("white-button")
+    spinButton.classList.add("rose-small-font")
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -136,6 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(centerButton)
+    centerButton.classList.add("white-button")
+    centerButton.classList.add("rose-small-font")
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -143,21 +148,22 @@ document.addEventListener("DOMContentLoaded", function () {
     var Labels = createElement("input", {
       type: "button",
       id: "label",
-      value: "Label Off",
+      value: "Label: Off",
       onclick: function () {
         if (labradrzwi1){
           Labrador1.setVisibility(false)
-          Labels.value = "Lable Off"
+          Labels.value = "Label: Off"
           labradrzwi1 = false
         }else {
           Labrador1.setVisibility(true)
-          Labels.value = "Lable On"
+          Labels.value = "Label: On"
           labradrzwi1 = true
         }
       },
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(Labels)
-    
+    Labels.classList.add("white-button")
+    Labels.classList.add("rose-small-font")
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -204,6 +210,8 @@ document.addEventListener("DOMContentLoaded", function () {
           select.add(createElement("option", {
             value: d[ 0 ], text: d[ 1 ]
           }))
+          select.classList.add("white-button");
+          select.classList.add("rose-small-font")
         })
         return select
       }
@@ -274,12 +282,12 @@ document.addEventListener("DOMContentLoaded", function () {
       var spinButton = createElement("input", {
         type: "button",
         id: "toggleSpin",
-        value: "Spin Off",
+        value: "Spin: Off",
         onclick: function () {
           if (x){
           stage.setSpin(false)
           x=false
-          spinButton.value = "Spin Off"
+          spinButton.value = "Spin: Off"
           }
           else{
           stage.spinAnimation = stage.animationControls.spin([ 0, 1, 0 ], 0.05)
@@ -290,6 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(spinButton)
+      spinButton.classList.add("white-button")
+      spinButton.classList.add("rose-small-font")
       postid = document.getElementById("postid").textContent
       loadStructure("/media/"+postid+"/molecule.mol2")
       
@@ -303,27 +313,30 @@ document.addEventListener("DOMContentLoaded", function () {
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(centerButton)
       postid = document.getElementById("postid").textContent
+      centerButton.classList.add("white-button")
+      centerButton.classList.add("rose-small-font")
       loadStructure("/media/"+postid+"/molecule.mol2")
       
       labradrzwi = false
       var Labels = createElement("input", {
         type: "button",
         id: "label",
-        value: "Label Off",
+        value: "Label: Off",
         onclick: function () {
           if (labradrzwi){
             Labrador.setVisibility(false)
-            Labels.value = "Lable Off"
+            Labels.value = "Label: Off"
             labradrzwi = false
           }else {
             Labrador.setVisibility(true)
-            Labels.value = "Lable On"
+            Labels.value = "Label: On"
             labradrzwi = true
           }
         },
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(Labels)
-      
+      Labels.classList.add("white-button")
+      Labels.classList.add("rose-small-font")
       postid = document.getElementById("postid").textContent
       loadStructure("/media/"+postid+"/molecule.mol2")
       

@@ -3,27 +3,19 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<p class="delete Hi">Hi {{ user.username }}!</p>
+<div class="bold-font big-font pink-font dott-bottom-rose">
+  Hi {{ user.username }}!
+</div>
 {% else %}
-  <p class="delete pink_text Hi">You are not logged in
-</p>
+<div class="bold-font big-font pink-font dott-bottom-rose">
+  You are not logged in
+</div>
 {% endif %}
 
 {% for post in post_list %}
-  <div class="post-entry">
-    <p><a href="{% url 'post_detail' post.pk %}">Name: {{ post.nazwa }}</a></p>
-    <p class="smiles">Smiles: {{ post.smiles }}</p>
-  </div>
-  {% endfor %}
-
-
-
-{% if user.is_authenticated %}
-<p>Hi {{ user.username }}!</p>
-{% else %}
-  <p>You are not logged in</p>
-<p><a href="{% url 'delete_all_posts' %}">Delete All</a></p>
-{% endif %}
-
-
+<div class="dott-bottom-rose">
+  <a class="bold-font normal-font gold-font" href="{% url 'post_detail' post.pk %}">Name: {{ post.nazwa }}</a>
+  <p class=" normal-font pink-font">Smiles: {{ post.smiles }}</p>
+</div>
+{% endfor %}
 {% endblock content %}
