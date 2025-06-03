@@ -110,7 +110,7 @@
 
 {% endif %}
 {% if post.calculated %}
-<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></div>
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Vibrational Frequencies </a></div>
 {% endif %}
 <div class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></div>
 {% endblock content %}
