@@ -107,7 +107,7 @@
 
 
 {% if not post.calculated %}
-<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" id="loading-button">+ Calculate Molecule</a></div>  
+<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" onclick="loadingScreen() ">+ Calculate Molecule</a></div>  
 
 {% endif %}
 {% if post.calculated %}

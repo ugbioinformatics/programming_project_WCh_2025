@@ -342,6 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
       });
       
+      
       try{
         loading_button = document.getElementById("loading-button");
         loading_button.onclick = function() {loadingScreen()};
