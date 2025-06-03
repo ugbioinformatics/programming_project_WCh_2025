@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 <div class="post-entry">
@@ -104,7 +103,7 @@
   <div  id="buttons2">
   </div>
 
-
+</div>
 {% if not post.calculated %}
 <div class="calculate"><a href="{% url 'post_calculate' post.pk %}" onclick="loadingScreen() ">+ Calculate Molecule</a></div>  
 

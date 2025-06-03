@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>Delete post</dib>
+<div>Delete post</div>
 <form action="" method="post">{% csrf_token %}
   <div id="delete">Are you sure you want to delete "{{ post.title }}"?</div>
   <input type="submit" id="delete" value="Confirm">
