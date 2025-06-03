@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="signup_box">
-<h2>Sign up</h2>
+<h2 class="bold-font big-font gold-font">Sign up</h2>
 <form method="post">
   {% csrf_token %}
   {{ form }}
-  <button type="submit">Sign Up</button>
+  <button  class="button bgc-chalk pink-font bold-font small-font margin1-top" type="submit">Sign Up</button>
 </form>
 </div>
 {% endblock %}

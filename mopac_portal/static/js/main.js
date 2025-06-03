@@ -38,8 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
           value: d[ 0 ], text: d[ 1 ]
         }))
       })
-      select.classList.add("white-button")
-      select.classList.add("rose-small-font")
+      select.classList.add("small-font")
+      select.classList.add("pink-font")
+      select.classList.add("button")
+      select.classList.add("bgc-chalk")
       return select
     }
     
@@ -125,8 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(spinButton)
-    spinButton.classList.add("white-button")
-    spinButton.classList.add("rose-small-font")
+    spinButton.classList.add("small-font")
+    spinButton.classList.add("pink-font")
+    spinButton.classList.add("button")
+    spinButton.classList.add("bgc-chalk")
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -139,8 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(centerButton)
-    centerButton.classList.add("white-button")
-    centerButton.classList.add("rose-small-font")
+    centerButton.classList.add("small-font")
+    centerButton.classList.add("pink-font")
+    centerButton.classList.add("bgc-chalk")
+    centerButton.classList.add("button")
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -162,8 +168,10 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     }, { top: "108px", left: "12px" })
     document.getElementById('buttons1').appendChild(Labels)
-    Labels.classList.add("white-button")
-    Labels.classList.add("rose-small-font")
+    Labels.classList.add("small-font")
+    Labels.classList.add("pink-font")
+    Labels.classList.add("bgc-chalk")
+    Labels.classList.add("button")
     postid = document.getElementById("postid").textContent
     loadStructure("/media/"+postid+"/start.mol2")
     
@@ -210,8 +218,10 @@ document.addEventListener("DOMContentLoaded", function () {
           select.add(createElement("option", {
             value: d[ 0 ], text: d[ 1 ]
           }))
-          select.classList.add("white-button");
-          select.classList.add("rose-small-font")
+          select.classList.add("small-font")
+          select.classList.add("pink-font")
+          select.classList.add("button")
+          select.classList.add("bgc-chalk")
         })
         return select
       }
@@ -298,8 +308,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(spinButton)
-      spinButton.classList.add("white-button")
-      spinButton.classList.add("rose-small-font")
+      spinButton.classList.add("small-font")
+      spinButton.classList.add("pink-font")
+      spinButton.classList.add("button")
+      spinButton.classList.add("bgc-chalk")
       postid = document.getElementById("postid").textContent
       loadStructure("/media/"+postid+"/molecule.mol2")
       
@@ -313,8 +325,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(centerButton)
       postid = document.getElementById("postid").textContent
-      centerButton.classList.add("white-button")
-      centerButton.classList.add("rose-small-font")
+      centerButton.classList.add("small-font")
+      centerButton.classList.add("pink-font")
+      centerButton.classList.add("bgc-chalk")
+      centerButton.classList.add("button")
       loadStructure("/media/"+postid+"/molecule.mol2")
       
       labradrzwi = false
@@ -335,8 +349,10 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       }, { top: "108px", left: "12px" })
       document.getElementById('buttons2').appendChild(Labels)
-      Labels.classList.add("white-button")
-      Labels.classList.add("rose-small-font")
+      Labels.classList.add("small-font")
+      Labels.classList.add("pink-font")
+      Labels.classList.add("bgc-chalk")
+      Labels.classList.add("button")
       postid = document.getElementById("postid").textContent
       loadStructure("/media/"+postid+"/molecule.mol2")
       
