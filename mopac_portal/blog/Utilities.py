@@ -188,7 +188,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
 			ionization = float(line.split()[-2])
 		if line.startswith('          MOLECULAR WEIGHT        ='):
 			weight = float(line.split()[-4])
-		if line.startswith('		GRADIENT	      ='):
+		if line.startswith('          GRADIENT NORM           ='):
 			grad = float(line.split()[-5])
 		if line.startswith(' CYCLE:'):
 			a = line.split(":")
