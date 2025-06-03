@@ -311,3 +311,20 @@ class BlogDeleteAllView(View):
 class BlogCalculateView(DetailView):
     model = Post
     template_name = "post_calculation.html"
+
+
+class BlogDeleteSelectedView(View):
+    def post(self, request, *args, **kwargs):
+        ids = request.POST.getlist("selected_ids")
+        Post.objects.filter(id__in=ids).delete()
+        return redirect("home")
+
+
+
+
+
+
+
+
+
+
