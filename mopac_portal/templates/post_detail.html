@@ -106,7 +106,7 @@
 
 
 {% if not post.calculated %}
-<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" onclick="loadingScreen() ">+ Calculate Molecule</a></div>  
+<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" onclick="loadingScreen() ">+ Calculate Vibrational Frequencies</a></div>  
 
 {% endif %}
 {% if post.calculated %}
