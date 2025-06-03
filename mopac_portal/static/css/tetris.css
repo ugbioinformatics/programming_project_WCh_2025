@@ -6,11 +6,6 @@
     --l: rgb(104, 235, 104);
     --i: skyblue;
     --fill: rgb(255, 255, 205);
-    --gold: #f6bd60;
-    --white: #f7ede2;
-    --rose: #f5cac3;
-    --moss: #84a59d;
-    --pink: #f28482;
 }
 #loading{
     z-index: 99;
