@@ -31,7 +31,7 @@
   </div> 
   <div>
     <span class="bold-font normal-font gold-font">Gradient: 
-      <span> {{ post.grad }} eV/A </span>
+      <span> {{ post.grad }} kcal·(Å·mol)<sup>−1</sup>
     </span>
   </div>
   {% else %}
@@ -78,16 +78,15 @@
 
 
 {% if post.calculated %}
-<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Calculations </a></div>
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Vibrational Frequencies </a></div>
 {% endif %}
 
 <img class='dupa' src="/media/{{post.id}}/molecule.svg">
 <div>
   <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
   <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
-  <script src="/static/js/main.js" defer></script>
 
-  <div class="bold-font normal-font pink-font">Start.mol2</div> 
+  <div class="bold-font normal-font pink-font">Starting Structure</div> 
   <div class="scroll">
     <div id="clickedId"></div>
     <div id="viewport1" class="viewport">
@@ -98,7 +97,7 @@
 
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
-  <div class="bold-font normal-font pink-font">Molecule.mol2</div>
+  <div class="bold-font normal-font pink-font">Optimized Structure</div>
   <div class="scroll">
   <div id="viewport2"></div>
   </div>
@@ -107,11 +106,11 @@
 
 </div>
 {% if not post.calculated %}
-<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" class="bold-font normal-font pink-font">+ Calculate Molecule</a></div>  
+<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" class="bold-font normal-font pink-font">+ Calculate Vibrational Frequencies</a></div>  
 
 {% endif %}
 {% if post.calculated %}
-<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Calculations </a></div>
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Vibrational Frequencies </a></div>
 {% endif %}
 <div class="delete"><a href="{% url 'post_delete' post.pk %}" class="bold-font normal-font gold-font">+ Delete Molecule</a></div>
 {% endblock content %}

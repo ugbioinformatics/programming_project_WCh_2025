@@ -358,3 +358,14 @@ document.addEventListener("DOMContentLoaded", function () {
       
       });
       
+      
+      try{
+        loading_button = document.getElementById("loading-button");
+        loading_button.onclick = function() {loadingScreen()};
+      }
+      finally{
+        console.log("nothing to load")
+      };
+      function loadingScreen() {
+        document.getElementById("loading").style.display = "block";
+      };

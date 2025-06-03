@@ -10,6 +10,7 @@ from .views import (
     CIRconvert_Views_Reaction,
     Calculate,
     BlogCalculateView,
+    BlogDeleteSelectedView
 )
 #umozliwia polaczenie pomiedzy funkcjami na stronie a funkcjami serwera, aby mozna je bylo wyswietlic
 
@@ -26,7 +27,7 @@ urlpatterns = [
     path("post/<int:pk>/show/", BlogDeleteView.as_view(), name="post_show"),  	#views.py 349  #zmenic nazwe "post_show"? na "post_delete_mol"
     path("post/delete-all/", BlogDeleteAllView.as_view(), name="delete_all_posts"),
     path("post/suma2/", CIRconvert_Views_Reaction, name="post_suma2"),     	#views.py 183
-
+    path("post/delete-selected/", BlogDeleteSelectedView.as_view(), name="delete_selected"),
 
     
 

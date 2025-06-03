@@ -12,10 +12,18 @@
 </div>
 {% endif %}
 
-{% for post in post_list %}
-<div class="dott-bottom-rose">
-  <a class="bold-font normal-font gold-font" href="{% url 'post_detail' post.pk %}">Name: {{ post.nazwa }}</a>
-  <p class=" normal-font pink-font">Smiles: {{ post.smiles }}</p>
-</div>
-{% endfor %}
+<form method="post" action="{% url 'delete_selected' %}">
+  {% csrf_token %}
+  {% for post in post_list %}
+  <div class="dott-bottom-rose">
+    <input type="checkbox" name="selected_ids" value="{{ post.id }}">
+    <a class="bold-font normal-font gold-font" href="{% url 'post_detail' post.pk %}">
+      Name: {{ post.nazwa }}
+    </a>
+    <p class="normal-font pink-font">Smiles: {{ post.smiles }}</p>
+  </div>
+  {% endfor %}
+  <button type="submit" class="pink-font bold-font">Usuń zaznaczone</button>
+</form>
 {% endblock content %}
+
