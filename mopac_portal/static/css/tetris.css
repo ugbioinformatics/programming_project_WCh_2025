@@ -8,6 +8,7 @@
     --fill: rgb(255, 255, 205);
 }
 #loading{
+    box-sizing: border-box;
     z-index: 99;
     display: none;
     position: fixed;
@@ -20,6 +21,7 @@
 
 }
 .pop-up{
+    box-sizing: border-box;
     position: absolute; 
     display: grid;
     align-items: center;
@@ -37,6 +39,8 @@
     border-radius: 1rem;
 }
 .box{
+    box-sizing: border-box;
+    margin:0;
     display: block;
     height: calc(var(--tile)*7 + 10px);
     width: calc(var(--tile)*6 + 10px);
