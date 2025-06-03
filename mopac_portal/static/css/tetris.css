@@ -1,0 +1,223 @@
+:root {
+    --tile: 25px;
+    --t: rgb(165, 78, 182);
+    --s: rgb(190, 62, 62);
+    --z: rgb(224, 163, 48);
+    --l: rgb(104, 235, 104);
+    --i: skyblue;
+    --fill: rgb(255, 255, 205);
+    --gold: #f6bd60;
+    --white: #f7ede2;
+    --rose: #f5cac3;
+    --moss: #84a59d;
+    --pink: #f28482;
+}
+#loading{
+    z-index: 99;
+    display: none;
+    position: fixed;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(100, 100, 100, 0.3);
+
+}
+.pop-up{
+    position: absolute; 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    padding: 0.5rem 2rem 1rem 2rem;
+    border: .75rem solid var(--gold);
+    text-align: center;
+    border-radius: 1rem;
+}
+.box{
+    display: block;
+    height: calc(var(--tile)*7 + 10px);
+    width: calc(var(--tile)*6 + 10px);
+    border: 5px solid black;
+    overflow: hidden;
+    position: relative;
+}
+.box div{
+    top: calc(var(--tile)*-5);
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+.tetromino-t1{
+    height: calc(var(--tile)*4);
+    width: calc(var(--tile)*4);
+    clip-path: polygon(0 100%, 0 75%, 25% 75%, 25% 50%, 50% 50%, 50% 75%, 75% 75%, 75% 100%);
+    background-color: var(--t);
+    animation: t1 10s steps(1, end) infinite;
+}
+
+.tetromino-s{
+    height: calc(var(--tile)*4);
+    width: calc(var(--tile)*4);
+    clip-path: polygon(0 100%, 0 75%, 25% 75%, 25% 50%, 75% 50%, 75% 75%, 50% 75%, 50% 100%);
+    background-color: var(--s);
+    animation: s 10s steps(1, end) infinite;
+}
+
+.tetromino-t2{
+    height: calc(var(--tile)*4);
+    width: calc(var(--tile)*4);
+    clip-path: polygon(0 100%, 0 25%, 25% 25%, 25% 50%, 50% 50%, 50% 75%, 25% 75%, 25% 100%);
+    background-color: var(--t);
+    animation: t2 10s steps(1, end) infinite;
+}
+.tetromino-z{
+    height: calc(var(--tile)*4);
+    width: calc(var(--tile)*4);
+    clip-path: polygon(0 75%, 0 50%, 50% 50%, 50% 75%, 75% 75%, 75% 100%, 25% 100%, 25% 75%);
+    background-color: var(--z);
+    animation: z 10s steps(1, end) infinite;
+}
+.tetromino-l{
+    height: calc(var(--tile)*4);
+    width: calc(var(--tile)*4);
+    clip-path: polygon(0 50%, 0 25%, 50% 25%, 50% 100%, 25% 100%, 25% 50%, 0 50%);
+    background-color: var(--l);
+    animation: l 10s steps(1, end) infinite;
+}
+.tetromino-i{
+    height: calc(var(--tile)*4);
+    width: calc(var(--tile)*4);
+    clip-path: polygon(0 100%, 0 0, 25% 0, 25% 100%);
+    background-color: var(--i);
+    animation: i 10s steps(1, end) infinite;
+}
+.tetromino-fill{
+    width: calc(var(--tile)*6);
+    height: calc(var(--tile)*4);
+    background-color: var(--fill);
+    animation: fill 10s steps(1, end) infinite;
+}
+
+@keyframes t1 {
+    6.6%{
+        top: calc(var(--tile)*-3);
+        left: calc(var(--tile)*3);
+        }
+    13.2%{
+        top: calc(var(--tile))
+    }
+    19.8%{
+        top: calc(var(--tile)*3)
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+    
+}
+
+@keyframes s {
+    19.8%{
+        top: calc(var(--tile)*-3);
+        left: calc(var(--tile));
+        }
+    26.4%{
+        top: calc(var(--tile))
+    }
+    33%{
+        top: calc(var(--tile)*3)
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+}
+
+@keyframes t2 {
+    33%{
+        top: calc(var(--tile)*-3);
+        left: calc(var(--tile));}
+    39.6%{
+        top: calc(var(--tile))
+    }
+    46.2%{
+        top: calc(var(--tile)*2)
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+}
+
+@keyframes z {
+    46.2%{
+        top: calc(var(--tile)*-3);
+        left: calc(var(--tile)*2);
+    }
+    52.8%{
+        top: calc(var(--tile)*-1);
+    }
+    59.4%{
+        top: calc(var(--tile));
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+    
+}
+
+@keyframes l {
+    59.4%{
+        top: calc(var(--tile)*-3);
+        left: calc(var(--tile)*4);
+    }
+    66%{
+        top: calc(var(--tile)*-1);
+    }
+    72.6%{
+        top: calc(var(--tile)*2);
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+    
+}
+
+@keyframes i {
+    72.6%{
+        top: calc(var(--tile)*-3);
+        left: 0;
+    }
+    79.2%{
+        top: calc(var(--tile)*-1);
+    }
+    85.8%{
+        top: calc(var(--tile)*3);
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+    
+}
+
+@keyframes fill {
+    92.4%{
+        top: calc(var(--tile)*3);
+        left: 0;
+    }
+    95%{
+        top: calc(var(--tile)*-5);
+    }
+    99%{
+        top: calc(var(--tile)*3)
+    }
+    100%{
+        top: calc(var(--tile)*-5);
+    }
+}
+
