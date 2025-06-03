@@ -3,13 +3,15 @@
 
 {% block content %}
 <div class="login_box">
-<h2>Log In</h2>
+<h2 class="bold-font big-font gold-font">Log In</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
 <div class="forgot">
- <button type="submit">Log In</button>
- <a href="{% url 'password_reset' %}">
+ <button  class="button bgc-chalk pink-font bold-font small-font margin1-top " type="submit">Log In</button>
+ <br>
+ <br style="font-size: 0.5rem">
+ <a class="bold-font small-font pink-font" href="{% url 'password_reset' %}">
   Forgot your password?
  </a>
 </div>

@@ -2,8 +2,8 @@
   --blue: #A2ACA6;
   --moss: #55695e;
   --gold: #f7b750;
-  --chalk: #EEEEEE;
-  --white: #f8f6f6;
+  --chalk: #ffffff;
+  --white: #f8f8f8;
   --rose: #eeb7bf;
   --pink: #d86d7d;
   }
@@ -101,6 +101,79 @@ header{
   justify-items: center;
   align-items: top;
 }
+
+#smiles-buttons .button-small{
+  margin: 0.5rem 0 1rem 3.5rem
+}
+
+.container{
+  display: grid;
+  grid-template-columns: .32fr 1fr;
+}
+
+label{
+  color: var(--pink);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+td select{
+  background-color: var(--chalk);
+  border-radius: 0.5em;
+  border: 0.01rem solid var(--pink);
+  width: 4rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: var(--pink);
+}
+
+td select option{
+  color: var(--pink);
+}
+
+#id_pole_smiles, #id_password1, #id_password2, #id_password, #id_username, #id_pole_nazwa{
+  border-radius: 0.5em;
+  border: 0.01rem solid var(--pink);
+  height: 1.5rem;
+  padding-left: 0.5rem;
+  color: var(--pink);
+}
+
+pre{
+  color: var(--pink);
+  font-weight: 900;
+  font-size: 1rem;
+}
+pre a{
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 1.25rem;
+}
+pre a:hover{
+  background-color: var(--pink);
+}
+
+li {
+  color: var(--pink);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.helptext{
+  color: var(--pink);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+#viewport1, #viewport2{
+  width: 100%;
+  height: 100%;
+}
+#buttons1, #buttons2{
+  display: flex;
+  width: 44rem;
+  column-gap: 10%;
+  padding: .5rem 0 2rem 0
+} 
 /* Static */
 
 /* Fonts */
@@ -133,6 +206,9 @@ header{
 .white-font{
     color: var(--white);
 }
+.italiano-font{
+  font-style: italic;
+}
 /* Fonts */
 
 /* Buttons */
@@ -140,6 +216,15 @@ header{
   cursor: pointer;
   width: 9rem;
   height: 3rem;
+  text-align: center;
+  border-radius: 0.5em;
+  border: 0.01rem solid var(--pink);
+}
+
+.button-small{
+  cursor: pointer;
+  width: 7rem;
+  height: 2.5rem;
   text-align: center;
   border-radius: 0.5em;
   border: 0.01rem solid var(--pink);
@@ -155,6 +240,9 @@ header{
 }
 .bgc-chalk{
   background-color: var(--chalk);
+}
+.bgc-pink{
+  background-color: var(--pink);
 }
 /* Backgrounds */
 
@@ -188,6 +276,9 @@ header{
 .border-gold{
   border: .75rem solid var(--gold);
 }
+.border-none{
+  border: 0;
+}
 /* Borders */
 
 /* Offset */
@@ -197,13 +288,31 @@ header{
 .margin1-top{
   margin-top: 1rem;
 }
+.margin2-top{
+  margin-top: 2rem;
+}
+.margin3-top{
+  margin-top: 3rem;
+}
 .margin1-bottom{
   margin-bottom: 1rem;
 }
+
+.margin4-left{
+  margin-left: 14rem;
+  margin-top: 1rem;
+}
+
 .padding2{
   padding: 2rem;
 }
 /* Offset */
+
+/* Center */
+.center{
+  align-items: center;
+}
+/* Center */
 
 /* Separators */
 .dott-bottom-pink{
@@ -235,20 +344,12 @@ canvas{
   scrollbar-width: none;
 }
 
-/* OLD */
+/* OLD
   #toggleSpin, #toggleBackground, #toggleSideChains, #toggleLabels{
     width: 9rem;
     height: 3rem;
   } 
-  input#delete{
-    width: 9rem;
-    height: 3rem;
-    background-color: white;
-    border: 0.01rem solid var(--pink);
-    color: var(--pink);
-    font-size: 1rem;
-    cursor: pointer;
-  }
+
   p#delete{
     font-size: 3rem;
   }
@@ -263,13 +364,5 @@ canvas{
   #Name *{
     text-transform: upper;
   }
-  #viewport1, #viewport2{
-    width: 100%;
-    height: 100%;
-  }
-  #buttons1, #buttons2{
-    display: flex;
-    width: 44rem;
-    column-gap: 10%;
-    padding: .5rem 0 2rem 0
-  }
+
+*/

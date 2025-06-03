@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>Delete post</dib>
+<div class="normal-font pink-font bold-font">Delete post</div>
 <form action="" method="post">{% csrf_token %}
-  <div id="delete">Are you sure you want to delete "{{ post.title }}"?</div>
-  <input type="submit" id="delete" value="Confirm">
+  <div id="delete" class="normal-font pink-font">Are you sure you want to delete "{{ post.title }}"?</div>
+  <input type="submit" id="delete" value="Confirm?" class="button bgc-chalk pink-font bold-font small-font margin1-top" />
 </form>
 {% endblock content %}

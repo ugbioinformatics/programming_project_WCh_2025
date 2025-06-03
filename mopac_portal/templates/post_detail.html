@@ -78,7 +78,7 @@
 
 
 {% if post.calculated %}
-<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></div>
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Calculations </a></div>
 {% endif %}
 
 <img class='dupa' src="/media/{{post.id}}/molecule.svg">
@@ -87,7 +87,7 @@
   <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
   <script src="/static/js/main.js" defer></script>
 
-  <div class="idk">Start.mol2</div> 
+  <div class="bold-font normal-font pink-font">Start.mol2</div> 
   <div class="scroll">
     <div id="clickedId"></div>
     <div id="viewport1" class="viewport">
@@ -98,21 +98,21 @@
 
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
-  <div class="idk">Molecule.mol2</div>
+  <div class="bold-font normal-font pink-font">Molecule.mol2</div>
   <div class="scroll">
   <div id="viewport2"></div>
   </div>
   <div  id="buttons2">
   </div>
 
-
+</div>
 {% if not post.calculated %}
-<div class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></div>  
+<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" class="bold-font normal-font pink-font">+ Calculate Molecule</a></div>  
 
 {% endif %}
 {% if post.calculated %}
-<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}"># See Calculations </a></div>
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Calculations </a></div>
 {% endif %}
-<div class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></div>
+<div class="delete"><a href="{% url 'post_delete' post.pk %}" class="bold-font normal-font gold-font">+ Delete Molecule</a></div>
 {% endblock content %}
 
