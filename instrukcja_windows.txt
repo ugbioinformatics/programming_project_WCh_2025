@@ -9,8 +9,8 @@
   cd programming_project_WCh_2025
   ls
   -jeśli w pokazanych plikach nie ma setup.bat to:
-    git checkout origin/Join3 -- setup.bat
-    git checkout origin/Join3 -- mopac_portal/media/mopac.bat
+    git checkout origin/main -- setup.bat
+    git checkout origin/main -- mopac_portal/media/mopac.bat
   .\setup.bat
   cd mopac_portal
 
