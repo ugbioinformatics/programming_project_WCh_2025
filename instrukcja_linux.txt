@@ -1,13 +1,16 @@
+#instalacja virtualnego srodowiska python3 z systemowym openbabel
 python3 -m venv env
 source env/bin/activate.csh
 ln -s /usr/lib/python3/dist-packages/openbabel $VIRTUAL_ENV/lib/python*/site-packages
 
+#nasza aplikacja django pobierana z github
 git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
 cd programming_project_WCh_2025/
-#sprawdzic czy dziala bez
-chmod +x setup.sh
+
+#wykonywalny
 ./setup.sh
 
+#startujemy aplikacje
 cd mopac_portal
 python3 manage.py makemigrations blog
 python3 manage.py migrate
