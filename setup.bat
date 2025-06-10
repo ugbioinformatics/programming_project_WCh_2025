@@ -21,10 +21,10 @@ powershell -Command "Expand-Archive -Path '..\mopac-23.1.2-win.zip' -Destination
 del "..\mopac-23.1.2-win.zip"
 
 :: 3. Pobranie i rozpakowanie JSME
-echo Pobieranie JSME...
-powershell -Command "Invoke-WebRequest -Uri 'https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip' -OutFile '..\JSME_2024-04-29.zip'"
-powershell -Command "Expand-Archive -Path '..\JSME_2024-04-29.zip' -DestinationPath '..\JSME_2024-04-29'"
-del "..\JSME_2024-04-29.zip"
+::echo Pobieranie JSME...
+::powershell -Command "Invoke-WebRequest -Uri 'https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip' -OutFile '..\JSME_2024-04-29.zip'"
+::powershell -Command "Expand-Archive -Path '..\JSME_2024-04-29.zip' -DestinationPath '..\JSME_2024-04-29'"
+::del "..\JSME_2024-04-29.zip"
 
 :: 4 JMOL
 echo Rozpakowywanie gzip do tar w katalogu nadrzednym...
@@ -47,8 +47,8 @@ echo Przenoszenie jmol
 cd mopac_portal/
 move ../../jmol-14.0.13 media
 
-echo Przenoszenie jsme...
-move "..\..\JSME_2024-04-29\jsme" "..\programming_project_WCh_2025\mopac_portal\static"
+::echo Przenoszenie jsme...
+::move "..\..\JSME_2024-04-29\jsme" "..\programming_project_WCh_2025\mopac_portal\static"
 
 
 echo.
