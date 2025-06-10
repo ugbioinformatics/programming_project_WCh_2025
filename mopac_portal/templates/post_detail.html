@@ -104,8 +104,8 @@
   </div>
 
 </div>
-{% if not post.calculated %}
-<div class="calculate"><a href="{% url 'post_calculate' post.pk %}" class="bold-font normal-font pink-font">+ Calculate Vibrational Frequencies</a></div>  
+{% if not post.calculated  %}
+<div class="calculate"><a id="loading-button" href="{% url 'post_calculate' post.pk %}" class="bold-font normal-font pink-font">+ Calculate Vibrational Frequencies</a></div>  
 
 {% endif %}
 {% if post.calculated %}
