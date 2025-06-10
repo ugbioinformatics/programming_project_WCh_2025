@@ -15,6 +15,7 @@ wget -nc https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip
 unzip -o JSME_2024-04-29.zip
 
 echo "== Rozpakowywanie Jmol =="
+wget https://sourceforge.net/projects/jmol/files/Jmol/Version%2014.0/Version%2014.0.13/Jmol-14.0.13-binary.tar.gz
 tar zxvf Jmol-14.0.13-binary.tar.gz jmol-14.0.13/jsmol.zip
 unzip -o jmol-14.0.13/jsmol.zip
 
