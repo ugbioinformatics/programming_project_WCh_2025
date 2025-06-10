@@ -6,6 +6,11 @@ if not exist env (
     python -m venv env
 )
 
+if not exist mopac_portal\media\mopac.bat (
+    cd mopac_portal\media
+    curl -L -o https://raw.githubusercontent.com/ugbioinformatics/programming_project_WCh_2025/refs/heads/Join3/mopac.bat
+)
+
 REM Aktywacja środowiska
 call env\Scripts\activate.bat
 
