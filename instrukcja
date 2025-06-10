@@ -10,6 +10,9 @@
   ls
   -jeśli w pokazanych plikach nie ma setup.bat to:
     git checkout origin/Join3 -- setup.bat
+    cd mopac_portal/media
+    git checkout origin/Join3 -- mopac.bat
+    cd ../..
   .\setup.bat
   cd mopac_portal
 
