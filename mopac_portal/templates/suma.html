@@ -15,19 +15,24 @@
             document.getElementById("id_pole_smiles").value = data;
         }
 </script>
-
-<div id="jsme_container"></div>
-<button type="button" onclick='getSmiles();'>Get smiles</button>
-<button TYPE="button" onClick="jsmeApplet.reset()">Clear Editor</button>
-
-<form method="POST" enctype="multipart/form-data",style = "color:#FFFFFF;">
-    <fieldset class="inlineLabels">
-        {% csrf_token %}
-        <b">New Molecule</b> 
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit" class="save btn btn-default">Save & submit</button>
-</form>
+<div class="container">
+    <div id="smiles-buttons" class="center">
+        <div id="jsme_container"></div>
+        <button class="button-small small-font pink-font bgc-chalk" type="button" onclick='getSmiles();'>Get smiles</button>
+        <button class="button-small small-font pink-font bgc-chalk" type="button" onClick="jsmeApplet.reset()">Clear Editor</button>
+    </div>
+    <div id="new-molecule" class="margin1-top">
+        <form method="POST" enctype="multipart/form-data",style = "color:#FFFFFF;">
+            <fieldset class="inlineLabels border-none">
+                {% csrf_token %}
+                <b" class ="bold-font normal-font pink-font ">New Molecule</b> 
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <button type="submit" class="button bgc-chalk pink-font small-font margin4-left save btn btn-default">Save & submit</button>
+        </form>
+        <div class="normal-font margin2-top italiano-font">Remember to press 'Get smiles' if you want to get smiles from drawing</div>
+    </div>
+</div>
 
 {% endblock content %}

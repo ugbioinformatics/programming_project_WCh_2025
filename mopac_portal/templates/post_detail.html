@@ -1,62 +1,116 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 <div class="post-entry">
-  <h2>{{ post.nazwa }}</h2>
-  <p>{{ post.smiles }}</p>
+  <div id="Name">
+    <span class="bold-font big-font pink-font">Name: 
+      <span>{{ post.nazwa }}</span>
+    </span>
+  </div>
+  <div>
+    <span class="bold-font normal-font gold-font">Smiles: 
+      <span>{{ post.smiles }}</span>
+    </span>
+  </div>
   {% if not post.smiles1 != "" %}
-  <p><span>Heat of Formation:</span> {{ post.cieplo }} KJ/MOL </p>  
-  <p><span>Ionization:</span> {{ post.ionization }} EV </p>  
-  <p><span>Method Used:</span> {{ post.metoda }} </p>  
-  <p><span>Gradient:</span> {{ post.grad }} eV/A </p>
+  <div>
+    <span class="bold-font normal-font gold-font">Heat of Formation: 
+      <span> {{ post.cieplo }} KJ/MOL </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Ionization: 
+      <span> {{ post.ionization }} EV </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Method Used: 
+      <span> {{ post.metoda }} </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Gradient: 
+      <span> {{ post.grad }} kcal·(Å·mol)<sup>−1</sup>
+    </span>
+  </div>
   {% else %}
-  <p><span>Heat of Formation1:</span> {{ post.cieplo1 }} KJ/MOL </p>  
-  <p><span>Ionization1:</span> {{ post.ionization1 }} EV </p>  
-  <p><span>Heat of Formation2:</span> {{ post.cieplo2 }} KJ/MOL </p>  
-  <p><span>Ionization2:</span> {{ post.ionization2 }} EV </p>  
-  <p><span>Method Used:</span> {{ post.metoda }} </p>   
-  <p><span>Gradient1:</span> {{ post.grad1 }} ev/A </p>
-  <p><span>Gradient2:</span> {{ post.grad2 }} ev/A </p>
-  <p><a href="/media/{{post.id}}/ts.html"> REACTION </a></p>
+  <div>
+    <span class="bold-font normal-font gold-font">Heat of Formation1: 
+      <span> {{ post.cieplo1 }} KJ/MOL </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Ionization1: 
+      <span> {{ post.ionization1 }} EV </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Heat of Formation2: 
+      <span> {{ post.cieplo2 }} KJ/MOL </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Ionization2: 
+      <span> {{ post.ionization2 }} EV </span>
+    </span>
+  </div> 
+  <div>
+    <span class="bold-font normal-font gold-font">Method Used: 
+      <span> {{ post.metoda }} </span>
+    </span>
+  </div>  
+  <div>
+    <span class="bold-font normal-font gold-font">Gradient1: 
+      <span> {{ post.grad1 }} ev/A </span>
+    </span>
+  </div>
+  <div>
+    <span class="bold-font normal-font gold-font">Gradient2:
+       <span> {{ post.grad2 }} ev/A </span>
+      </span>
+    </div>
+  <div>
+    <a href="/media/{{post.id}}/ts.html" class="bold-font normal-font gold-font"> REACTION </a>
+  </div>
   {% endif %}
 </div>
 
 
 {% if post.calculated %}
-<pre>{{ post.calculations |safe }}</pre>       
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Vibrational Frequencies </a></div>
 {% endif %}
 
+<img class='dupa' src="/media/{{post.id}}/molecule.svg">
+<div>
+  <script src="https://unpkg.com/ngl@2.1.0-0/dist/ngl.js"></script>
+  <span id = "postid" style="visibility: hidden;">{{post.id}}</span>
 
+  <div class="bold-font normal-font pink-font">Starting Structure</div> 
+  <div class="scroll">
+    <div id="clickedId"></div>
+    <div id="viewport1" class="viewport">
+    </div>
+  </div>
+  <div  id="buttons1">
+  </div>
 
-
-
-<img src="/media/{{post.id}}/molecule.svg">
-<p>
-  <script src="https://unpkg.com/ngl@1.0.0-beta.7"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport_start");
-      stage.loadFile("/media/{{post.id}}/start.mol2", {defaultRepresentation: true});
-    });
-  </script> 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var stage = new NGL.Stage("viewport");
-      stage.loadFile("/media/{{post.id}}/molecule.mol2", {defaultRepresentation: true});
-    });
-  
-  </script>
-  <p  >Start.mol2</p> 
-  <div id="viewport_start" style="width:400px; height:300px;"></div>
 <img src="/media/{{post.id}}/nalesnik.png">
 <img src="/media/{{post.id}}/placek.png">
-  <p  >Molecule.mol2</p>
-  <div id="viewport" style="width:400px; height:300px;"></div>
+  <div class="bold-font normal-font pink-font">Optimized Structure</div>
+  <div class="scroll">
+  <div id="viewport2"></div>
+  </div>
+  <div  id="buttons2">
+  </div>
 
+</div>
+{% if not post.calculated  %}
+<div class="calculate"><a id="loading-button" href="{% url 'post_calculate' post.pk %}" class="bold-font normal-font pink-font">+ Calculate Vibrational Frequencies</a></div>  
 
-{% if not post.calculated %}
-<p class="calculate"><a href="{% url 'post_calculate' post.pk %}">+ Calculate Molecule</a></p>  
 {% endif %}
-<p class="delete"><a href="{% url 'post_delete' post.pk %}">+ Delete Molecule</a></p>
+{% if post.calculated %}
+<div class ="calculate"><a href="{% url 'post_calculations' post.pk %}" class="bold-font normal-font pink-font"># See Vibrational Frequencies </a></div>
+{% endif %}
+<div class="delete"><a href="{% url 'post_delete' post.pk %}" class="bold-font normal-font gold-font">+ Delete Molecule</a></div>
 {% endblock content %}
+

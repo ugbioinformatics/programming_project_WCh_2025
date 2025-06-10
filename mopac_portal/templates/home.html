@@ -2,18 +2,33 @@
 
 {% block content %}
 
-{% for post in post_list %}
-  <div class="post-entry">
-    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.nazwa }}</a></h2>
-    <p>{{ post.smiles }}</p>
-  </div>
-  {% endfor %}
-
 {% if user.is_authenticated %}
-<p>Hi {{ user.username }}!</p>
-<!--<p><a href="{% url 'password_change' %}">Password Change</a></p>-->
+<div class="bold-font big-font pink-font dott-bottom-rose">
+  Hi {{ user.username }}!
+</div>
 {% else %}
-  <p>You are not logged in</p>
-<p><a href="{% url 'password_reset' %}">Password Reset</a></p>
+<div class="bold-font big-font pink-font dott-bottom-rose">
+  You are not logged in
+</div>
 {% endif %}
+
+<form method="post" action="{% url 'delete_selected' %}">
+  {% csrf_token %}
+  {% for post in post_list %}
+<div class="make-cool dott-bottom-rose">
+  <div class="center-box">
+    <input class="checkbox" type="checkbox" name="selected_ids" value="{{ post.id }}">
+  </div>
+  <div>
+    <a class="bold-font normal-font gold-font" href="{% url 'post_detail' post.pk %}">
+      Name: {{ post.nazwa }}
+    </a>
+    <p class="normal-font pink-font">Smiles: {{ post.smiles }}</p>
+  </div>
+
+</div>
+  {% endfor %}
+  <button id="loading-button" type="submit" class="white-font bold-font button-big bgc-pink normal-font">Delete selected</button>
+</form>
 {% endblock content %}
+

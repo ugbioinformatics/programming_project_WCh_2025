@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="post" action="{% url 'delete_selected' %}">
+    {% csrf_token %}
+    {% for post in object_list %}
+        <label>
+            <input type="checkbox" name="selected_ids" value="{{ post.id }}">
+            {{ post.nazwa }}
+        </label><br>
+    {% endfor %}
+    <button type="submit">Usuń zaznaczone</button>
+</form>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+

@@ -7,36 +7,59 @@ ource+Sans+Pro:400" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/css_new.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tetris.css' %}" rel="stylesheet">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="/static/js/main.js" defer></script>
   </head>
   <body>
+    <div id="loading">
+      <div class="pop-up">
+          <span>CALCULATING...</span>
+          <div class ="box">
+              <div class="tetromino-t1"></div>
+              <div class="tetromino-s"></div>
+              <div class="tetromino-t2"></div>
+              <div class="tetromino-z"></div>
+              <div class="tetromino-l"></div>
+              <div class="tetromino-i"></div>
+              <div class="tetromino-fill"></div>
+          </div>
+      </div>
+    </div>
       <header> 
         <div class="nav-left">
-          <div class = "main_site_link"><a href="{% url 'home' %}">Molecule Calculator</a></div>
-          <div class = "adders"><a href="{% url 'post_suma' %}">Add New Molecule</a></div>
-          <div class = "adders"><a href="{% url 'post_suma2' %}">Add New Reaction</a></div>
+          <div class = "bgc-white bookmark bm-top border-gold">
+            <a class="bold-font big-font gold-font" href="{% url 'home' %}">Molecule Calculator</a>
+          </div>
+          <div class = "bgc-white bookmark bm-top border-pink">
+            <a class="bold-font big-font pink-font " href="{% url 'post_suma' %}">Add New Molecule</a>
+          </div>
         </div>
         <div class="nav-right" >
           {% if user.is_authenticated %}
-          <div class="loged">
-            <span>Hi <span>{{ user.username }}</span>!</span>
+          <div class="bold-font normal-font pink-font bgc-white bookmark bm-top border-pink">
+            <span class="big-font pink-font">Hi
+              <span class="big-font gold-font">{{ user.username }}</span>
+            !
+            </span>
             <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
-          <button type="submit">Log Out</button>
+          <button type="submit" class="bold-font small-font white-font button bgc-gold border-gold margin1-top">Log Out</button>
         </div>
           </form>
           {% else %}
-          <div class="loging">
-            <span>
+          <div class="bold-font small-font bookmark bm-top bgc-white border-pink">
+            <span class="pink-font">
               You are not logged in.</br>
             </span>
-            <a href="{% url 'login' %}">
+            <a class="normal-font gold-font" href="{% url 'login' %}">
               Log In
             </a>
-            <span>
+            <span class="pink-font">
               If you don't have an account.</br>
             </span>
-            <a href="{% url 'signup' %}">
+            <a class="normal-font gold-font" href="{% url 'signup' %}">
               Sign up
             </a>
           </div> 
@@ -44,14 +67,14 @@ ource+Sans+Pro:400" rel="stylesheet">
                  
         </div>
       </header>
-      <div class="added_content">
+      <div class="content bgc-white border-pink padding2 margin1 ">
         {% block content %}
+
         {% endblock content %}
       </div>
-
-      <footer>
+      <footer class="bold-font small-font pink-font bgc-white bookmark bm-bottom border-pink">
         <div>
-          Projekt UG Bioinfomatyka 2025 (Ulepszony tych sabych z 2024)
+          Molecule Calculator is using: <a href="http://openmopac.net/" class = "gold-font bold-font small-font">Mopac</a>
         </div>
       </footer>
   </body>

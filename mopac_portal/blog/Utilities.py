@@ -1,4 +1,6 @@
 #funkcje obliczeniowe
+from .systemcheck import systemcheck
+system = systemcheck()
 
 # tworzenie wzoru i struktury 3D
 def make_png_and_mop(smiles, id):
@@ -6,7 +8,7 @@ def make_png_and_mop(smiles, id):
     import os
     from django.conf import settings
     czasteczka = openbabel.pybel.readstring("smi", smiles)
-    os.mkdir(settings.MEDIA_ROOT+'/'+str(id))
+    os.makedirs(settings.MEDIA_ROOT + '/' + str(id), exist_ok=True)
     czasteczka.write(format="svg",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.svg", overwrite=True)
     czasteczka.make3D()
     czasteczka.write(format="mop",filename=settings.MEDIA_ROOT+'/'+str(id)+"/molecule.mop",overwrite=True)
@@ -28,13 +30,17 @@ def make_png_and_mop2(smiles, id):
 
 #sprawdza poprawnosc smilesa
 
+
 def smile_check(smiles):
     import openbabel.pybel
     try:
         czasteczka = openbabel.pybel.readstring("smi", smiles)
+        if not czasteczka.atoms:  
+            return 'it dont work'
         return 'it work'
     except Exception as e:
         return 'it dont work'
+       
 
 
 def CIRconvert(name):
@@ -47,11 +53,20 @@ def CIRconvert(name):
         if compounds:
             return compounds[0].isomeric_smiles
         else:
-            return 'No compound found'
+            return 'it dont work'
     except Exception as e:
-        return f'Error: {e}'
+          return f'Error: {e}'
 
-
+def CIRconvertName(smiles): #zamiana smiles na nazwe
+    import pubchempy as pcp
+    try:
+        compounds = pcp.get_compounds(smiles, 'smiles')
+        if compounds:
+              return compounds[0].iupac_name
+        else:
+            return 'it dont work'
+    except Exception as e:
+          return f'Error: {e}'
 #oblicza ta duza tablice wartosci
 
 def calculate(post, id):
@@ -69,7 +84,8 @@ def calculate(post, id):
     with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+"/force.mop", inplace=True, backup='.bak') as file:
         for line in file:
             print(line.replace('PUT KEYWORDS HERE',f"{metoda} force"), end='')
-    subprocess.run(['../mopac.sh', 'force.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+    system = systemcheck()
+    subprocess.run([rf'..{system[0]}', 'force.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     
 
 
@@ -123,8 +139,8 @@ def calculate(post, id):
         with fileinput.FileInput(settings.MEDIA_ROOT+'/'+str(id)+f"/drc{i}.mop", inplace=True, backup='.bak') as file:
             for line in file:
                 print(line.replace('PUT KEYWORDS HERE',f"{metoda} irc={i}* DRC BIGCYCLES=1 html t-priority=0.5"), end='')
-
-        subprocess.run(['../mopac.sh', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+'/'+str(post.id))
+        system = systemcheck()
+        subprocess.run([rf'..{system[0]}', f'drc{i}.mop'], cwd = settings.MEDIA_ROOT+system[1]+str(post.id), shell=system[2])
     post.calculated = True
     post.save()
     
@@ -172,7 +188,7 @@ def heat_energy(id):		#funckja wyświetlania wartości
 			ionization = float(line.split()[-2])
 		if line.startswith('          MOLECULAR WEIGHT        ='):
 			weight = float(line.split()[-4])
-		if line.startswith('		GRADIENT	      ='):
+		if line.startswith('          GRADIENT NORM           ='):
 			grad = float(line.split()[-5])
 		if line.startswith(' CYCLE:'):
 			a = line.split(":")
@@ -184,14 +200,49 @@ def heat_energy(id):		#funckja wyświetlania wartości
 			print(line)
 #    print(GRAD)
 #    print(HEAT)
-	plt.plot(GRAD)			#tworzy grafy dla gradie
+
+# (GRAD)
+	plt.figure(figsize=(15, 10))
+	plt.figure(facecolor='#55695e')
+	plt.plot(GRAD, '#EEEEEE')
 	plt.xlabel('Cycle')
 	plt.ylabel('Gradient')
+
+#kolory
+	ax = plt.gca()  
+	ax.set_facecolor("#55695e")
+	ax.spines['bottom'].set_color('#EEEEEE')
+	ax.spines['top'].set_color('#EEEEEE') 
+	ax.spines['right'].set_color('#EEEEEE')
+	ax.spines['left'].set_color('#EEEEEE')
+	ax.tick_params(axis='x', colors='#EEEEEE')
+	ax.tick_params(axis='y', colors='#EEEEEE')
+	ax.yaxis.label.set_color('#EEEEEE')
+	ax.xaxis.label.set_color('#EEEEEE')
+	ax.title.set_color('#EEEEEE')
+
 	plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/nalesnik.png")
 	plt.close()
-	plt.plot(HEAT)
+
+# (HEAT)
+	plt.figure(figsize=(15, 10))
+	plt.figure(facecolor='#55695e')
+	plt.plot(HEAT, '#EEEEEE')
 	plt.xlabel('Cycle')
 	plt.ylabel('Heat [Kcal/mol]')
+#kolory
+	ax = plt.gca()  
+	ax.set_facecolor("#55695e")
+	ax.spines['bottom'].set_color('#EEEEEE')
+	ax.spines['top'].set_color('#EEEEEE') 
+	ax.spines['right'].set_color('#EEEEEE')
+	ax.spines['left'].set_color('#EEEEEE')
+	ax.tick_params(axis='x', colors='#EEEEEE')
+	ax.tick_params(axis='y', colors='#EEEEEE')
+	ax.yaxis.label.set_color('#EEEEEE')
+	ax.xaxis.label.set_color('#EEEEEE')
+	ax.title.set_color('#EEEEEE')
+
 	plt.savefig(settings.MEDIA_ROOT+'/'+str(id)+"/placek.png")
 	plt.close()
 	czasteczka = next(openbabel.pybel.readfile("mopout", settings.MEDIA_ROOT+'/'+str(id)+"/molecule.out"))
