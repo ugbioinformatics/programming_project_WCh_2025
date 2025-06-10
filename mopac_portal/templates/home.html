@@ -15,15 +15,20 @@
 <form method="post" action="{% url 'delete_selected' %}">
   {% csrf_token %}
   {% for post in post_list %}
-  <div class="dott-bottom-rose">
-    <input type="checkbox" name="selected_ids" value="{{ post.id }}">
+<div class="make-cool dott-bottom-rose">
+  <div class="center-box">
+    <input class="checkbox" type="checkbox" name="selected_ids" value="{{ post.id }}">
+  </div>
+  <div>
     <a class="bold-font normal-font gold-font" href="{% url 'post_detail' post.pk %}">
       Name: {{ post.nazwa }}
     </a>
     <p class="normal-font pink-font">Smiles: {{ post.smiles }}</p>
   </div>
+
+</div>
   {% endfor %}
-  <button type="submit" class="white-font bold-font button-big bgc-pink normal-font">Delete selected</button>
+  <button id="loading-button" type="submit" class="white-font bold-font button-big bgc-pink normal-font">Delete selected</button>
 </form>
 {% endblock content %}
 
