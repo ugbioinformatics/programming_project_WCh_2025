@@ -26,3 +26,6 @@ venv/
 # Mac stuff
 .DS_Store
 
+# static/jsme
+static/jsme
+
