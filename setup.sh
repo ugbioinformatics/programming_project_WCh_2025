@@ -10,9 +10,9 @@ echo "== Pobieranie MOPAC =="
 wget -nc http://openmopac.net/mopac-23.1.2-linux.tar.gz
 tar zxvf mopac-23.1.2-linux.tar.gz
 
-echo "== Pobieranie JSME =="
-wget -nc https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip
-unzip -o JSME_2024-04-29.zip
+#echo "== Pobieranie JSME =="
+#wget -nc https://jsme-editor.github.io/downloads/JSME_2024-04-29.zip
+#unzip -o JSME_2024-04-29.zip
 
 echo "== Rozpakowywanie Jmol =="
 wget https://sourceforge.net/projects/jmol/files/Jmol/Version%2014.0/Version%2014.0.13/Jmol-14.0.13-binary.tar.gz
@@ -25,8 +25,8 @@ rm -f Jmol-14.0.13-binary.tar.gz
 echo "== Przenoszenie jsmol do media =="
 mv jsmol programming_project_WCh_2025/mopac_portal/media
 
-echo "== Przenoszenie jsme do static =="
-mv JSME_2024-04-29/jsme programming_project_WCh_2025/mopac_portal/static
+#echo "== Przenoszenie jsme do static =="
+#mv JSME_2024-04-29/jsme programming_project_WCh_2025/mopac_portal/static
 
 echo "== Instalacja zaleznosci z requirements.txt =="
 pip install -r programming_project_WCh_2025/mopac_portal/requirements.txt
