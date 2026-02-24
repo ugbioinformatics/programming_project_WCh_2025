@@ -21,7 +21,7 @@ ln -s /usr/lib/python3/dist-packages/openbabel $VIRTUAL_ENV/lib/python*/site-pac
 <h3> Mopac </h3>
 pobieramy ze strony http://openmopac.net/Download_MOPAC_Executable_Step2.html
 <pre>
-wget http://openmopac.net/mopac-23.2.3-linux.tar.gz
+wget https://github.com/openmopac/mopac/releases/download/v23.2.3/mopac-23.2.3-linux.tar.gz
 tar zxvf mopac-23.2.3-linux.tar.gz 
 </pre>
 
