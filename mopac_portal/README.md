@@ -21,8 +21,8 @@ ln -s /usr/lib/python3/dist-packages/openbabel $VIRTUAL_ENV/lib/python*/site-pac
 <h3> Mopac </h3>
 pobieramy ze strony http://openmopac.net/Download_MOPAC_Executable_Step2.html
 <pre>
-wget http://openmopac.net/mopac-23.1.2-linux.tar.gz
-tar zxvf mopac-23.1.2-linux.tar.gz 
+wget http://openmopac.net/mopac-23.2.3-linux.tar.gz
+tar zxvf mopac-23.2.3-linux.tar.gz 
 </pre>
 
 <h3>Nasza aplikacja django pobierana z github</h3>
