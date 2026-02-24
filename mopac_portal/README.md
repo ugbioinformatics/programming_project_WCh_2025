@@ -14,7 +14,8 @@ MOPAC produkuje wyniki jako strony html z animacjami z wykorzystaniem Jmol.
 <h3>Instalacja virtualnego środowiska python3 z systemowym openbabel</h3>
 <pre>
 python3 -m venv env
-source env/bin/activate.csh
+source env/bin/activate.csh (dla tcsh)
+source env/bin/activate (dla bash i  sh)          
 ln -s /usr/lib/python3/dist-packages/openbabel $VIRTUAL_ENV/lib/python*/site-packages
 </pre>
 
