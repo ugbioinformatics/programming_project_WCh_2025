@@ -27,7 +27,7 @@ tar zxvf mopac-23.2.3-linux.tar.gz
 
 <h3>Nasza aplikacja django pobierana z github</h3>
 <pre>
-git clone git@github.com:ugbioinformatics/programming_project_WCh_2025.git
+git clone https://github.com/ugbioinformatics/programming_project_WCh_2025.git
 pip install -r programming_project_WCh_2025/mopac_portal/requirements.txt
 </pre>
 
